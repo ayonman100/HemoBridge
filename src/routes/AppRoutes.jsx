@@ -13,8 +13,10 @@ import Onboarding2 from "../pages/auth/Onboarding2";
 import Onboarding3 from "../pages/auth/Onboarding3";
 import SelectRole from "../pages/auth/SelectRole";
 import Login from "../pages/auth/Login";
-import Register from "../pages/auth/Register";
+import Signup from "../pages/auth/Signup";
 
+//Donor page
+import DonorDashboard from "../pages/donor/Dashboard";
 
 function AppRoutes() {
 
@@ -37,8 +39,10 @@ function AppRoutes() {
         <Route path="/onboarding/3" element={<Onboarding3 />} />
         <Route path="/select-role" element={<SelectRole />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/signup" element={<Signup />} />
 
+        {/*donor page*/}
+        <Route path="/donor/dashboard" element={<DonorDashboard />} />
 
         {/* 404 Page */}
         <Route path="*" element={<NotFound />} />
