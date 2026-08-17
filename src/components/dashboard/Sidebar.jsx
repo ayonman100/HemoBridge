@@ -1,96 +1,274 @@
-import { NavLink } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import {
+  LayoutDashboard,
+  AlertTriangle,
+  Droplet,
+  MapPin,
+  User,
+  Search,
+  ClipboardList,
+  History,
+  Users,
+  Hospital,
+  CheckCircle,
+  Bell,
+  BarChart3,
+} from "lucide-react";
 
-function Sidebar() {
-  const navItems = [
-    {
-      name: "Dashboard",
-      path: "/donor/dashboard",
-      icon: "🏠",
+function Sidebar({ sidebarOpen, setSidebarOpen }) {
+  const location = useLocation();
+
+  const portalConfigs = {
+    donor: {
+      name: "Donor Portal",
+      homePath: "/donor/dashboard",
+      menuItems: [
+        {
+          name: "Dashboard",
+          path: "/donor/dashboard",
+          icon: LayoutDashboard,
+        },
+        {
+          name: "Blood Requests",
+          path: "/donor/requests",
+          icon: AlertTriangle,
+        },
+        {
+          name: "Donation History",
+          path: "/donor/donation-history",
+          icon: Droplet,
+        },
+        {
+          name: "Nearby Centres",
+          path: "/donor/nearby-centres",
+          icon: MapPin,
+        },
+        {
+          name: "Profile",
+          path: "/donor/profile",
+          icon: User,
+        },
+      ],
     },
-    {
-      name: "Requests",
-      path: "/donor/requests",
-      icon: "🚨",
+
+    hospital: {
+      name: "Hospital Portal",
+      homePath: "/hospital/dashboard",
+      menuItems: [
+        {
+          name: "Dashboard",
+          path: "/hospital/dashboard",
+          icon: LayoutDashboard,
+        },
+        {
+          name: "Request Blood",
+          path: "/hospital/request-blood",
+          icon: AlertTriangle,
+        },
+        {
+          name: "Search Blood",
+          path: "/hospital/search-blood",
+          icon: Search,
+        },
+        {
+          name: "Requests",
+          path: "/hospital/requests",
+          icon: ClipboardList,
+        },
+        {
+          name: "Request History",
+          path: "/hospital/request-history",
+          icon: History,
+        },
+        {
+          name: "Profile",
+          path: "/hospital/profile",
+          icon: User,
+        },
+      ],
     },
-    {
-      name: "Donation History",
-      path: "/donor/donation-history",
-      icon: "🩸",
+
+    bloodbank: {
+      name: "Blood Bank Portal",
+      homePath: "/bloodbank/dashboard",
+      menuItems: [
+        {
+          name: "Dashboard",
+          path: "/bloodbank/dashboard",
+          icon: LayoutDashboard,
+        },
+        {
+          name: "Inventory",
+          path: "/bloodbank/inventory",
+          icon: Droplet,
+        },
+        {
+          name: "Requests",
+          path: "/bloodbank/requests",
+          icon: ClipboardList,
+        },
+        {
+          name: "Profile",
+          path: "/bloodbank/profile",
+          icon: User,
+        },
+      ],
     },
-    {
-      name: "Nearby Centres",
-      path: "/donor/nearby-centres",
-      icon: "📍",
+
+    admin: {
+      name: "Admin Portal",
+      homePath: "/admin/dashboard",
+      menuItems: [
+        {
+          name: "Dashboard",
+          path: "/admin/dashboard",
+          icon: LayoutDashboard,
+        },
+        {
+          name: "Users",
+          path: "/admin/users",
+          icon: Users,
+        },
+        {
+          name: "Hospitals",
+          path: "/admin/hospitals",
+          icon: Hospital,
+        },
+        {
+          name: "Blood Banks",
+          path: "/admin/blood-banks",
+          icon: Droplet,
+        },
+        {
+          name: "Donors",
+          path: "/admin/donors",
+          icon: Users,
+        },
+        {
+          name: "Requests",
+          path: "/admin/requests",
+          icon: ClipboardList,
+        },
+        {
+          name: "Verification",
+          path: "/admin/verification",
+          icon: CheckCircle,
+        },
+        {
+          name: "Updates",
+          path: "/admin/updates",
+          icon: Bell,
+        },
+        {
+          name: "Reports",
+          path: "/admin/reports",
+          icon: BarChart3,
+        },
+      ],
     },
-    {
-      name: "Profile",
-      path: "/donor/profile",
-      icon: "👤",
-    },
-  ];
+  };
+
+  const getCurrentPortal = () => {
+    const pathname = location.pathname;
+
+    if (pathname.startsWith("/donor/")) {
+      return "donor";
+    }
+
+    if (pathname.startsWith("/hospital/")) {
+      return "hospital";
+    }
+
+    if (pathname.startsWith("/bloodbank/")) {
+      return "bloodbank";
+    }
+
+    if (pathname.startsWith("/admin/")) {
+      return "admin";
+    }
+
+    return null;
+  };
+
+  const currentPortal = getCurrentPortal();
+
+  const portalInfo = currentPortal
+    ? portalConfigs[currentPortal]
+    : null;
+
+  if (!portalInfo) {
+    return null;
+  }
 
   return (
-    <aside className="hidden md:flex w-64 bg-white border-r border-gray-200 min-h-screen flex-col">
+    <>
+      {sidebarOpen && (
+        <div
+          className="sidebar-overlay"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
 
-      {/* Logo */}
-      <div className="px-6 py-6 border-b border-gray-100">
-
-        <h1 className="text-2xl font-bold text-red-600">
-          HemoBridge
-        </h1>
-
-        <p className="text-xs text-gray-500 mt-1">
-          Connecting Blood. Saving Lives.
-        </p>
-
-      </div>
-
-      {/* Navigation */}
-      <nav className="flex-1 px-4 py-6 space-y-2">
-
-        {navItems.map((item) => (
-          <NavLink
-            key={item.path}
-            to={item.path}
-            className={({ isActive }) =>
-              `flex items-center gap-3 px-4 py-3 rounded-lg transition ${
-                isActive
-                  ? "bg-red-50 text-red-600 font-semibold"
-                  : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
-              }`
-            }
+      <aside
+        className={`dashboard-sidebar ${
+          sidebarOpen ? "sidebar-open" : ""
+        }`}
+      >
+        {/* Header */}
+        <div className="sidebar-header">
+          <Link
+            to={portalInfo.homePath}
+            onClick={() => setSidebarOpen(false)}
+            className="sidebar-logo"
           >
-            <span className="text-lg">
-              {item.icon}
-            </span>
+            HemoBridge
+          </Link>
 
-            <span>
-              {item.name}
-            </span>
-          </NavLink>
-        ))}
+          <button
+            type="button"
+            onClick={() => setSidebarOpen(false)}
+            className="sidebar-close"
+            aria-label="Close sidebar"
+          >
+            ✕
+          </button>
+        </div>
 
-      </nav>
+        {/* Portal */}
+        <div className="sidebar-portal">
+          <span>{portalInfo.name}</span>
+        </div>
 
-      {/* Logout */}
-      <div className="p-4 border-t border-gray-100">
+        {/* Navigation */}
+        <nav className="sidebar-navigation">
+          <p className="sidebar-menu-title">Menu</p>
 
-        <button
-          type="button"
-          className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 hover:bg-red-50 hover:text-red-600 transition"
-        >
-          <span>
-            🚪
-          </span>
+          <div className="sidebar-menu">
+            {portalInfo.menuItems.map((item) => {
+              const active = location.pathname === item.path;
+              const Icon = item.icon;
 
-          <span>
-            Logout
-          </span>
-        </button>
+              return (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  onClick={() => setSidebarOpen(false)}
+                  className={`sidebar-link ${
+                    active ? "sidebar-link-active" : ""
+                  }`}
+                >
+                  <span className="sidebar-icon">
+                    <Icon size={20} strokeWidth={2} />
+                  </span>
 
-      </div>
-
-    </aside>
+                  <span>{item.name}</span>
+                </Link>
+              );
+            })}
+          </div>
+        </nav>
+      </aside>
+    </>
   );
 }
 

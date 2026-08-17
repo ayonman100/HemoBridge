@@ -1,0 +1,423 @@
+.search-blood-page {
+  width: 100%;
+}
+
+/* Header */
+
+.search-blood-header {
+  margin-bottom: 32px;
+}
+
+.search-blood-back {
+  display: inline-block;
+  color: #6b7280;
+  font-size: 14px;
+  text-decoration: none;
+  margin-bottom: 12px;
+  transition: color 0.2s ease;
+}
+
+.search-blood-back:hover {
+  color: #dc2626;
+}
+
+.search-blood-header h1 {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.search-blood-header p {
+  margin-top: 8px;
+  color: #6b7280;
+  font-size: 15px;
+}
+
+
+/* Search Panel */
+
+.blood-search-panel {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 32px;
+}
+
+.blood-search-panel-header {
+  margin-bottom: 24px;
+}
+
+.blood-search-panel-header h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.blood-search-panel-header p {
+  margin-top: 6px;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+
+/* Search Fields */
+
+.blood-search-fields {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.blood-search-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.blood-search-field label {
+  margin-bottom: 8px;
+  color: #374151;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.blood-search-field input,
+.blood-search-field select {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 12px 14px;
+  background: #ffffff;
+  color: #374151;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.blood-search-field input:focus,
+.blood-search-field select:focus {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+
+/* Search Buttons */
+
+.blood-search-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.blood-search-button {
+  border: none;
+  background: #dc2626;
+  color: #ffffff;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.blood-search-button:hover {
+  background: #b91c1c;
+}
+
+.blood-search-button:active {
+  transform: translateY(1px);
+}
+
+.blood-clear-button {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  color: #374151;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.blood-clear-button:hover {
+  background: #f9fafb;
+  border-color: #d1d5db;
+}
+
+
+/* Results Header */
+
+.blood-results-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.blood-results-header h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.blood-results-header p {
+  margin-top: 5px;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.blood-results-header > span {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+
+/* Results */
+
+.blood-results {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.blood-result-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 24px;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.blood-result-card:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+  transform: translateY(-1px);
+}
+
+.blood-result-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+
+/* Blood Source */
+
+.blood-source {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.blood-type-badge {
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  background: #fef2f2;
+  color: #dc2626;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.blood-source-info {
+  min-width: 0;
+}
+
+.blood-source-title {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.blood-source-title h3 {
+  margin: 0;
+  color: #111827;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.verified-badge {
+  background: #ecfdf5;
+  color: #047857;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.blood-location {
+  margin-top: 8px;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.blood-source-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 10px;
+  color: #9ca3af;
+  font-size: 13px;
+}
+
+
+/* Availability */
+
+.blood-availability {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-shrink: 0;
+}
+
+.blood-availability p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 12px;
+}
+
+.blood-availability strong {
+  display: block;
+  margin-top: 4px;
+  color: #111827;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.blood-request-button {
+  border: none;
+  background: #dc2626;
+  color: #ffffff;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.blood-request-button:hover {
+  background: #b91c1c;
+}
+
+
+/* Information Box */
+
+.blood-info-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  background: #eff6ff;
+  border: 1px solid #dbeafe;
+  border-radius: 16px;
+  padding: 24px;
+  margin-top: 32px;
+}
+
+.blood-info-icon {
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.blood-info-box h2 {
+  margin: 0;
+  color: #1e3a8a;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.blood-info-box p {
+  margin-top: 8px;
+  color: #1e40af;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+
+/* Tablet */
+
+@media (max-width: 1024px) {
+  .blood-search-fields {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .blood-result-content {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .blood-availability {
+    justify-content: flex-end;
+  }
+}
+
+
+/* Mobile */
+
+@media (max-width: 640px) {
+  .search-blood-header h1 {
+    font-size: 26px;
+  }
+
+  .blood-search-panel {
+    padding: 20px;
+  }
+
+  .blood-search-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .blood-search-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .blood-search-button,
+  .blood-clear-button {
+    width: 100%;
+  }
+
+  .blood-results-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .blood-result-card {
+    padding: 20px;
+  }
+
+  .blood-source {
+    gap: 12px;
+  }
+
+  .blood-type-badge {
+    width: 50px;
+    height: 50px;
+  }
+
+  .blood-availability {
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .blood-request-button {
+    padding: 11px 18px;
+  }
+
+  .blood-info-box {
+    padding: 20px;
+  }
+}

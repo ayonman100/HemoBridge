@@ -1,0 +1,531 @@
+.admin-bloodbanks {
+  width: 100%;
+}
+
+/* Header */
+
+.bloodbanks-header {
+  margin-bottom: 32px;
+}
+
+.bloodbanks-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #6b7280;
+  font-size: 14px;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.bloodbanks-back:hover {
+  color: #dc2626;
+}
+
+.bloodbanks-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 14px;
+}
+
+.bloodbanks-header h1 {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.bloodbanks-header p {
+  margin: 8px 0 0;
+  color: #6b7280;
+  font-size: 15px;
+}
+
+.bloodbanks-review-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 18px;
+  border-radius: 10px;
+  background: #dc2626;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.bloodbanks-review-btn:hover {
+  background: #b91c1c;
+  transform: translateY(-1px);
+}
+
+
+/* Statistics */
+
+.bloodbanks-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+.bloodbank-stat-card {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 22px;
+  transition: all 0.2s ease;
+}
+
+.bloodbank-stat-card:hover {
+  border-color: #fecaca;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+  transform: translateY(-2px);
+}
+
+.bloodbank-stat-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.bloodbank-stat-icon.total {
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+.bloodbank-stat-icon.verified {
+  background: #ecfdf5;
+  color: #16a34a;
+}
+
+.bloodbank-stat-icon.units {
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+.bloodbank-stat-icon.pending {
+  background: #fffbeb;
+  color: #d97706;
+}
+
+.bloodbank-stat-card p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.bloodbank-stat-card h2 {
+  margin: 7px 0 4px;
+  color: #111827;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.bloodbank-stat-card span {
+  color: #9ca3af;
+  font-size: 12px;
+}
+
+
+/* Filters */
+
+.bloodbanks-filters {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px;
+  margin-bottom: 24px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+}
+
+.bloodbanks-filter-group {
+  display: flex;
+  gap: 12px;
+}
+
+.bloodbanks-filters select {
+  min-width: 165px;
+  padding: 11px 14px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  color: #374151;
+  font-size: 14px;
+  outline: none;
+  cursor: pointer;
+}
+
+.bloodbanks-filters select:focus {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.bloodbanks-search {
+  width: 290px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 0 14px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  color: #9ca3af;
+}
+
+.bloodbanks-search:focus-within {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.bloodbanks-search input {
+  width: 100%;
+  padding: 11px 0;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  color: #111827;
+}
+
+
+/* Table */
+
+.bloodbanks-table-card {
+  overflow: hidden;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+}
+
+.bloodbanks-table-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 24px;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.bloodbanks-table-header h2 {
+  margin: 0;
+  color: #111827;
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.bloodbanks-table-header p {
+  margin: 5px 0 0;
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.bloodbanks-table-header > span {
+  padding: 6px 10px;
+  border-radius: 20px;
+  background: #f9fafb;
+  color: #6b7280;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+
+/* Desktop Table */
+
+.bloodbanks-desktop-table {
+  overflow-x: auto;
+}
+
+.bloodbanks-desktop-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.bloodbanks-desktop-table th {
+  padding: 14px 24px;
+  background: #f9fafb;
+  color: #6b7280;
+  font-size: 11px;
+  font-weight: 700;
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.bloodbanks-desktop-table td {
+  padding: 18px 24px;
+  border-top: 1px solid #f3f4f6;
+  color: #374151;
+  font-size: 14px;
+}
+
+.bloodbanks-desktop-table tbody tr {
+  transition: background 0.2s ease;
+}
+
+.bloodbanks-desktop-table tbody tr:hover {
+  background: #fafafa;
+}
+
+
+/* Blood Bank Name */
+
+.bloodbank-name-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.bloodbank-avatar {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 11px;
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+.bloodbank-name-cell div:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.bloodbank-name-cell strong {
+  color: #111827;
+  font-size: 14px;
+}
+
+.bloodbank-name-cell span {
+  color: #9ca3af;
+  font-size: 12px;
+}
+
+
+/* Location */
+
+.bloodbank-location {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #6b7280;
+}
+
+.bloodbank-location svg {
+  color: #9ca3af;
+}
+
+
+/* Units */
+
+.bloodbank-units {
+  color: #dc2626 !important;
+}
+
+
+/* Status */
+
+.bloodbank-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.bloodbank-status.verified {
+  background: #ecfdf5;
+  color: #15803d;
+}
+
+.bloodbank-status.pending {
+  background: #fffbeb;
+  color: #b45309;
+}
+
+.bloodbank-status.suspended {
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+
+/* View Button */
+
+.bloodbank-view-btn {
+  border: none;
+  background: transparent;
+  color: #dc2626;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.bloodbank-view-btn:hover {
+  color: #b91c1c;
+}
+
+
+/* Mobile */
+
+.bloodbanks-mobile {
+  display: none;
+}
+
+.bloodbank-mobile-card {
+  padding: 20px;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.bloodbank-mobile-card:last-child {
+  border-bottom: none;
+}
+
+.bloodbank-mobile-top {
+  display: flex;
+  gap: 12px;
+}
+
+.bloodbank-mobile-title {
+  flex: 1;
+}
+
+.bloodbank-mobile-name-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.bloodbank-mobile-name-row strong {
+  color: #111827;
+  font-size: 14px;
+}
+
+.bloodbank-mobile-title > span {
+  display: block;
+  margin-top: 5px;
+  color: #9ca3af;
+  font-size: 12px;
+}
+
+.bloodbank-mobile-info {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  margin-top: 20px;
+}
+
+.bloodbank-mobile-info div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.bloodbank-mobile-info span {
+  color: #9ca3af;
+  font-size: 11px;
+}
+
+.bloodbank-mobile-info strong {
+  color: #111827;
+  font-size: 13px;
+}
+
+.bloodbank-mobile-view {
+  width: 100%;
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background: white;
+  color: #374151;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.bloodbank-mobile-view:hover {
+  background: #f9fafb;
+}
+
+
+/* Responsive */
+
+@media (max-width: 1100px) {
+  .bloodbanks-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .bloodbanks-header-row {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .bloodbanks-review-btn {
+    width: 100%;
+  }
+
+  .bloodbanks-filters {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .bloodbanks-filter-group {
+    flex-direction: column;
+  }
+
+  .bloodbanks-filters select {
+    width: 100%;
+  }
+
+  .bloodbanks-search {
+    width: 100%;
+  }
+
+  .bloodbanks-desktop-table {
+    display: none;
+  }
+
+  .bloodbanks-mobile {
+    display: block;
+  }
+}
+
+@media (max-width: 560px) {
+  .bloodbanks-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .bloodbanks-header h1 {
+    font-size: 26px;
+  }
+
+  .bloodbanks-table-header {
+    padding: 18px;
+  }
+
+  .bloodbanks-table-header > span {
+    display: none;
+  }
+
+  .bloodbank-mobile-name-row {
+    flex-direction: column;
+  }
+}

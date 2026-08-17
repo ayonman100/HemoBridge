@@ -1,9 +1,10 @@
-function StatCard({ title, value, subtitle, icon, iconBg = "bg-red-50", iconColor = "text-red-600" }) {
+function StatCard({ title, value, subtitle, icon }) {
   return (
-    <div className="bg-white rounded-2xl border border-gray-200 p-6 hover:shadow-sm transition">
+    <div className="bg-white rounded-2xl border border-gray-200 p-6">
 
-      <div className="flex items-start justify-between">
+      <div className="flex items-start justify-between gap-4">
 
+        {/* Text */}
         <div>
           <p className="text-sm text-gray-500">
             {title}
@@ -13,19 +14,14 @@ function StatCard({ title, value, subtitle, icon, iconBg = "bg-red-50", iconColo
             {value}
           </p>
 
-          {subtitle && (
-            <p className="text-sm text-gray-500 mt-2">
-              {subtitle}
-            </p>
-          )}
+          <p className="text-sm text-gray-500 mt-2">
+            {subtitle}
+          </p>
         </div>
 
-        <div
-          className={`w-12 h-12 rounded-xl flex items-center justify-center ${iconBg} ${iconColor}`}
-        >
-          <span className="text-xl">
-            {icon}
-          </span>
+        {/* Lucide Icon */}
+        <div className="w-12 h-12 rounded-xl bg-red-100 text-red-600 flex items-center justify-center shrink-0">
+          {icon}
         </div>
 
       </div>

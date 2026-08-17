@@ -1,63 +1,64 @@
 import { useNavigate } from "react-router-dom";
+import { Droplet } from "lucide-react";
 
 function Onboarding1() {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-white flex flex-col">
-
+    <main className="onboarding-page">
       {/* Top */}
-      <div className="flex justify-end px-6 py-6">
+      <div className="onboarding-top">
         <button
-          onClick={() => navigate("/select-role")}
-          className="text-gray-500 font-medium hover:text-gray-900"
+          type="button"
+          onClick={() => navigate("/home")}
+          className="onboarding-skip"
         >
           Skip
         </button>
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col items-center justify-center px-6 text-center">
-
+      <div className="onboarding-content">
         {/* Illustration */}
-        <div className="w-72 h-72 bg-red-50 rounded-full flex items-center justify-center mb-10">
-          <span className="text-8xl">🩸</span>
+        <div className="onboarding-illustration">
+          <Droplet
+            size={100}
+            strokeWidth={1.5}
+            className="onboarding-icon"
+          />
         </div>
 
         {/* Heading */}
-        <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
+        <h1 className="onboarding-title">
           Find Blood When It Matters Most
         </h1>
 
         {/* Description */}
-        <p className="mt-5 max-w-md text-gray-600 leading-relaxed">
+        <p className="onboarding-description">
           HemoBridge connects hospitals, blood banks, and donors to help
           people find compatible blood faster during emergencies.
         </p>
-
       </div>
 
       {/* Bottom */}
-      <div className="px-6 pb-8">
-
+      <div className="onboarding-bottom">
         {/* Progress */}
-        <div className="flex justify-center gap-2 mb-6">
-          <span className="w-8 h-2 rounded-full bg-red-600"></span>
-          <span className="w-2 h-2 rounded-full bg-gray-300"></span>
-          <span className="w-2 h-2 rounded-full bg-gray-300"></span>
+        <div className="onboarding-progress">
+          <span className="onboarding-progress-active"></span>
+          <span></span>
+          <span></span>
         </div>
 
         {/* Next Button */}
         <button
+          type="button"
           onClick={() => navigate("/onboarding/2")}
-          className="w-full max-w-md mx-auto block bg-red-600 text-white py-4 rounded-xl font-semibold hover:bg-red-700 transition"
+          className="onboarding-next"
         >
           Next
         </button>
-
       </div>
-
-    </div>
+    </main>
   );
 }
 

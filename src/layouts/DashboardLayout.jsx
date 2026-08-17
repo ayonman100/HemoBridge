@@ -1,24 +1,33 @@
+import { useState } from "react";
+import { Outlet } from "react-router-dom";
+
 import Sidebar from "../components/dashboard/Sidebar";
 import Topbar from "../components/dashboard/Topbar";
 
-function DashboardLayout({ children }) {
+function DashboardLayout() {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
   return (
-    <div className="min-h-screen bg-gray-50 flex">
+    <div className="dashboard-layout">
+      <Sidebar
+        sidebarOpen={sidebarOpen}
+        setSidebarOpen={setSidebarOpen}
+      />
 
-      {/* Sidebar */}
-      <Sidebar />
+      <div
+        className={`dashboard-content ${
+          sidebarOpen ? "dashboard-content-sidebar-open" : ""
+        }`}
+      >
+        <Topbar
+          sidebarOpen={sidebarOpen}
+          setSidebarOpen={setSidebarOpen}
+        />
 
-      {/* Main Area */}
-      <div className="flex-1 flex flex-col">
-
-        <Topbar />
-
-        <main className="flex-1">
-          {children}
+        <main className="dashboard-main">
+          <Outlet />
         </main>
-
       </div>
-
     </div>
   );
 }

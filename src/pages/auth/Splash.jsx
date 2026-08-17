@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import logo from "../../assets/logos/hemobridge logo.jpeg";
+import splashImage from "../../assets/images/splash-onboarding page image.jpeg";
 
 function Splash() {
   const navigate = useNavigate();
@@ -13,26 +15,32 @@ function Splash() {
   }, [navigate]);
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-white">
-      <div className="text-center">
+    <main className="splash-page">
+      <div className="splash-image">
+        <img
+          src={splashImage}
+          alt="HemoBridge blood donation"
+        />
+      </div>
 
+      <div className="splash-content">
+        <img
+          src={logo}
+          alt="HemoBridge"
+          className="splash-logo"
+        />
 
-        <h1 className="text-5xl font-bold text-red-600">
-          Hem🩸Bridge
-        </h1>
-
-        <p className="mt-3 text-gray-600">
+        <p className="splash-tagline">
           Connecting Blood. Saving Lives.
         </p>
 
-        <div className="mt-8 flex justify-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-red-600"></span>
-          <span className="w-2 h-2 rounded-full bg-red-300"></span>
-          <span className="w-2 h-2 rounded-full bg-red-300"></span>
+        <div className="splash-loader" aria-label="Loading">
+          <span className="splash-dot splash-dot-active"></span>
+          <span className="splash-dot"></span>
+          <span className="splash-dot"></span>
         </div>
-
       </div>
-    </div>
+    </main>
   );
 }
 

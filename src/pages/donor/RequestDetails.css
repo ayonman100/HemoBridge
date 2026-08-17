@@ -1,0 +1,324 @@
+.request-details {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-bottom: 40px;
+}
+
+.request-details__back {
+  margin-bottom: 28px;
+}
+
+.request-details__back a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #dc2626;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.request-details__back a:hover {
+  color: #b91c1c;
+}
+
+.request-details__header {
+  margin-bottom: 28px;
+}
+
+.request-details__eyebrow {
+  margin: 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.request-details__header h1 {
+  margin: 6px 0 0;
+  color: #111827;
+  font-size: 32px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.request-details__header > p:last-child {
+  margin: 10px 0 0;
+  color: #6b7280;
+  font-size: 15px;
+}
+
+.request-details__overview {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+.request-details__blood-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.request-details__blood-icon {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fef2f2;
+  color: #dc2626;
+  border-radius: 16px;
+}
+
+.request-details__blood-info p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.request-details__blood-info h2 {
+  margin: 4px 0 0;
+  color: #111827;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.request-details__urgency {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 15px;
+  background: #fee2e2;
+  color: #b91c1c;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.request-details__card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+.request-details__card-header {
+  margin-bottom: 24px;
+}
+
+.request-details__card-header h2 {
+  margin: 0;
+  color: #111827;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.request-details__card-header p {
+  margin: 5px 0 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.request-details__info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.request-details__info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+}
+
+.request-details__info-icon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f9fafb;
+  color: #6b7280;
+  border-radius: 10px;
+}
+
+.request-details__info-item div:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.request-details__info-item span {
+  color: #9ca3af;
+  font-size: 13px;
+}
+
+.request-details__info-item strong {
+  color: #111827;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.request-details__notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  border-radius: 18px;
+  padding: 22px;
+  margin-bottom: 20px;
+}
+
+.request-details__notice-icon {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffedd5;
+  color: #ea580c;
+  border-radius: 11px;
+}
+
+.request-details__notice h2 {
+  margin: 0;
+  color: #9a3412;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.request-details__notice p {
+  margin: 7px 0 0;
+  color: #9a3412;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.request-details__action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+  padding: 24px;
+}
+
+.request-details__action-content {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.request-details__action-icon {
+  width: 46px;
+  height: 46px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fef2f2;
+  color: #dc2626;
+  border-radius: 12px;
+}
+
+.request-details__action h2 {
+  margin: 0;
+  color: #111827;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.request-details__action p {
+  margin: 5px 0 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.request-details__donate-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-shrink: 0;
+  border: none;
+  border-radius: 11px;
+  background: #dc2626;
+  color: #ffffff;
+  padding: 13px 22px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.request-details__donate-button:hover {
+  background: #b91c1c;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+  .request-details__header h1 {
+    font-size: 28px;
+  }
+
+  .request-details__overview {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .request-details__info-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .request-details__action {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .request-details__donate-button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .request-details__header h1 {
+    font-size: 25px;
+  }
+
+  .request-details__overview,
+  .request-details__card,
+  .request-details__notice,
+  .request-details__action {
+    padding: 18px;
+    border-radius: 15px;
+  }
+
+  .request-details__blood-icon {
+    width: 54px;
+    height: 54px;
+  }
+
+  .request-details__blood-info h2 {
+    font-size: 21px;
+  }
+
+  .request-details__action-content {
+    align-items: flex-start;
+  }
+}

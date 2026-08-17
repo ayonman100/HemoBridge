@@ -1,120 +1,87 @@
-import Navbar from "../components/landing/Navbar"
-import BloodCard from "../components/landing/BloodCard"
-import Stats from "../components/landing/Stats"
-import ProcessCard from "../components/landing/ProcessCard"
+import { Link } from "react-router-dom";
+import { Droplet, ArrowRight } from "lucide-react";
 
+import BloodCard from "../components/landing/BloodCard";
+import Stats from "../components/landing/Stats";
+import ProcessCard from "../components/landing/ProcessCard";
+
+import homeImage from "../assets/images/home-landing page image.jpeg";
 
 function Home() {
   return (
-    <div>
-      
-        <h1>Hello HemoBridge</h1>
-
-      <Navbar />
-
+    <div className="home-page">
 
       {/* Hero Section */}
-      <section className="min-h-screen bg-gray-50 flex items-center">
-
-        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-10">
-
+      <section className="home-hero">
+        <div className="home-container home-hero-grid">
 
           {/* Text Side */}
-          <div className="flex flex-col justify-center">
-
-            <p className="text-red-600 font-semibold mb-4">
-               Emergency Blood Access Platform
+          <div className="home-hero-content">
+            <p className="home-eyebrow">
+              Emergency Blood Access Platform
             </p>
 
-
-            <h1 className="text-5xl font-bold text-gray-900 leading-tight">
-
+            <h1 className="home-hero-title">
               Connecting Blood.
-
-              <span className="text-red-600">
-                {" "}Saving Lives.
-              </span>
-
+              <span> Saving Lives.</span>
             </h1>
 
-
-            <p className="mt-6 text-lg text-gray-600">
-
+            <p className="home-hero-description">
               HemoBridge connects hospitals and blood banks through a
               real-time network, helping medical teams find compatible
               blood faster during emergencies.
-
             </p>
 
-
-            <div className="mt-8 flex gap-4">
-
-
-              <button className="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700">
-
+            <div className="home-hero-actions">
+              <Link
+                to="/login"
+                className="home-primary-button"
+              >
                 Find Blood Now
+                <ArrowRight size={18} />
+              </Link>
 
-              </button>
-
-
-              <button className="border border-gray-300 px-6 py-3 rounded-lg">
-
+              <Link
+                to="/about"
+                className="home-secondary-button"
+              >
                 Learn More
-
-              </button>
-
-
+              </Link>
             </div>
-
-
           </div>
 
+          {/* Hero Image */}
+          <div className="home-hero-image-wrapper">
+            <div className="home-hero-image-card">
+              <img
+                src={homeImage}
+                alt="Nigerian healthcare professionals and blood donation"
+                className="home-hero-image"
+              />
 
-
-          {/* Blood Visual */}
-          <div className="flex items-center justify-center">
-
-            <div className="w-80 h-80 bg-red-100 rounded-full flex items-center justify-center">
-
-              <div className="text-8xl">
-                🩸
+              <div className="home-image-badge">
+                <Droplet size={18} />
+                <span>Saving lives together</span>
               </div>
-
             </div>
-
           </div>
-
 
         </div>
-
       </section>
 
-
-
       {/* Blood Availability Section */}
-      <section className="py-20 bg-white">
+      <section className="home-availability">
+        <div className="home-container">
 
+          <div className="home-section-heading">
+            <h2>Live Blood Availability</h2>
 
-        <div className="max-w-7xl mx-auto px-6">
+            <p>
+              Real-time blood inventory from verified hospitals and blood banks
+            </p>
+          </div>
 
-
-          <h2 className="text-4xl font-bold text-gray-900 text-center">
-
-            Live Blood Availability
-
-          </h2>
-
-
-          <p className="text-center text-gray-600 mt-3">
-
-            Real-time blood inventory from verified hospitals and blood banks
-
-          </p>
-
-
-
-          <div className="grid md:grid-cols-4 gap-6 mt-10">
-
+          <div className="home-blood-grid">
 
             <BloodCard
               type="O+"
@@ -122,13 +89,11 @@ function Home() {
               status="Available"
             />
 
-
             <BloodCard
               type="A+"
               units="12"
               status="Available"
             />
-
 
             <BloodCard
               type="B-"
@@ -136,115 +101,66 @@ function Home() {
               status="Low Stock"
             />
 
-
             <BloodCard
               type="AB+"
               units="8"
               status="Available"
             />
 
-
           </div>
-
-
         </div>
-
-
       </section>
-
-
 
       {/* Statistics */}
       <Stats />
 
-     <section className="py-20 bg-gray-50">
+      {/* How HemoBridge Works */}
+      <section
+        id="how-it-works"
+        className="home-process"
+      >
+        <div className="home-container">
 
+          <div className="home-section-heading">
+            <h2>How HemoBridge Works</h2>
 
-<div className="max-w-7xl mx-auto px-6">
+            <p>
+              From emergency request to blood delivery in minutes
+            </p>
+          </div>
 
+          <div className="home-process-grid">
 
-<h2 className="text-4xl font-bold text-gray-900 text-center">
+            <ProcessCard
+              number="1"
+              title="Emergency Request"
+              description="Doctor submits blood requirements during a critical situation."
+            />
 
-How HemoBridge Works
+            <ProcessCard
+              number="2"
+              title="Blood Matching"
+              description="HemoBridge searches verified inventory for compatible blood."
+            />
 
-</h2>
+            <ProcessCard
+              number="3"
+              title="Blood Bank Connection"
+              description="The nearest available blood source receives the request."
+            />
 
+            <ProcessCard
+              number="4"
+              title="Fast Delivery"
+              description="Blood reaches the hospital quickly for the patient."
+            />
 
-<p className="text-center text-gray-600 mt-3">
-
-From emergency request to blood delivery in minutes
-
-</p>
-
-
-
-<div className="grid md:grid-cols-4 gap-6 mt-12">
-
-
-<ProcessCard
-
-number="1"
-
-
-title="Emergency Request"
-
-description="Doctor submits blood requirements during a critical situation."
-
-/>
-
-
-
-<ProcessCard
-
-number="2"
-
-
-title="Blood Matching"
-
-description="HemoBridge searches verified inventory for compatible blood."
-
-/>
-
-
-
-<ProcessCard
-
-number="3"
-
-
-title="Blood Bank Connection"
-
-description="The nearest available blood source receives the request."
-
-/>
-
-
-
-<ProcessCard
-
-number="4"
-
-
-title="Fast Delivery"
-
-description="Blood reaches the hospital quickly for the patient."
-
-/>
-
-
-
-</div>
-
-
-</div>
-
-
-</section>
-
+          </div>
+        </div>
+      </section>
 
     </div>
-  )
+  );
 }
 
-
-export default Home
+export default Home;
