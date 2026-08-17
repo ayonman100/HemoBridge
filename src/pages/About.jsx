@@ -2,7 +2,6 @@ import {
   Building2,
   Droplets,
   Heart,
-  ArrowRight,
   CheckCircle2,
   Users,
   Hospital,

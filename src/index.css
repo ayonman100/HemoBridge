@@ -811,7 +811,7 @@ body {
   }
 
   .home-hero {
-    min-height: auto;
+    min-height: 0;
     padding: 48px 0 56px;
   }
 
