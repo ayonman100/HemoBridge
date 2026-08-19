@@ -499,7 +499,7 @@
   }
 
   .donor-action-card {
-    min-height: auto;
+    min-height: 0;
   }
 
   .donor-request-card {
