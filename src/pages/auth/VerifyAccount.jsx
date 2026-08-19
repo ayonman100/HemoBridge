@@ -7,7 +7,10 @@ import {
   RefreshCw,
   CheckCircle2,
   Loader2,
+  AlertCircle,
 } from "lucide-react";
+
+import "./VerifyAccount.css";
 
 function VerifyAccount() {
   const navigate = useNavigate();
@@ -19,12 +22,13 @@ function VerifyAccount() {
   const [isVerifying, setIsVerifying] = useState(false);
   const [isResending, setIsResending] = useState(false);
   const [error, setError] = useState("");
+  const [resendMessage, setResendMessage] = useState("");
 
-  // Handle verification
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     setError("");
+    setResendMessage("");
 
     if (code.length !== 6) {
       setError("Please enter the 6-digit verification code.");
@@ -33,7 +37,10 @@ function VerifyAccount() {
 
     setIsVerifying(true);
 
-    // Temporary frontend simulation
+    // Temporary frontend simulation.
+    // Later this will call:
+    // POST /auth/otp/verify
+
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
     console.log("Verification Code:", code);
@@ -41,14 +48,12 @@ function VerifyAccount() {
     setIsVerifying(false);
 
     /*
-      TEMPORARY NAVIGATION
-
       Later:
       1. Send verification code to backend.
       2. Backend verifies the code.
       3. Account is marked as verified.
-      4. User receives authentication/session data.
-      5. Redirect based on role.
+      4. Authentication/session information is returned.
+      5. Redirect based on the user's role.
     */
 
     if (role === "donor") {
@@ -58,206 +63,248 @@ function VerifyAccount() {
     }
   };
 
-  // Resend verification code
   const handleResend = async () => {
     setError("");
+    setResendMessage("");
     setIsResending(true);
 
-    // Temporary frontend simulation
+    // Temporary frontend simulation.
+    // Later this will call:
+    // POST /auth/otp/send
+
     await new Promise((resolve) => setTimeout(resolve, 800));
 
     console.log("Verification code resent.");
 
     setIsResending(false);
 
-    alert("A new verification code has been sent.");
+    setResendMessage(
+      "A new verification code has been sent to your email."
+    );
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center px-6 py-10">
+    <div className="verify-account-page">
 
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-sm border border-gray-100 p-8 md:p-10">
+      <div className="verify-account-container">
 
-        {/* ================= HEADER ================= */}
+        {/* Main Card */}
+        <div className="verify-account-card">
 
-        <div className="text-center mb-8">
+          {/* Header */}
+          <div className="verify-account-header">
 
-          {/* Email Icon */}
-          <div className="w-16 h-16 mx-auto rounded-2xl bg-red-50 text-red-600 flex items-center justify-center mb-5">
-            <MailCheck size={32} />
-          </div>
-
-          <h1 className="text-3xl font-bold text-gray-900">
-            Verify Your Account
-          </h1>
-
-          <p className="mt-3 text-gray-600 leading-relaxed">
-            We sent a 6-digit verification code to your email address.
-            Enter the code below to continue.
-          </p>
-
-        </div>
-
-        {/* ================= SECURITY NOTICE ================= */}
-
-        <div className="flex items-start gap-3 bg-gray-50 border border-gray-100 rounded-xl p-4 mb-6">
-
-          <ShieldCheck
-            size={20}
-            className="text-green-600 shrink-0 mt-0.5"
-          />
-
-          <p className="text-sm text-gray-600 leading-relaxed">
-            For your security, never share your verification code with
-            anyone.
-          </p>
-
-        </div>
-
-        {/* ================= ERROR ================= */}
-
-        {error && (
-          <div
-            className="mb-6 rounded-xl border border-red-200 bg-red-50 px-4 py-3"
-            role="alert"
-          >
-            <div className="flex items-start gap-3">
-
-              <span className="w-5 h-5 rounded-full bg-red-100 text-red-600 flex items-center justify-center shrink-0 mt-0.5">
-                !
-              </span>
-
-              <p className="text-sm text-red-700 leading-relaxed">
-                {error}
-              </p>
-
+            <div className="verify-account-icon">
+              <MailCheck
+                size={32}
+                strokeWidth={2}
+              />
             </div>
-          </div>
-        )}
 
-        {/* ================= VERIFICATION FORM ================= */}
+            <h1>
+              Verify Your Account
+            </h1>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
-
-          {/* Verification Code */}
-
-          <div>
-
-            <label
-              htmlFor="verification-code"
-              className="block text-sm font-medium text-gray-700 mb-2"
-            >
-              Verification Code
-            </label>
-
-            <input
-              id="verification-code"
-              type="text"
-              inputMode="numeric"
-              maxLength={6}
-              value={code}
-              onChange={(e) => {
-                setCode(e.target.value.replace(/\D/g, ""));
-                setError("");
-              }}
-              placeholder="000000"
-              autoComplete="one-time-code"
-              className="w-full border border-gray-300 rounded-xl px-4 py-3.5 text-center text-2xl font-semibold tracking-[0.5em] outline-none transition focus:ring-2 focus:ring-red-500 focus:border-red-500"
-              required
-            />
-
-            <p className="text-xs text-gray-500 text-center mt-2">
-              Enter the 6-digit code sent to your email.
+            <p>
+              We sent a 6-digit verification code to your email
+              address. Enter the code below to continue.
             </p>
 
           </div>
 
-          {/* Verify Button */}
+          {/* Security Notice */}
+          <div className="verification-security-notice">
 
-          <button
-            type="submit"
-            disabled={isVerifying}
-            className={`w-full py-3.5 rounded-xl font-semibold text-white transition flex items-center justify-center gap-2 ${
-              isVerifying
-                ? "bg-red-400 cursor-not-allowed"
-                : "bg-red-600 hover:bg-red-700"
-            }`}
-          >
+            <ShieldCheck
+              size={20}
+              className="verification-security-icon"
+            />
 
-            {isVerifying ? (
-              <>
-                <Loader2
-                  size={19}
-                  className="animate-spin"
+            <p>
+              For your security, never share your verification code
+              with anyone.
+            </p>
+
+          </div>
+
+          {/* Error */}
+          {error && (
+            <div
+              className="verification-message verification-error"
+              role="alert"
+            >
+
+              <div className="verification-message-content">
+
+                <AlertCircle
+                  size={20}
+                  className="verification-message-icon"
                 />
 
-                Verifying...
-              </>
-            ) : (
-              <>
-                <CheckCircle2 size={19} />
+                <p>
+                  {error}
+                </p>
 
-                Verify Account
-              </>
-            )}
+              </div>
 
-          </button>
+            </div>
+          )}
 
-        </form>
+          {/* Resend Success */}
+          {resendMessage && (
+            <div
+              className="verification-message verification-success"
+              role="status"
+            >
 
-        {/* ================= RESEND ================= */}
+              <div className="verification-message-content">
 
-        <div className="text-center mt-7">
-
-          <p className="text-sm text-gray-500">
-            Didn't receive the code?
-          </p>
-
-          <button
-            type="button"
-            onClick={handleResend}
-            disabled={isResending}
-            className={`mt-2 inline-flex items-center justify-center gap-2 font-semibold transition ${
-              isResending
-                ? "text-gray-400 cursor-not-allowed"
-                : "text-red-600 hover:text-red-700"
-            }`}
-          >
-
-            {isResending ? (
-              <>
-                <Loader2
-                  size={16}
-                  className="animate-spin"
+                <CheckCircle2
+                  size={20}
+                  className="verification-message-icon"
                 />
 
-                Sending...
-              </>
-            ) : (
-              <>
-                <RefreshCw size={16} />
+                <p>
+                  {resendMessage}
+                </p>
 
-                Resend Code
-              </>
-            )}
+              </div>
 
-          </button>
+            </div>
+          )}
+
+          {/* Verification Form */}
+          <form
+            onSubmit={handleSubmit}
+            className="verification-form"
+          >
+
+            {/* Verification Code */}
+            <div className="verification-code-field">
+
+              <label htmlFor="verification-code">
+                Verification Code
+              </label>
+
+              <input
+                id="verification-code"
+                type="text"
+                inputMode="numeric"
+                maxLength={6}
+                value={code}
+                onChange={(e) => {
+                  setCode(
+                    e.target.value.replace(/\D/g, "")
+                  );
+
+                  setError("");
+                  setResendMessage("");
+                }}
+                placeholder="000000"
+                autoComplete="one-time-code"
+                required
+              />
+
+              <p>
+                Enter the 6-digit code sent to your email.
+              </p>
+
+            </div>
+
+            {/* Verify Button */}
+            <button
+              type="submit"
+              disabled={isVerifying}
+              className={`verify-account-button ${
+                isVerifying
+                  ? "button-processing"
+                  : ""
+              }`}
+            >
+
+              {isVerifying ? (
+                <>
+                  <Loader2
+                    size={19}
+                    className="spinner"
+                  />
+
+                  Verifying...
+                </>
+              ) : (
+                <>
+                  <CheckCircle2 size={19} />
+
+                  Verify Account
+                </>
+              )}
+
+            </button>
+
+          </form>
+
+          {/* Resend */}
+          <div className="resend-section">
+
+            <p>
+              Didn't receive the code?
+            </p>
+
+            <button
+              type="button"
+              onClick={handleResend}
+              disabled={isResending}
+              className={`resend-button ${
+                isResending
+                  ? "resend-processing"
+                  : ""
+              }`}
+            >
+
+              {isResending ? (
+                <>
+                  <Loader2
+                    size={16}
+                    className="spinner"
+                  />
+
+                  Sending...
+                </>
+              ) : (
+                <>
+                  <RefreshCw size={16} />
+
+                  Resend Code
+                </>
+              )}
+
+            </button>
+
+          </div>
+
+          {/* Back to Login */}
+          <div className="verify-back-login">
+
+            <button
+              type="button"
+              onClick={() => navigate("/login")}
+            >
+              <ArrowLeft size={16} />
+
+              Back to Login
+            </button>
+
+          </div>
 
         </div>
 
-        {/* ================= BACK TO LOGIN ================= */}
+        {/* Security Footer */}
+        <div className="verify-security-footer">
 
-        <div className="text-center mt-7 pt-6 border-t border-gray-100">
-
-          <button
-            type="button"
-            onClick={() => navigate("/login")}
-            className="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900 transition"
-          >
-            <ArrowLeft size={16} />
-
-            Back to Login
-          </button>
+          <p>
+            Your verification information is securely handled by
+            HemoBridge.
+          </p>
 
         </div>
 

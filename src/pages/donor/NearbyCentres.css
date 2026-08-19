@@ -1,0 +1,692 @@
+
+/* =========================================
+   NEARBY CENTRES PAGE
+========================================= */
+
+.donor-nearby-centres {
+  width: 100%;
+}
+
+
+/* =========================================
+   PAGE HEADER
+========================================= */
+
+.nearby-header {
+  margin-bottom: 32px;
+}
+
+.nearby-eyebrow {
+  margin: 0;
+
+  color: #6b7280;
+
+  font-size: 14px;
+}
+
+.nearby-header h1 {
+  margin: 4px 0 0;
+
+  color: #111827;
+
+  font-size: 30px;
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+.nearby-description {
+  margin: 8px 0 0;
+
+  color: #6b7280;
+
+  font-size: 15px;
+}
+
+
+/* =========================================
+   SEARCH CARD
+========================================= */
+
+.nearby-search-card {
+  margin-bottom: 32px;
+
+  padding: 20px;
+
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+}
+
+.nearby-search-row {
+  display: flex;
+  gap: 16px;
+}
+
+.nearby-search-box {
+  position: relative;
+
+  flex: 1;
+}
+
+.nearby-search-box input {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 12px 16px 12px 44px;
+
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+
+  color: #111827;
+
+  font-size: 14px;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.nearby-search-box input:focus {
+  border-color: #ef4444;
+
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.12);
+}
+
+.nearby-search-box input::placeholder {
+  color: #9ca3af;
+}
+
+.nearby-search-icon {
+  position: absolute;
+
+  left: 15px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  color: #9ca3af;
+
+  pointer-events: none;
+}
+
+
+/* =========================================
+   LOCATION BUTTON
+========================================= */
+
+.nearby-location-button {
+  padding: 12px 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  background: #dc2626;
+  color: #ffffff;
+
+  border: none;
+  border-radius: 12px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  white-space: nowrap;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.nearby-location-button:hover {
+  background: #b91c1c;
+}
+
+.nearby-location-button:active {
+  transform: translateY(1px);
+}
+
+
+/* =========================================
+   MAP SECTION
+========================================= */
+
+.nearby-map-section {
+  margin-bottom: 32px;
+}
+
+.nearby-section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 20px;
+}
+
+.nearby-section-heading h2 {
+  margin: 0;
+
+  color: #111827;
+
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.nearby-section-heading p {
+  margin: 5px 0 0;
+
+  color: #6b7280;
+
+  font-size: 14px;
+}
+
+.nearby-heading-icon {
+  color: #dc2626;
+}
+
+
+/* =========================================
+   FILTERS
+========================================= */
+
+.nearby-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+
+  margin-bottom: 24px;
+}
+
+.nearby-filter-active {
+  padding: 8px 16px;
+
+  background: #dc2626;
+  color: #ffffff;
+
+  border: none;
+  border-radius: 999px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+
+/* =========================================
+   RESULTS HEADER
+========================================= */
+
+.nearby-results-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 16px;
+
+  margin-bottom: 20px;
+}
+
+.nearby-results-header h2 {
+  margin: 0;
+
+  color: #111827;
+
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.nearby-results-header p {
+  margin: 5px 0 0;
+
+  color: #6b7280;
+
+  font-size: 14px;
+}
+
+.nearby-results-header > span {
+  color: #6b7280;
+
+  font-size: 14px;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================
+   CENTRE LIST
+========================================= */
+
+.nearby-centres-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+
+/* =========================================
+   CENTRE CARD
+========================================= */
+
+.nearby-centre-card {
+  padding: 24px;
+
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+
+  transition:
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.nearby-centre-card:hover {
+  border-color: #d1d5db;
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+.nearby-centre-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 24px;
+}
+
+
+/* =========================================
+   CENTRE INFORMATION
+========================================= */
+
+.nearby-centre-info {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 16px;
+
+  min-width: 0;
+}
+
+.nearby-centre-icon {
+  width: 48px;
+  height: 48px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #fef2f2;
+  color: #dc2626;
+
+  border-radius: 12px;
+}
+
+.nearby-centre-details {
+  min-width: 0;
+}
+
+.nearby-centre-details h3 {
+  margin: 0;
+
+  color: #111827;
+
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.nearby-centre-location {
+  margin: 5px 0 0;
+
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  color: #6b7280;
+
+  font-size: 14px;
+}
+
+.nearby-centre-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  gap: 16px;
+
+  margin-top: 12px;
+}
+
+.nearby-centre-meta > span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  color: #6b7280;
+
+  font-size: 14px;
+}
+
+
+/* =========================================
+   STATUS
+========================================= */
+
+.nearby-status {
+  padding: 4px 12px;
+
+  border-radius: 999px;
+
+  font-size: 12px !important;
+  font-weight: 600;
+}
+
+.nearby-status-open {
+  background: #f0fdf4;
+
+  color: #15803d !important;
+}
+
+.nearby-status-closed {
+  background: #f3f4f6;
+
+  color: #6b7280 !important;
+}
+
+.nearby-hours {
+  color: #9ca3af !important;
+}
+
+
+/* =========================================
+   ACTIONS
+========================================= */
+
+.nearby-centre-actions {
+  display: flex;
+
+  gap: 12px;
+
+  flex-shrink: 0;
+}
+
+.nearby-details-button,
+.nearby-directions-button {
+  padding: 12px 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  border-radius: 12px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.nearby-details-button {
+  background: #ffffff;
+  color: #374151;
+
+  border: 1px solid #e5e7eb;
+}
+
+.nearby-details-button:hover {
+  background: #f9fafb;
+
+  border-color: #d1d5db;
+}
+
+.nearby-directions-button {
+  background: #dc2626;
+  color: #ffffff;
+
+  border: 1px solid #dc2626;
+}
+
+.nearby-directions-button:hover {
+  background: #b91c1c;
+
+  border-color: #b91c1c;
+}
+
+
+/* =========================================
+   INFORMATION CARD
+========================================= */
+
+.nearby-information {
+  margin-top: 32px;
+
+  padding: 24px;
+
+  background: #fef2f2;
+
+  border: 1px solid #fee2e2;
+  border-radius: 16px;
+}
+
+.nearby-information-content {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 16px;
+}
+
+.nearby-information-icon {
+  width: 44px;
+  height: 44px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #fee2e2;
+  color: #dc2626;
+
+  border-radius: 12px;
+}
+
+.nearby-information h2 {
+  margin: 0;
+
+  color: #7f1d1d;
+
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.nearby-information p {
+  margin: 8px 0 0;
+
+  color: #991b1b;
+
+  font-size: 14px;
+
+  line-height: 1.7;
+}
+
+
+/* =========================================
+   DONATION REMINDER
+========================================= */
+
+.nearby-reminder {
+  margin-top: 32px;
+
+  padding: 24px;
+
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+}
+
+.nearby-reminder-content {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 16px;
+}
+
+.nearby-reminder-icon {
+  width: 44px;
+  height: 44px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #fef2f2;
+  color: #dc2626;
+
+  border-radius: 12px;
+}
+
+.nearby-reminder h2 {
+  margin: 0;
+
+  color: #111827;
+
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.nearby-reminder p {
+  margin: 5px 0 0;
+
+  color: #6b7280;
+
+  font-size: 14px;
+
+  line-height: 1.6;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1024px) {
+
+  .nearby-centre-content {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+  .nearby-centre-actions {
+    width: 100%;
+  }
+
+  .nearby-details-button,
+  .nearby-directions-button {
+    flex: 1;
+  }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+
+  .nearby-header h1 {
+    font-size: 26px;
+  }
+
+  .nearby-search-row {
+    flex-direction: column;
+  }
+
+  .nearby-location-button {
+    width: 100%;
+  }
+
+  .nearby-results-header {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+  .nearby-centre-card {
+    padding: 20px;
+  }
+
+  .nearby-centre-info {
+    width: 100%;
+  }
+
+  .nearby-centre-meta {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .nearby-centre-actions {
+    flex-direction: column;
+  }
+
+  .nearby-details-button,
+  .nearby-directions-button {
+    width: 100%;
+  }
+
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+  .nearby-search-card {
+    padding: 16px;
+  }
+
+  .nearby-centre-info {
+    gap: 12px;
+  }
+
+  .nearby-centre-icon {
+    width: 42px;
+    height: 42px;
+  }
+
+  .nearby-centre-details h3 {
+    font-size: 15px;
+  }
+
+  .nearby-information,
+  .nearby-reminder {
+    padding: 20px;
+  }
+
+}
+

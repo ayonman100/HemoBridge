@@ -1,0 +1,472 @@
+/* =========================================
+   VERIFY ACCOUNT PAGE
+========================================= */
+
+.verify-account-page {
+  min-height: 100vh;
+  background: #f9fafb;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 40px 16px;
+}
+
+.verify-account-container {
+  width: 100%;
+  max-width: 520px;
+}
+
+/* =========================================
+   MAIN CARD
+========================================= */
+
+.verify-account-card {
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+
+  padding: 40px;
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+.verify-account-header {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.verify-account-icon {
+  width: 64px;
+  height: 64px;
+
+  margin: 0 auto 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #fef2f2;
+  color: #dc2626;
+
+  border-radius: 16px;
+}
+
+.verify-account-header h1 {
+  margin: 0;
+
+  color: #111827;
+
+  font-size: 30px;
+  font-weight: 700;
+
+  line-height: 1.25;
+}
+
+.verify-account-header p {
+  max-width: 410px;
+
+  margin: 16px auto 0;
+
+  color: #4b5563;
+
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+/* =========================================
+   SECURITY NOTICE
+========================================= */
+
+.verification-security-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+
+  padding: 16px;
+
+  margin-bottom: 28px;
+
+  background: #f9fafb;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+}
+
+.verification-security-icon {
+  flex-shrink: 0;
+
+  margin-top: 2px;
+
+  color: #16a34a;
+}
+
+.verification-security-notice p {
+  margin: 0;
+
+  color: #4b5563;
+
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* =========================================
+   MESSAGES
+========================================= */
+
+.verification-message {
+  margin-bottom: 28px;
+
+  padding: 16px;
+
+  border-radius: 12px;
+}
+
+.verification-message-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.verification-message p {
+  margin: 0;
+
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.verification-message-icon {
+  flex-shrink: 0;
+
+  margin-top: 2px;
+}
+
+.verification-error {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+}
+
+.verification-error .verification-message-icon {
+  color: #dc2626;
+}
+
+.verification-error p {
+  color: #b91c1c;
+}
+
+.verification-success {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+}
+
+.verification-success .verification-message-icon {
+  color: #16a34a;
+}
+
+.verification-success p {
+  color: #15803d;
+}
+
+/* =========================================
+   FORM
+========================================= */
+
+.verification-form {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.verification-code-field {
+  width: 100%;
+}
+
+.verification-code-field label {
+  display: block;
+
+  margin-bottom: 12px;
+
+  color: #374151;
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.verification-code-field input {
+  width: 100%;
+  height: 56px;
+
+  box-sizing: border-box;
+
+  padding: 0 16px;
+
+  background: #ffffff;
+
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+
+  outline: none;
+
+  color: #111827;
+
+  font-size: 30px;
+  font-weight: 600;
+
+  text-align: center;
+
+  letter-spacing: 0.6em;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.verification-code-field input::placeholder {
+  color: #d1d5db;
+  letter-spacing: 0.5em;
+}
+
+.verification-code-field input:focus {
+  border-color: #ef4444;
+
+  box-shadow:
+    0 0 0 4px rgba(239, 68, 68, 0.08);
+}
+
+.verification-code-field p {
+  margin: 12px 0 0;
+
+  color: #6b7280;
+
+  font-size: 12px;
+
+  text-align: center;
+}
+
+/* =========================================
+   VERIFY BUTTON
+========================================= */
+
+.verify-account-button {
+  width: 100%;
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  border: none;
+  border-radius: 12px;
+
+  background: #dc2626;
+  color: #ffffff;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.1s ease;
+}
+
+.verify-account-button:hover {
+  background: #b91c1c;
+}
+
+.verify-account-button:active {
+  background: #991b1b;
+  transform: translateY(1px);
+}
+
+.verify-account-button.button-processing {
+  background: #f87171;
+
+  cursor: not-allowed;
+}
+
+/* =========================================
+   SPINNER
+========================================= */
+
+.spinner {
+  animation: verify-spinner 0.9s linear infinite;
+}
+
+@keyframes verify-spinner {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================
+   RESEND
+========================================= */
+
+.resend-section {
+  margin-top: 32px;
+
+  text-align: center;
+}
+
+.resend-section p {
+  margin: 0;
+
+  color: #6b7280;
+
+  font-size: 14px;
+}
+
+.resend-button {
+  margin-top: 12px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  padding: 0;
+
+  border: none;
+  background: transparent;
+
+  color: #dc2626;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: color 0.2s ease;
+}
+
+.resend-button:hover {
+  color: #b91c1c;
+}
+
+.resend-button.resend-processing {
+  color: #9ca3af;
+
+  cursor: not-allowed;
+}
+
+/* =========================================
+   BACK TO LOGIN
+========================================= */
+
+.verify-back-login {
+  margin-top: 32px;
+
+  padding-top: 28px;
+
+  border-top: 1px solid #f3f4f6;
+
+  text-align: center;
+}
+
+.verify-back-login button {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 0;
+
+  border: none;
+  background: transparent;
+
+  color: #4b5563;
+
+  font-size: 14px;
+
+  cursor: pointer;
+
+  transition: color 0.2s ease;
+}
+
+.verify-back-login button:hover {
+  color: #dc2626;
+}
+
+/* =========================================
+   SECURITY FOOTER
+========================================= */
+
+.verify-security-footer {
+  margin-top: 20px;
+
+  padding: 0 16px;
+
+  text-align: center;
+}
+
+.verify-security-footer p {
+  margin: 0;
+
+  color: #6b7280;
+
+  font-size: 13px;
+
+  line-height: 1.6;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 600px) {
+  .verify-account-page {
+    padding: 24px 16px;
+  }
+
+  .verify-account-card {
+    padding: 28px 20px;
+
+    border-radius: 14px;
+  }
+
+  .verify-account-icon {
+    width: 58px;
+    height: 58px;
+
+    margin-bottom: 20px;
+  }
+
+  .verify-account-header h1 {
+    font-size: 25px;
+  }
+
+  .verify-account-header p {
+    font-size: 14px;
+  }
+
+  .verification-code-field input {
+    font-size: 25px;
+    letter-spacing: 0.45em;
+  }
+}
+
+@media (max-width: 380px) {
+  .verify-account-card {
+    padding: 24px 16px;
+  }
+
+  .verification-code-field input {
+    font-size: 22px;
+    letter-spacing: 0.35em;
+  }
+}

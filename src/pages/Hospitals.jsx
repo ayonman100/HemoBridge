@@ -1,5 +1,6 @@
 
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   Building2,
   CheckCircle2,
@@ -293,15 +294,16 @@ function Hospitals() {
             more efficient for patients who need it.
           </p>
 
-          <button
-            type="button"
-            className="hospitals-cta-button"
-          >
-            Join the Network
+          <Link
+  to="/signup?role=hospital"
+  className="hospitals-cta-button"
+>
+  Join the Network
 
-            <ArrowRight size={18} />
+  <ArrowRight size={18} />
+</Link>
 
-          </button>
+          
 
         </div>
 

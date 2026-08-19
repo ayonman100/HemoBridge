@@ -13,6 +13,8 @@ import {
   Loader2,
 } from "lucide-react";
 
+import "./Subscription.css";
+
 function Subscription() {
   const navigate = useNavigate();
 
@@ -109,55 +111,61 @@ function Subscription() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 px-6 py-10">
+    <div className="subscription-page">
+      <div className="subscription-container">
 
-      <div className="max-w-6xl mx-auto">
+        {/* ================================
+            HEADER
+        ================================= */}
 
-        {/* Header */}
-        <div className="text-center mb-10">
+        <section className="subscription-header">
 
-          <div className="w-16 h-16 mx-auto rounded-2xl bg-red-50 text-red-600 flex items-center justify-center mb-5">
+          <div className="subscription-header-icon">
             <Droplets size={32} />
           </div>
 
-          <p className="text-sm font-semibold text-red-600 mb-2">
+          <p className="subscription-label">
             HemoBridge Subscription
           </p>
 
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
+          <h1>
             Choose Your HemoBridge Plan
           </h1>
 
-          <p className="mt-3 text-gray-600 max-w-2xl mx-auto leading-7">
+          <p className="subscription-description">
             Choose the plan that best fits your organization's blood
             coordination needs.
           </p>
 
-        </div>
+        </section>
 
-        {/* Trial Banner */}
+
+        {/* ================================
+            TRIAL BANNER
+        ================================= */}
+
         {organization.trialActive && (
-          <div className="max-w-4xl mx-auto mb-10 bg-red-50 border border-red-100 rounded-2xl p-6">
+          <section className="subscription-trial">
 
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-5">
+            <div className="subscription-trial-content">
 
-              <div className="flex items-start gap-4">
+              <div className="subscription-trial-main">
 
-                <div className="w-11 h-11 shrink-0 rounded-xl bg-white text-red-600 flex items-center justify-center">
+                <div className="subscription-trial-icon">
                   <Clock3 size={22} />
                 </div>
 
                 <div>
 
-                  <p className="text-sm font-semibold text-red-600">
+                  <p className="subscription-trial-label">
                     FREE TRIAL ACTIVE
                   </p>
 
-                  <h2 className="text-xl font-bold text-gray-900 mt-1">
+                  <h2>
                     You have {organization.trialDaysRemaining} days remaining
                   </h2>
 
-                  <p className="text-sm text-gray-600 mt-2">
+                  <p>
                     Explore HemoBridge's core features before choosing
                     your subscription plan.
                   </p>
@@ -166,25 +174,30 @@ function Subscription() {
 
               </div>
 
-              <div className="bg-white border border-red-100 rounded-xl px-6 py-3 text-center">
 
-                <p className="text-2xl font-bold text-red-600">
+              <div className="subscription-days">
+
+                <p>
                   {organization.trialDaysRemaining}
                 </p>
 
-                <p className="text-xs text-gray-500">
+                <span>
                   Days Left
-                </p>
+                </span>
 
               </div>
 
             </div>
 
-          </div>
+          </section>
         )}
 
-        {/* Plans */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+        {/* ================================
+            PLANS
+        ================================= */}
+
+        <section className="subscription-plans">
 
           {plans.map((plan) => {
 
@@ -192,106 +205,108 @@ function Subscription() {
             const PlanIcon = plan.icon;
 
             return (
-              <div
+              <article
                 key={plan.id}
-                className={`relative bg-white rounded-2xl border p-7 transition duration-200 ${
+                className={`subscription-plan ${
                   isSelected && !plan.comingSoon
-                    ? "border-red-500 ring-2 ring-red-100 shadow-sm"
-                    : "border-gray-200"
+                    ? "subscription-plan-selected"
+                    : ""
                 }`}
               >
 
                 {/* Plan Badge */}
-                {plan.comingSoon ? (
-                  <div className="absolute top-5 right-5">
 
-                    <span className="inline-flex items-center gap-1.5 bg-gray-100 text-gray-600 text-xs font-semibold px-3 py-1.5 rounded-full">
+                <div className="subscription-plan-badge">
+
+                  {plan.comingSoon ? (
+                    <span className="subscription-badge-coming">
                       <Clock3 size={13} />
                       Coming Soon
                     </span>
-
-                  </div>
-                ) : (
-                  <div className="absolute top-5 right-5">
-
-                    <span className="bg-red-50 text-red-600 text-xs font-semibold px-3 py-1.5 rounded-full">
+                  ) : (
+                    <span className="subscription-badge-mvp">
                       MVP Plan
                     </span>
+                  )}
 
-                  </div>
-                )}
+                </div>
+
 
                 {/* Plan Icon */}
+
                 <div
-                  className={`w-12 h-12 rounded-xl flex items-center justify-center mb-5 ${
+                  className={`subscription-plan-icon ${
                     plan.comingSoon
-                      ? "bg-gray-100 text-gray-500"
-                      : "bg-red-50 text-red-600"
+                      ? "subscription-plan-icon-disabled"
+                      : ""
                   }`}
                 >
                   <PlanIcon size={24} />
                 </div>
 
-                {/* Plan Name */}
-                <div className="pr-20">
 
-                  <h2 className="text-2xl font-bold text-gray-900">
+                {/* Plan Information */}
+
+                <div className="subscription-plan-info">
+
+                  <h2>
                     {plan.name}
                   </h2>
 
-                  <p className="text-sm text-gray-500 mt-2 leading-relaxed">
+                  <p>
                     {plan.description}
                   </p>
 
                 </div>
 
+
                 {/* Price */}
-                <div className="mt-7">
+
+                <div className="subscription-price">
 
                   {plan.price ? (
                     <>
-                      <span className="text-3xl font-bold text-gray-900">
+                      <span>
                         {plan.price}
                       </span>
 
-                      <span className="text-gray-500 ml-1">
+                      <small>
                         {plan.period}
-                      </span>
+                      </small>
                     </>
                   ) : (
-                    <span className="text-2xl font-bold text-gray-900">
+                    <span className="subscription-custom-price">
                       Custom Pricing
                     </span>
                   )}
 
                 </div>
 
-                {/* Features */}
-                <div className="mt-7">
 
-                  <h3 className="font-semibold text-gray-900 mb-4">
+                {/* Features */}
+
+                <div className="subscription-features">
+
+                  <h3>
                     What's included
                   </h3>
 
-                  <ul className="space-y-3">
+                  <ul>
 
                     {plan.features.map((feature) => (
 
-                      <li
-                        key={feature}
-                        className="flex items-start gap-3"
-                      >
+                      <li key={feature}>
 
                         <CheckCircle2
                           size={18}
-                          className={`mt-0.5 shrink-0 ${
+                          className={
                             plan.comingSoon
-                              ? "text-gray-400"
-                              : "text-green-600"
-                          }`}
+                              ? "feature-icon-disabled"
+                              : "feature-icon"
+                          }
                         />
 
-                        <span className="text-sm text-gray-600">
+                        <span>
                           {feature}
                         </span>
 
@@ -303,17 +318,19 @@ function Subscription() {
 
                 </div>
 
+
                 {/* Select Button */}
+
                 <button
                   type="button"
                   disabled={plan.comingSoon}
                   onClick={() => setSelectedPlan(plan.id)}
-                  className={`w-full mt-8 py-3 rounded-xl font-semibold transition flex items-center justify-center gap-2 ${
+                  className={`subscription-select-button ${
                     plan.comingSoon
-                      ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                      ? "subscription-button-disabled"
                       : isSelected
-                      ? "bg-red-600 text-white hover:bg-red-700"
-                      : "border border-gray-300 text-gray-700 hover:border-red-500 hover:text-red-600"
+                      ? "subscription-button-selected"
+                      : "subscription-button-outline"
                   }`}
                 >
 
@@ -333,24 +350,28 @@ function Subscription() {
 
                 </button>
 
-              </div>
+              </article>
             );
           })}
 
-        </div>
+        </section>
 
-        {/* Subscription Action */}
-        <div className="max-w-2xl mx-auto mt-10 bg-white border border-gray-200 rounded-2xl p-6 text-center">
 
-          <div className="w-11 h-11 mx-auto rounded-xl bg-red-50 text-red-600 flex items-center justify-center">
+        {/* ================================
+            SUBSCRIPTION ACTION
+        ================================= */}
+
+        <section className="subscription-action">
+
+          <div className="subscription-action-icon">
             <ShieldCheck size={23} />
           </div>
 
-          <h2 className="text-xl font-bold text-gray-900 mt-4">
+          <h2>
             Ready to continue?
           </h2>
 
-          <p className="text-sm text-gray-500 mt-2">
+          <p>
             Your organization will continue with the Basic Plan.
           </p>
 
@@ -358,10 +379,10 @@ function Subscription() {
             type="button"
             onClick={handleSubscribe}
             disabled={isLoading || selectedPlan !== "basic"}
-            className={`mt-6 w-full md:w-auto px-10 py-3.5 rounded-xl font-semibold text-white transition inline-flex items-center justify-center gap-2 ${
+            className={`subscription-checkout-button ${
               isLoading || selectedPlan !== "basic"
-                ? "bg-red-400 cursor-not-allowed"
-                : "bg-red-600 hover:bg-red-700"
+                ? "checkout-button-disabled"
+                : ""
             }`}
           >
 
@@ -369,7 +390,7 @@ function Subscription() {
               <>
                 <Loader2
                   size={19}
-                  className="animate-spin"
+                  className="subscription-loader"
                 />
 
                 Processing...
@@ -383,48 +404,66 @@ function Subscription() {
 
           </button>
 
-        </div>
+        </section>
 
-        {/* Trust Information */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto mt-8">
 
-          <div className="flex items-center justify-center gap-2 text-sm text-gray-500">
+        {/* ================================
+            TRUST INFORMATION
+        ================================= */}
+
+        <section className="subscription-trust">
+
+          <div className="subscription-trust-item">
             <ShieldCheck
               size={17}
-              className="text-green-600"
+              className="trust-icon-green"
             />
-            Secure platform
+
+            <span>
+              Secure platform
+            </span>
           </div>
 
-          <div className="flex items-center justify-center gap-2 text-sm text-gray-500">
+
+          <div className="subscription-trust-item">
             <Database
               size={17}
-              className="text-blue-600"
+              className="trust-icon-blue"
             />
-            Protected data
+
+            <span>
+              Protected data
+            </span>
           </div>
 
-          <div className="flex items-center justify-center gap-2 text-sm text-gray-500">
+
+          <div className="subscription-trust-item">
             <Headphones
               size={17}
-              className="text-red-600"
+              className="trust-icon-red"
             />
-            Customer support
+
+            <span>
+              Customer support
+            </span>
           </div>
 
-        </div>
+        </section>
 
-        {/* Footer Note */}
-        <div className="text-center mt-8">
 
-          <p className="text-sm text-gray-500">
+        {/* ================================
+            FOOTER NOTE
+        ================================= */}
+
+        <footer className="subscription-footer">
+
+          <p>
             Need help choosing a plan? Contact HemoBridge support.
           </p>
 
-        </div>
+        </footer>
 
       </div>
-
     </div>
   );
 }

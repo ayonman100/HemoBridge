@@ -10,6 +10,8 @@ import {
   Eye,
 } from "lucide-react";
 
+import "./donors.css";
+
 function Donors() {
   const donors = [
     {
@@ -60,367 +62,384 @@ function Donors() {
   ];
 
   return (
-    <>
-      {/* Header */}
-      <section className="mb-8">
+    <div className="donors-page">
+
+      {/* ==================== HEADER ==================== */}
+      <section className="donors-header">
+
         <Link
           to="/admin/dashboard"
-          className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-red-600 transition"
+          className="donors-back-link"
         >
           <ArrowLeft size={16} />
-          Back to Dashboard
+          <span>Back to Dashboard</span>
         </Link>
 
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mt-4">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900">
-              Donors
-            </h1>
+        <div className="donors-header-content">
 
-            <p className="text-gray-500 mt-2">
+          <div className="donors-title-area">
+            <h1>Donors</h1>
+
+            <p>
               Monitor registered blood donors across the HemoBridge network.
             </p>
           </div>
 
           <button
             type="button"
-            className="inline-flex items-center justify-center gap-2 bg-red-600 text-white px-5 py-3 rounded-xl font-medium hover:bg-red-700 transition"
+            className="donors-export-button"
           >
             <Download size={18} />
-            Export Donor List
+            <span>Export Donor List</span>
           </button>
+
         </div>
       </section>
 
-      {/* Statistics */}
-      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
+
+      {/* ==================== STATISTICS ==================== */}
+      <section className="donors-stats">
 
         {/* Total Donors */}
-        <div className="bg-white border border-gray-200 rounded-2xl p-6">
-          <div className="flex items-start justify-between">
-            <div>
-              <p className="text-sm text-gray-500">
-                Total Donors
-              </p>
+        <div className="donor-stat-card">
 
-              <p className="text-3xl font-bold text-gray-900 mt-2">
-                1,102
-              </p>
+          <div className="donor-stat-content">
+            <p className="donor-stat-label">
+              Total Donors
+            </p>
 
-              <p className="text-xs text-green-600 mt-2">
-                +12% this month
-              </p>
-            </div>
+            <p className="donor-stat-value">
+              1,102
+            </p>
 
-            <div className="w-12 h-12 rounded-xl bg-red-50 text-red-600 flex items-center justify-center">
-              <Users size={23} />
-            </div>
+            <p className="donor-stat-positive">
+              +12% this month
+            </p>
           </div>
+
+          <div className="donor-stat-icon donor-icon-red">
+            <Users size={23} />
+          </div>
+
         </div>
+
 
         {/* Active Donors */}
-        <div className="bg-white border border-gray-200 rounded-2xl p-6">
-          <div className="flex items-start justify-between">
-            <div>
-              <p className="text-sm text-gray-500">
-                Active Donors
-              </p>
+        <div className="donor-stat-card">
 
-              <p className="text-3xl font-bold text-green-600 mt-2">
-                934
-              </p>
+          <div className="donor-stat-content">
+            <p className="donor-stat-label">
+              Active Donors
+            </p>
 
-              <p className="text-xs text-gray-400 mt-2">
-                Currently available
-              </p>
-            </div>
+            <p className="donor-stat-value donor-value-green">
+              934
+            </p>
 
-            <div className="w-12 h-12 rounded-xl bg-green-50 text-green-600 flex items-center justify-center">
-              <UserCheck size={23} />
-            </div>
+            <p className="donor-stat-subtitle">
+              Currently available
+            </p>
           </div>
+
+          <div className="donor-stat-icon donor-icon-green">
+            <UserCheck size={23} />
+          </div>
+
         </div>
+
 
         {/* O+ Donors */}
-        <div className="bg-white border border-gray-200 rounded-2xl p-6">
-          <div className="flex items-start justify-between">
-            <div>
-              <p className="text-sm text-gray-500">
-                O+ Donors
-              </p>
+        <div className="donor-stat-card">
 
-              <p className="text-3xl font-bold text-red-600 mt-2">
-                386
-              </p>
+          <div className="donor-stat-content">
+            <p className="donor-stat-label">
+              O+ Donors
+            </p>
 
-              <p className="text-xs text-gray-400 mt-2">
-                Largest donor group
-              </p>
-            </div>
+            <p className="donor-stat-value donor-value-red">
+              386
+            </p>
 
-            <div className="w-12 h-12 rounded-xl bg-red-50 text-red-600 flex items-center justify-center">
-              <Droplet size={23} />
-            </div>
+            <p className="donor-stat-subtitle">
+              Largest donor group
+            </p>
           </div>
+
+          <div className="donor-stat-icon donor-icon-red">
+            <Droplet size={23} />
+          </div>
+
         </div>
+
 
         {/* Donations */}
-        <div className="bg-white border border-gray-200 rounded-2xl p-6">
-          <div className="flex items-start justify-between">
-            <div>
-              <p className="text-sm text-gray-500">
-                Donations
-              </p>
+        <div className="donor-stat-card">
 
-              <p className="text-3xl font-bold text-blue-600 mt-2">
-                3,842
-              </p>
+          <div className="donor-stat-content">
+            <p className="donor-stat-label">
+              Donations
+            </p>
 
-              <p className="text-xs text-gray-400 mt-2">
-                Completed donations
-              </p>
-            </div>
+            <p className="donor-stat-value donor-value-blue">
+              3,842
+            </p>
 
-            <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
-              <Droplet size={23} />
-            </div>
+            <p className="donor-stat-subtitle">
+              Completed donations
+            </p>
           </div>
+
+          <div className="donor-stat-icon donor-icon-blue">
+            <Droplet size={23} />
+          </div>
+
         </div>
 
       </section>
 
-      {/* Filters */}
-      <section className="bg-white border border-gray-200 rounded-2xl p-5 mb-6">
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
 
-          <div className="flex flex-col sm:flex-row gap-3">
+      {/* ==================== FILTERS ==================== */}
+      <section className="donors-filters">
 
-            <select
-              defaultValue="all"
-              className="border border-gray-200 rounded-xl px-4 py-3 bg-white text-sm outline-none focus:ring-2 focus:ring-red-200 focus:border-red-500"
-            >
-              <option value="all">
-                All Blood Types
-              </option>
+        <div className="donors-filter-left">
 
-              <option value="a+">A+</option>
-              <option value="a-">A-</option>
-              <option value="b+">B+</option>
-              <option value="b-">B-</option>
-              <option value="ab+">AB+</option>
-              <option value="ab-">AB-</option>
-              <option value="o+">O+</option>
-              <option value="o-">O-</option>
-            </select>
+          <select defaultValue="all">
+            <option value="all">
+              All Blood Types
+            </option>
 
-            <select
-              defaultValue="all"
-              className="border border-gray-200 rounded-xl px-4 py-3 bg-white text-sm outline-none focus:ring-2 focus:ring-red-200 focus:border-red-500"
-            >
-              <option value="all">
-                All Statuses
-              </option>
+            <option value="a+">A+</option>
+            <option value="a-">A-</option>
+            <option value="b+">B+</option>
+            <option value="b-">B-</option>
+            <option value="ab+">AB+</option>
+            <option value="ab-">AB-</option>
+            <option value="o+">O+</option>
+            <option value="o-">O-</option>
+          </select>
 
-              <option value="active">
-                Active
-              </option>
 
-              <option value="inactive">
-                Inactive
-              </option>
-            </select>
+          <select defaultValue="all">
+            <option value="all">
+              All Statuses
+            </option>
 
-          </div>
+            <option value="active">
+              Active
+            </option>
 
-          <div className="relative w-full lg:w-72">
-            <input
-              type="text"
-              placeholder="Search donors..."
-              className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-red-200 focus:border-red-500"
-            />
-          </div>
+            <option value="inactive">
+              Inactive
+            </option>
+          </select>
 
         </div>
+
+
+        <div className="donors-search">
+          <input
+            type="text"
+            placeholder="Search donors..."
+          />
+        </div>
+
       </section>
 
-      {/* Donor Table */}
-      <section className="bg-white border border-gray-200 rounded-2xl overflow-hidden">
 
-        <div className="p-6 border-b border-gray-100">
-          <h2 className="text-xl font-bold text-gray-900">
-            Registered Donors
-          </h2>
+      {/* ==================== DONOR TABLE ==================== */}
+      <section className="donors-table-card">
 
-          <p className="text-sm text-gray-500 mt-1">
-            Donors currently registered on HemoBridge.
-          </p>
+        {/* Table Header */}
+        <div className="donors-table-header">
+
+          <div>
+            <h2>
+              Registered Donors
+            </h2>
+
+            <p>
+              Donors currently registered on HemoBridge.
+            </p>
+          </div>
+
         </div>
 
-        {/* Desktop */}
-        <div className="hidden md:block overflow-x-auto">
-          <table className="w-full">
 
-            <thead className="bg-gray-50">
+        {/* ==================== DESKTOP TABLE ==================== */}
+        <div className="donors-desktop-table">
+
+          <table>
+
+            <thead>
               <tr>
-
-                <th className="text-left px-6 py-4 text-xs font-semibold text-gray-500 uppercase">
-                  Donor
-                </th>
-
-                <th className="text-left px-6 py-4 text-xs font-semibold text-gray-500 uppercase">
-                  Blood Type
-                </th>
-
-                <th className="text-left px-6 py-4 text-xs font-semibold text-gray-500 uppercase">
-                  Location
-                </th>
-
-                <th className="text-left px-6 py-4 text-xs font-semibold text-gray-500 uppercase">
-                  Donations
-                </th>
-
-                <th className="text-left px-6 py-4 text-xs font-semibold text-gray-500 uppercase">
-                  Status
-                </th>
-
-                <th className="text-right px-6 py-4 text-xs font-semibold text-gray-500 uppercase">
+                <th>Donor</th>
+                <th>Blood Type</th>
+                <th>Location</th>
+                <th>Donations</th>
+                <th>Status</th>
+                <th className="donor-action-header">
                   Action
                 </th>
-
               </tr>
             </thead>
 
-            <tbody className="divide-y divide-gray-100">
+
+            <tbody>
 
               {donors.map((donor) => (
-                <tr
-                  key={donor.email}
-                  className="hover:bg-gray-50 transition"
-                >
+                <tr key={donor.email}>
 
                   {/* Donor */}
-                  <td className="px-6 py-5">
-                    <div className="flex items-center gap-3">
+                  <td>
 
-                      <div className="w-11 h-11 rounded-full bg-red-50 text-red-600 flex items-center justify-center font-bold">
+                    <div className="donor-user">
+
+                      <div className="donor-avatar">
                         {donor.name.charAt(0)}
                       </div>
 
-                      <div>
-                        <p className="text-sm font-semibold text-gray-900">
+                      <div className="donor-user-info">
+
+                        <p className="donor-name">
                           {donor.name}
                         </p>
 
-                        <p className="text-xs text-gray-500 mt-1">
+                        <p className="donor-email">
                           {donor.email}
                         </p>
+
                       </div>
 
                     </div>
+
                   </td>
 
+
                   {/* Blood Type */}
-                  <td className="px-6 py-5">
-                    <span className="inline-flex items-center gap-1.5 bg-red-50 text-red-700 px-3 py-1.5 rounded-full text-xs font-bold">
+                  <td>
+
+                    <span className="blood-type-badge">
                       <Droplet size={13} />
                       {donor.bloodType}
                     </span>
+
                   </td>
+
 
                   {/* Location */}
-                  <td className="px-6 py-5">
-                    <div className="flex items-center gap-2 text-sm text-gray-600">
-                      <MapPin
-                        size={15}
-                        className="text-gray-400"
-                      />
-                      {donor.location}
+                  <td>
+
+                    <div className="donor-location">
+
+                      <MapPin size={15} />
+
+                      <span>
+                        {donor.location}
+                      </span>
+
                     </div>
+
                   </td>
+
 
                   {/* Donations */}
-                  <td className="px-6 py-5">
-                    <p className="text-sm font-semibold text-gray-900">
-                      {donor.donations}
-                    </p>
+                  <td>
 
-                    <div className="flex items-center gap-1 mt-1">
-                      <CalendarDays
-                        size={12}
-                        className="text-gray-400"
-                      />
+                    <div className="donor-donation-info">
 
-                      <p className="text-xs text-gray-400">
-                        {donor.lastDonation}
+                      <p>
+                        {donor.donations}
                       </p>
+
+                      <div className="last-donation">
+
+                        <CalendarDays size={12} />
+
+                        <span>
+                          {donor.lastDonation}
+                        </span>
+
+                      </div>
+
                     </div>
+
                   </td>
 
+
                   {/* Status */}
-                  <td className="px-6 py-5">
+                  <td>
+
                     <span
-                      className={`px-3 py-1.5 rounded-full text-xs font-semibold ${
+                      className={`donor-status ${
                         donor.status === "Active"
-                          ? "bg-green-50 text-green-700"
-                          : "bg-gray-100 text-gray-600"
+                          ? "status-active"
+                          : "status-inactive"
                       }`}
                     >
                       {donor.status}
                     </span>
+
                   </td>
 
+
                   {/* Action */}
-                  <td className="px-6 py-5 text-right">
-                    <button
-                      type="button"
-                      className="inline-flex items-center gap-1.5 text-red-600 text-sm font-medium hover:text-red-700 transition"
-                    >
+                  <td className="donor-action">
+
+                    <button type="button">
                       <Eye size={16} />
-                      View
+                      <span>View</span>
                     </button>
+
                   </td>
 
                 </tr>
               ))}
 
             </tbody>
+
           </table>
+
         </div>
 
-        {/* Mobile */}
-        <div className="md:hidden divide-y divide-gray-100">
+
+        {/* ==================== MOBILE CARDS ==================== */}
+        <div className="donors-mobile-list">
 
           {donors.map((donor) => (
             <div
               key={donor.email}
-              className="p-5"
+              className="donor-mobile-card"
             >
 
-              <div className="flex items-start justify-between gap-4">
+              {/* Mobile Header */}
+              <div className="donor-mobile-header">
 
-                <div className="flex items-center gap-3">
+                <div className="donor-user">
 
-                  <div className="w-11 h-11 rounded-full bg-red-50 text-red-600 flex items-center justify-center font-bold">
+                  <div className="donor-avatar">
                     {donor.name.charAt(0)}
                   </div>
 
-                  <div>
-                    <p className="font-semibold text-gray-900">
+                  <div className="donor-user-info">
+
+                    <p className="donor-name">
                       {donor.name}
                     </p>
 
-                    <p className="text-xs text-gray-500 mt-1">
+                    <p className="donor-email">
                       {donor.email}
                     </p>
+
                   </div>
 
                 </div>
 
+
                 <span
-                  className={`px-2.5 py-1 rounded-full text-xs font-semibold ${
+                  className={`donor-status ${
                     donor.status === "Active"
-                      ? "bg-green-50 text-green-700"
-                      : "bg-gray-100 text-gray-600"
+                      ? "status-active"
+                      : "status-inactive"
                   }`}
                 >
                   {donor.status}
@@ -428,78 +447,95 @@ function Donors() {
 
               </div>
 
-              <div className="grid grid-cols-2 gap-4 mt-5">
 
-                <div>
-                  <p className="text-xs text-gray-400">
+              {/* Mobile Information */}
+              <div className="donor-mobile-info">
+
+                {/* Blood Type */}
+                <div className="mobile-info-item">
+
+                  <p>
                     Blood Type
                   </p>
 
-                  <div className="flex items-center gap-1.5 mt-1">
-                    <Droplet
-                      size={14}
-                      className="text-red-600"
-                    />
+                  <div className="mobile-blood-type">
+                    <Droplet size={14} />
 
-                    <p className="text-sm font-bold text-red-600">
+                    <span>
                       {donor.bloodType}
-                    </p>
+                    </span>
                   </div>
+
                 </div>
 
-                <div>
-                  <p className="text-xs text-gray-400">
+
+                {/* Donations */}
+                <div className="mobile-info-item">
+
+                  <p>
                     Donations
                   </p>
 
-                  <p className="text-sm font-semibold text-gray-900 mt-1">
+                  <span className="mobile-info-value">
                     {donor.donations}
-                  </p>
+                  </span>
+
                 </div>
 
-                <div>
-                  <p className="text-xs text-gray-400">
+
+                {/* Location */}
+                <div className="mobile-info-item">
+
+                  <p>
                     Location
                   </p>
 
-                  <div className="flex items-center gap-1.5 mt-1">
-                    <MapPin
-                      size={14}
-                      className="text-gray-400"
-                    />
+                  <div className="mobile-location">
 
-                    <p className="text-sm font-medium text-gray-900">
+                    <MapPin size={14} />
+
+                    <span>
                       {donor.location}
-                    </p>
+                    </span>
+
                   </div>
+
                 </div>
 
-                <div>
-                  <p className="text-xs text-gray-400">
+
+                {/* Last Donation */}
+                <div className="mobile-info-item">
+
+                  <p>
                     Last Donation
                   </p>
 
-                  <p className="text-sm font-medium text-gray-900 mt-1">
+                  <span className="mobile-info-value">
                     {donor.lastDonation}
-                  </p>
+                  </span>
+
                 </div>
 
               </div>
 
+
+              {/* Mobile Action */}
               <button
                 type="button"
-                className="w-full inline-flex items-center justify-center gap-2 border border-gray-200 rounded-xl py-2.5 mt-5 text-sm font-medium text-gray-700 hover:bg-gray-50 transition"
+                className="mobile-view-button"
               >
                 <Eye size={16} />
-                View Donor
+                <span>View Donor</span>
               </button>
 
             </div>
           ))}
 
         </div>
+
       </section>
-    </>
+
+    </div>
   );
 }
 

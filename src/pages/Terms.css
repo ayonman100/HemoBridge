@@ -1,0 +1,10 @@
+
+/* Terms page
+   Most layout styling is handled with Tailwind CSS.
+   Keep this file available for future Terms-specific adjustments.
+*/
+
+.terms-page {
+  width: 100%;
+}
+

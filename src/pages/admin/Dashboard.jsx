@@ -11,6 +11,8 @@ import {
   ArrowRight,
 } from "lucide-react";
 
+import "./Dashboard.css";
+
 function Dashboard() {
   const stats = [
     {
@@ -40,449 +42,567 @@ function Dashboard() {
   ];
 
   return (
-    <>
-      {/* Header */}
-      <section className="mb-8">
-        <p className="text-sm text-gray-500">
-          Welcome back
-        </p>
+    <div className="admin-dashboard">
 
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900 mt-1">
-              Admin Dashboard
-            </h1>
+      {/* ================= HEADER ================= */}
 
-            <p className="text-gray-500 mt-2">
-              Monitor and manage the HemoBridge platform.
-            </p>
-          </div>
+      <section className="admin-dashboard-header">
 
-          <Link
-            to="/admin/updates"
-            className="bg-red-600 text-white px-5 py-3 rounded-xl font-medium hover:bg-red-700 transition text-center"
-          >
-            Publish Update
-          </Link>
+        <div className="admin-dashboard-header-content">
+
+          <p className="admin-dashboard-welcome">
+            Welcome back
+          </p>
+
+          <h1 className="admin-dashboard-title">
+            Admin Dashboard
+          </h1>
+
+          <p className="admin-dashboard-description">
+            Monitor and manage the HemoBridge platform.
+          </p>
+
         </div>
+
+        <Link
+          to="/admin/updates"
+          className="admin-publish-button"
+        >
+          Publish Update
+        </Link>
+
       </section>
 
-      {/* Statistics */}
-      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
+
+      {/* ================= STATISTICS ================= */}
+
+      <section className="admin-stats-grid">
+
         {stats.map((stat) => {
           const Icon = stat.icon;
 
           return (
             <div
               key={stat.title}
-              className="bg-white border border-gray-200 rounded-2xl p-6"
+              className="admin-stat-card"
             >
-              <div className="flex items-start justify-between">
-                <div>
-                  <p className="text-sm text-gray-500">
-                    {stat.title}
-                  </p>
 
-                  <p className="text-3xl font-bold text-gray-900 mt-2">
-                    {stat.value}
-                  </p>
+              <div className="admin-stat-content">
 
-                  <p className="text-xs text-gray-400 mt-2">
-                    {stat.subtitle}
-                  </p>
-                </div>
+                <p className="admin-stat-title">
+                  {stat.title}
+                </p>
 
-                <div className="w-12 h-12 rounded-xl bg-red-50 text-red-600 flex items-center justify-center">
-                  <Icon size={24} strokeWidth={2} />
-                </div>
+                <p className="admin-stat-value">
+                  {stat.value}
+                </p>
+
+                <p className="admin-stat-subtitle">
+                  {stat.subtitle}
+                </p>
+
               </div>
+
+              <div className="admin-stat-icon">
+                <Icon
+                  size={23}
+                  strokeWidth={2}
+                />
+              </div>
+
             </div>
           );
         })}
+
       </section>
 
-      {/* Main Grid */}
-      <section className="grid grid-cols-1 xl:grid-cols-3 gap-6">
 
-        {/* Platform Overview */}
-        <div className="xl:col-span-2 bg-white border border-gray-200 rounded-2xl p-6">
-          <div className="flex items-center justify-between">
+      {/* ================= MAIN GRID ================= */}
+
+      <section className="admin-main-grid">
+
+
+        {/* ================= PLATFORM OVERVIEW ================= */}
+
+        <div className="admin-panel admin-overview-panel">
+
+          <div className="admin-panel-header">
+
             <div>
-              <h2 className="text-xl font-bold text-gray-900">
+              <h2 className="admin-panel-title">
                 Platform Overview
               </h2>
 
-              <p className="text-sm text-gray-500 mt-1">
+              <p className="admin-panel-description">
                 Current state of the HemoBridge network.
               </p>
             </div>
 
-            <span className="flex items-center gap-2 text-xs bg-green-50 text-green-700 px-3 py-1.5 rounded-full font-semibold">
-              <span className="w-2 h-2 bg-green-500 rounded-full" />
+            <span className="admin-system-status">
+              <span className="admin-status-dot" />
               System Operational
             </span>
+
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
 
-            <div className="bg-gray-50 rounded-xl p-5">
-              <p className="text-sm text-gray-500">
+          <div className="admin-overview-grid">
+
+            <div className="admin-overview-card">
+
+              <p className="admin-overview-label">
                 Verified Donors
               </p>
 
-              <p className="text-2xl font-bold text-gray-900 mt-2">
+              <p className="admin-overview-value">
                 1,102
               </p>
 
-              <p className="text-xs text-green-600 mt-2">
+              <p className="admin-overview-positive">
                 +8.4% this month
               </p>
+
             </div>
 
-            <div className="bg-gray-50 rounded-xl p-5">
-              <p className="text-sm text-gray-500">
+
+            <div className="admin-overview-card">
+
+              <p className="admin-overview-label">
                 Blood Units Available
               </p>
 
-              <p className="text-2xl font-bold text-gray-900 mt-2">
+              <p className="admin-overview-value">
                 4,826
               </p>
 
-              <p className="text-xs text-green-600 mt-2">
+              <p className="admin-overview-positive">
                 +4.2% this month
               </p>
+
             </div>
 
-            <div className="bg-gray-50 rounded-xl p-5">
-              <p className="text-sm text-gray-500">
+
+            <div className="admin-overview-card">
+
+              <p className="admin-overview-label">
                 Requests Fulfilled
               </p>
 
-              <p className="text-2xl font-bold text-gray-900 mt-2">
+              <p className="admin-overview-value">
                 2,438
               </p>
 
-              <p className="text-xs text-green-600 mt-2">
+              <p className="admin-overview-positive">
                 +12.7% this month
               </p>
+
             </div>
 
           </div>
+
         </div>
 
-        {/* Quick Actions */}
-        <div className="bg-white border border-gray-200 rounded-2xl p-6">
-          <h2 className="text-xl font-bold text-gray-900">
-            Quick Actions
-          </h2>
 
-          <p className="text-sm text-gray-500 mt-1">
-            Common administrative tasks.
-          </p>
+        {/* ================= QUICK ACTIONS ================= */}
 
-          <div className="space-y-3 mt-6">
+        <div className="admin-panel admin-quick-panel">
+
+          <div className="admin-panel-header-simple">
+
+            <h2 className="admin-panel-title">
+              Quick Actions
+            </h2>
+
+            <p className="admin-panel-description">
+              Common administrative tasks.
+            </p>
+
+          </div>
+
+
+          <div className="admin-quick-actions">
 
             <Link
               to="/admin/users"
-              className="flex items-center gap-4 p-4 rounded-xl bg-red-50 hover:bg-red-100 transition"
+              className="admin-action-card admin-action-primary"
             >
-              <div className="w-10 h-10 rounded-lg bg-white text-red-600 flex items-center justify-center">
-                <Users size={21} />
+
+              <div className="admin-action-icon admin-action-icon-red">
+                <Users size={20} />
               </div>
 
-              <div>
-                <p className="font-semibold text-gray-900">
+              <div className="admin-action-content">
+
+                <p className="admin-action-title">
                   Manage Users
                 </p>
 
-                <p className="text-xs text-gray-500 mt-1">
+                <p className="admin-action-description">
                   View registered users
                 </p>
+
               </div>
 
               <ArrowRight
                 size={17}
-                className="ml-auto text-gray-400"
+                className="admin-action-arrow"
               />
+
             </Link>
+
 
             <Link
               to="/admin/verification"
-              className="flex items-center gap-4 p-4 rounded-xl bg-gray-50 hover:bg-gray-100 transition"
+              className="admin-action-card"
             >
-              <div className="w-10 h-10 rounded-lg bg-white text-green-600 flex items-center justify-center">
-                <CheckCircle size={21} />
+
+              <div className="admin-action-icon admin-action-icon-green">
+                <CheckCircle size={20} />
               </div>
 
-              <div>
-                <p className="font-semibold text-gray-900">
+              <div className="admin-action-content">
+
+                <p className="admin-action-title">
                   Verification
                 </p>
 
-                <p className="text-xs text-gray-500 mt-1">
+                <p className="admin-action-description">
                   Review pending accounts
                 </p>
+
               </div>
 
               <ArrowRight
                 size={17}
-                className="ml-auto text-gray-400"
+                className="admin-action-arrow"
               />
+
             </Link>
+
 
             <Link
               to="/admin/requests"
-              className="flex items-center gap-4 p-4 rounded-xl bg-gray-50 hover:bg-gray-100 transition"
+              className="admin-action-card"
             >
-              <div className="w-10 h-10 rounded-lg bg-white text-red-600 flex items-center justify-center">
-                <Droplet size={21} />
+
+              <div className="admin-action-icon admin-action-icon-red">
+                <Droplet size={20} />
               </div>
 
-              <div>
-                <p className="font-semibold text-gray-900">
+              <div className="admin-action-content">
+
+                <p className="admin-action-title">
                   Blood Requests
                 </p>
 
-                <p className="text-xs text-gray-500 mt-1">
+                <p className="admin-action-description">
                   Monitor system requests
                 </p>
+
               </div>
 
               <ArrowRight
                 size={17}
-                className="ml-auto text-gray-400"
+                className="admin-action-arrow"
               />
+
             </Link>
 
           </div>
+
         </div>
+
       </section>
 
-      {/* Alerts */}
-      <section className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
 
-        {/* Verification Alerts */}
-        <div className="bg-white border border-gray-200 rounded-2xl overflow-hidden">
+      {/* ================= ALERTS ================= */}
 
-          <div className="p-6 border-b border-gray-100 flex items-center justify-between">
+      <section className="admin-alerts-grid">
+
+
+        {/* Pending Verification */}
+
+        <div className="admin-panel admin-alert-panel">
+
+          <div className="admin-panel-header">
+
             <div>
-              <h2 className="text-xl font-bold text-gray-900">
+
+              <h2 className="admin-panel-title">
                 Pending Verification
               </h2>
 
-              <p className="text-sm text-gray-500 mt-1">
+              <p className="admin-panel-description">
                 Accounts waiting for review.
               </p>
+
             </div>
 
             <Link
               to="/admin/verification"
-              className="text-sm text-red-600 font-medium hover:text-red-700"
+              className="admin-view-link"
             >
               View all
             </Link>
+
           </div>
 
-          <div className="divide-y divide-gray-100">
 
-            <div className="p-5 flex items-center gap-4">
-              <div className="w-10 h-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center">
+          <div className="admin-list">
+
+            <div className="admin-list-item">
+
+              <div className="admin-list-icon admin-list-icon-blue">
                 <Hospital size={19} />
               </div>
 
-              <div className="flex-1">
-                <p className="font-medium text-gray-900">
+              <div className="admin-list-content">
+
+                <p className="admin-list-title">
                   Mainland General Hospital
                 </p>
 
-                <p className="text-xs text-gray-500 mt-1">
+                <p className="admin-list-description">
                   Hospital registration
                 </p>
+
               </div>
 
-              <span className="text-xs bg-yellow-50 text-yellow-700 px-3 py-1 rounded-full">
+              <span className="admin-pending-badge">
                 Pending
               </span>
+
             </div>
 
-            <div className="p-5 flex items-center gap-4">
-              <div className="w-10 h-10 rounded-full bg-red-50 text-red-600 flex items-center justify-center">
+
+            <div className="admin-list-item">
+
+              <div className="admin-list-icon admin-list-icon-red">
                 <Building2 size={19} />
               </div>
 
-              <div className="flex-1">
-                <p className="font-medium text-gray-900">
+              <div className="admin-list-content">
+
+                <p className="admin-list-title">
                   Lagos Central Blood Bank
                 </p>
 
-                <p className="text-xs text-gray-500 mt-1">
+                <p className="admin-list-description">
                   Blood bank registration
                 </p>
+
               </div>
 
-              <span className="text-xs bg-yellow-50 text-yellow-700 px-3 py-1 rounded-full">
+              <span className="admin-pending-badge">
                 Pending
               </span>
+
             </div>
 
           </div>
+
         </div>
 
-        {/* System Alerts */}
-        <div className="bg-white border border-gray-200 rounded-2xl overflow-hidden">
 
-          <div className="p-6 border-b border-gray-100">
-            <h2 className="text-xl font-bold text-gray-900">
+        {/* System Alerts */}
+
+        <div className="admin-panel admin-alert-panel">
+
+          <div className="admin-panel-header-simple">
+
+            <h2 className="admin-panel-title">
               System Alerts
             </h2>
 
-            <p className="text-sm text-gray-500 mt-1">
+            <p className="admin-panel-description">
               Things that may require attention.
             </p>
+
           </div>
 
-          <div className="p-5 space-y-4">
 
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-full bg-red-50 text-red-600 flex items-center justify-center shrink-0">
+          <div className="admin-system-alerts">
+
+            <div className="admin-system-alert">
+
+              <div className="admin-list-icon admin-list-icon-red">
                 <AlertTriangle size={19} />
               </div>
 
               <div>
-                <p className="font-medium text-gray-900">
+
+                <p className="admin-list-title">
                   3 blood groups have critical stock
                 </p>
 
-                <p className="text-xs text-gray-500 mt-1">
+                <p className="admin-list-description">
                   Check blood bank inventory levels.
                 </p>
+
               </div>
+
             </div>
 
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-full bg-yellow-50 text-yellow-600 flex items-center justify-center shrink-0">
+
+            <div className="admin-system-alert">
+
+              <div className="admin-list-icon admin-list-icon-yellow">
                 <Bell size={19} />
               </div>
 
               <div>
-                <p className="font-medium text-gray-900">
+
+                <p className="admin-list-title">
                   14 requests require attention
                 </p>
 
-                <p className="text-xs text-gray-500 mt-1">
+                <p className="admin-list-description">
                   Some requests have been waiting for a response.
                 </p>
+
               </div>
+
             </div>
 
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-full bg-green-50 text-green-600 flex items-center justify-center shrink-0">
+
+            <div className="admin-system-alert">
+
+              <div className="admin-list-icon admin-list-icon-green">
                 <CheckCircle size={19} />
               </div>
 
               <div>
-                <p className="font-medium text-gray-900">
+
+                <p className="admin-list-title">
                   System health is normal
                 </p>
 
-                <p className="text-xs text-gray-500 mt-1">
+                <p className="admin-list-description">
                   All major services are currently operational.
                 </p>
+
               </div>
+
             </div>
 
           </div>
+
         </div>
+
       </section>
 
-      {/* Recent Activity */}
-      <section className="bg-white border border-gray-200 rounded-2xl mt-6 overflow-hidden">
 
-        <div className="p-6 border-b border-gray-100 flex items-center justify-between">
+      {/* ================= RECENT ACTIVITY ================= */}
+
+      <section className="admin-panel admin-recent-panel">
+
+        <div className="admin-panel-header">
+
           <div>
-            <h2 className="text-xl font-bold text-gray-900">
+
+            <h2 className="admin-panel-title">
               Recent System Activity
             </h2>
 
-            <p className="text-sm text-gray-500 mt-1">
+            <p className="admin-panel-description">
               Latest activity across the platform.
             </p>
+
           </div>
 
           <Link
             to="/admin/reports"
-            className="text-sm text-red-600 font-medium hover:text-red-700"
+            className="admin-view-link"
           >
             View reports
           </Link>
+
         </div>
 
-        <div className="divide-y divide-gray-100">
 
-          <div className="p-5 flex items-center gap-4">
-            <div className="w-10 h-10 rounded-full bg-green-50 text-green-600 flex items-center justify-center">
+        <div className="admin-list">
+
+          <div className="admin-list-item">
+
+            <div className="admin-list-icon admin-list-icon-green">
               <CheckCircle size={19} />
             </div>
 
-            <div className="flex-1">
-              <p className="text-sm font-medium text-gray-900">
+            <div className="admin-list-content">
+
+              <p className="admin-list-title">
                 New hospital verified
               </p>
 
-              <p className="text-xs text-gray-500 mt-1">
+              <p className="admin-list-description">
                 Mainland General Hospital was approved.
               </p>
+
             </div>
 
-            <span className="text-xs text-gray-400">
+            <span className="admin-activity-time">
               15 min ago
             </span>
+
           </div>
 
-          <div className="p-5 flex items-center gap-4">
-            <div className="w-10 h-10 rounded-full bg-red-50 text-red-600 flex items-center justify-center">
+
+          <div className="admin-list-item">
+
+            <div className="admin-list-icon admin-list-icon-red">
               <Droplet size={19} />
             </div>
 
-            <div className="flex-1">
-              <p className="text-sm font-medium text-gray-900">
+            <div className="admin-list-content">
+
+              <p className="admin-list-title">
                 Blood request fulfilled
               </p>
 
-              <p className="text-xs text-gray-500 mt-1">
+              <p className="admin-list-description">
                 Request HB-REQ-004 was completed.
               </p>
+
             </div>
 
-            <span className="text-xs text-gray-400">
+            <span className="admin-activity-time">
               42 min ago
             </span>
+
           </div>
 
-          <div className="p-5 flex items-center gap-4">
-            <div className="w-10 h-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center">
+
+          <div className="admin-list-item">
+
+            <div className="admin-list-icon admin-list-icon-blue">
               <UserPlus size={19} />
             </div>
 
-            <div className="flex-1">
-              <p className="text-sm font-medium text-gray-900">
+            <div className="admin-list-content">
+
+              <p className="admin-list-title">
                 12 new donors registered
               </p>
 
-              <p className="text-xs text-gray-500 mt-1">
+              <p className="admin-list-description">
                 New donor accounts were created today.
               </p>
+
             </div>
 
-            <span className="text-xs text-gray-400">
+            <span className="admin-activity-time">
               1 hr ago
             </span>
+
           </div>
 
         </div>
+
       </section>
-    </>
+
+    </div>
   );
 }
 
 export default Dashboard;
+

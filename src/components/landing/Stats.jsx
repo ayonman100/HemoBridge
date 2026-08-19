@@ -1,51 +1,53 @@
 function Stats() {
-
   const stats = [
     {
       number: "500+",
-      title: "Hospitals Connected"
+      title: "Hospitals Connected",
     },
     {
       number: "10,000+",
-      title: "Blood Units Tracked"
+      title: "Blood Units Tracked",
     },
     {
       number: "24/7",
-      title: "Emergency Support"
-    }
-  ]
-
+      title: "Emergency Support",
+    },
+  ];
 
   return (
+    <section className="py-16 md:py-20 bg-red-600">
 
-    <section className="py-16 bg-red-600">
+      <div className="max-w-6xl mx-auto px-6">
 
-      <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3">
 
-        {stats.map((item,index)=>(
+          {stats.map((item, index) => (
+            <div
+              key={index}
+              className={`text-center px-6 py-6 ${
+                index !== stats.length - 1
+                  ? "md:border-r md:border-red-400"
+                  : ""
+              }`}
+            >
 
-          <div 
-          key={index}
-          className="text-center text-white">
+              <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
+                {item.number}
+              </h2>
 
-            <h2 className="text-5xl font-bold">
-              {item.number}
-            </h2>
+              <p className="mt-3 text-base md:text-lg text-red-100 font-medium">
+                {item.title}
+              </p>
 
-            <p className="mt-3 text-lg">
-              {item.title}
-            </p>
+            </div>
+          ))}
 
-          </div>
-
-        ))}
+        </div>
 
       </div>
 
     </section>
-
-  )
+  );
 }
 
-
-export default Stats
+export default Stats;

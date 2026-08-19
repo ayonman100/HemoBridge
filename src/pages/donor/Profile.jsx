@@ -14,6 +14,8 @@ import {
   Heart,
 } from "lucide-react";
 
+import "./Profile.css";
+
 function Profile() {
   return (
     <div className="donor-profile">

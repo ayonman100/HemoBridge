@@ -9,6 +9,8 @@ import {
   CalendarCheck,
 } from "lucide-react";
 
+import "./Dashboard.css";
+
 import StatCard from "../../components/dashboard/StatCard";
 import MapCard from "../../components/dashboard/MapCard";
 

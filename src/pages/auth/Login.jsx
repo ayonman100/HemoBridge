@@ -9,6 +9,7 @@ import {
   LogIn,
   ArrowRight,
 } from "lucide-react";
+import "./Login.css";
 
 function Login() {
   const navigate = useNavigate();
@@ -24,7 +25,6 @@ function Login() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
-  // Handle input changes
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -34,7 +34,6 @@ function Login() {
     setError("");
   };
 
-  // Handle login
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -123,63 +122,58 @@ function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center px-6 py-10">
+    <div className="login-page">
 
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-sm border border-gray-100 p-8 md:p-10">
+      <div className="login-card">
 
         {/* ================= HEADER ================= */}
 
-        <div className="text-center mb-8">
+        <div className="login-header">
 
-          {/* Logo Icon */}
-          <div className="w-16 h-16 mx-auto rounded-2xl bg-red-50 text-red-600 flex items-center justify-center mb-5">
+          <div className="login-logo">
             <Droplets size={32} strokeWidth={2} />
           </div>
 
-          <h1 className="text-3xl font-bold text-gray-900">
-            Welcome Back
-          </h1>
+          <h1>Welcome Back</h1>
 
-          <p className="mt-3 text-gray-600">
+          <p>
             Login to your HemoBridge account
           </p>
 
         </div>
 
+
         {/* ================= ERROR MESSAGE ================= */}
 
         {error && (
           <div
-            className="mb-6 rounded-xl border border-red-200 bg-red-50 px-4 py-3"
+            className="login-error"
             role="alert"
           >
-            <div className="flex items-start gap-3">
+            <AlertCircle
+              size={20}
+              className="login-error-icon"
+            />
 
-              <AlertCircle
-                size={20}
-                className="text-red-600 shrink-0 mt-0.5"
-              />
-
-              <p className="text-sm text-red-700 leading-relaxed">
-                {error}
-              </p>
-
-            </div>
+            <p>
+              {error}
+            </p>
           </div>
         )}
 
+
         {/* ================= LOGIN FORM ================= */}
 
-        <form onSubmit={handleSubmit} className="space-y-5">
+        <form
+          onSubmit={handleSubmit}
+          className="login-form"
+        >
 
           {/* Email */}
 
-          <div>
+          <div className="login-field">
 
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-gray-700 mb-2"
-            >
+            <label htmlFor="email">
               Email Address
             </label>
 
@@ -191,39 +185,34 @@ function Login() {
               onChange={handleChange}
               placeholder="Enter your email"
               autoComplete="email"
-              className={`w-full border rounded-xl px-4 py-3 outline-none transition focus:ring-2 focus:ring-red-500 ${
-                error
-                  ? "border-red-300"
-                  : "border-gray-300"
-              }`}
+              className={error ? "input-error" : ""}
               required
             />
 
           </div>
 
+
           {/* Password */}
 
-          <div>
+          <div className="login-field">
 
-            <div className="flex items-center justify-between mb-2">
+            <div className="password-label-row">
 
-              <label
-                htmlFor="password"
-                className="block text-sm font-medium text-gray-700"
-              >
+              <label htmlFor="password">
                 Password
               </label>
 
               <Link
                 to="/forgot-password"
-                className="text-sm text-red-600 hover:text-red-700 font-medium"
+                className="forgot-password"
               >
                 Forgot password?
               </Link>
 
             </div>
 
-            <div className="relative">
+
+            <div className="password-input-wrapper">
 
               <input
                 id="password"
@@ -233,21 +222,20 @@ function Login() {
                 onChange={handleChange}
                 placeholder="Enter your password"
                 autoComplete="current-password"
-                className="w-full border border-gray-300 rounded-xl px-4 py-3 pr-12 outline-none transition focus:ring-2 focus:ring-red-500"
                 required
               />
 
-              {/* Password Visibility Button */}
-
               <button
                 type="button"
-                onClick={() => setShowPassword(!showPassword)}
+                onClick={() =>
+                  setShowPassword(!showPassword)
+                }
                 aria-label={
                   showPassword
                     ? "Hide password"
                     : "Show password"
                 }
-                className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 flex items-center justify-center text-gray-400 hover:text-gray-700 transition"
+                className="password-toggle"
               >
                 {showPassword ? (
                   <EyeOff size={19} />
@@ -260,36 +248,34 @@ function Login() {
 
           </div>
 
+
           {/* Remember Me */}
 
-          <div className="flex items-center gap-2">
+          <div className="remember-row">
 
             <input
               type="checkbox"
               id="remember"
               checked={rememberMe}
-              onChange={(e) => setRememberMe(e.target.checked)}
-              className="w-4 h-4 accent-red-600 cursor-pointer"
+              onChange={(e) =>
+                setRememberMe(e.target.checked)
+              }
             />
 
-            <label
-              htmlFor="remember"
-              className="text-sm text-gray-600 cursor-pointer"
-            >
+            <label htmlFor="remember">
               Remember me
             </label>
 
           </div>
+
 
           {/* Login Button */}
 
           <button
             type="submit"
             disabled={isLoading}
-            className={`w-full py-3.5 rounded-xl font-semibold text-white transition flex items-center justify-center gap-2 ${
-              isLoading
-                ? "bg-red-400 cursor-not-allowed"
-                : "bg-red-600 hover:bg-red-700"
+            className={`login-button ${
+              isLoading ? "loading" : ""
             }`}
           >
 
@@ -297,7 +283,7 @@ function Login() {
               <>
                 <Loader2
                   size={19}
-                  className="animate-spin"
+                  className="loading-icon"
                 />
 
                 Logging in...
@@ -314,22 +300,22 @@ function Login() {
 
         </form>
 
+
         {/* ================= REGISTER ================= */}
 
-        <div className="text-center mt-7">
+        <div className="register-section">
 
-          <p className="text-gray-600">
-            Don't have an account?{" "}
+          <p>
+            Don't have an account?
 
             <Link
               to="/select-role"
-              className="text-red-600 font-semibold hover:text-red-700 inline-flex items-center gap-1"
+              className="register-link"
             >
               Create one
 
               <ArrowRight size={15} />
             </Link>
-
           </p>
 
         </div>
@@ -341,3 +327,4 @@ function Login() {
 }
 
 export default Login;
+

@@ -11,6 +11,8 @@ import {
   Eye,
 } from "lucide-react";
 
+import "./users.css";
+
 function Users() {
   const users = [
     {
@@ -69,57 +71,59 @@ function Users() {
 
   const getRoleStyle = (role) => {
     if (role === "Donor") {
-      return "bg-red-50 text-red-600";
+      return "role-donor";
     }
 
     if (role === "Hospital") {
-      return "bg-blue-50 text-blue-600";
+      return "role-hospital";
     }
 
-    return "bg-purple-50 text-purple-600";
+    return "role-bloodbank";
   };
 
   const getStatusStyle = (status) => {
     if (status === "Active") {
-      return "bg-green-50 text-green-700";
+      return "status-active";
     }
 
     if (status === "Verified") {
-      return "bg-blue-50 text-blue-700";
+      return "status-verified";
     }
 
-    return "bg-red-50 text-red-700";
+    return "status-suspended";
   };
 
   return (
-    <div className="w-full">
+    <div className="users-page">
 
       {/* Header */}
-      <section className="mb-8">
+      <section className="users-header">
 
         <Link
           to="/admin/dashboard"
-          className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-red-600 transition"
+          className="users-back-link"
         >
           <ArrowLeft size={16} />
           Back to Dashboard
         </Link>
 
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mt-4">
+        <div className="users-header-content">
 
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900">
+          <div className="users-title-area">
+
+            <h1>
               Users
             </h1>
 
-            <p className="text-gray-500 mt-2">
+            <p>
               Manage users and organisations registered on HemoBridge.
             </p>
+
           </div>
 
           <button
             type="button"
-            className="inline-flex items-center justify-center gap-2 bg-red-600 text-white px-5 py-3 rounded-xl font-medium hover:bg-red-700 transition"
+            className="users-add-button"
           >
             <UserPlus size={18} />
             Add User
@@ -129,255 +133,256 @@ function Users() {
 
       </section>
 
+
       {/* Statistics */}
-      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
+      <section className="users-stats">
 
         {/* Total Users */}
-        <div className="bg-white border border-gray-200 rounded-2xl p-6 hover:shadow-sm transition">
+        <div className="users-stat-card">
 
-          <div className="flex items-center justify-between">
+          <div className="users-stat-content">
 
-            <div>
-              <p className="text-sm text-gray-500">
-                Total Users
-              </p>
+            <p className="users-stat-label">
+              Total Users
+            </p>
 
-              <p className="text-3xl font-bold text-gray-900 mt-2">
-                1,248
-              </p>
+            <p className="users-stat-value">
+              1,248
+            </p>
 
-              <p className="text-xs text-green-600 mt-2">
-                +12% this month
-              </p>
-            </div>
-
-            <div className="w-11 h-11 rounded-xl bg-gray-100 text-gray-600 flex items-center justify-center">
-              <UsersIcon size={21} />
-            </div>
+            <p className="users-stat-growth">
+              +12% this month
+            </p>
 
           </div>
 
+          <div className="users-stat-icon users-stat-icon-gray">
+            <UsersIcon size={21} />
+          </div>
+
         </div>
+
 
         {/* Donors */}
-        <div className="bg-white border border-gray-200 rounded-2xl p-6 hover:shadow-sm transition">
+        <div className="users-stat-card">
 
-          <div className="flex items-center justify-between">
+          <div className="users-stat-content">
 
-            <div>
-              <p className="text-sm text-gray-500">
-                Donors
-              </p>
+            <p className="users-stat-label">
+              Donors
+            </p>
 
-              <p className="text-3xl font-bold text-red-600 mt-2">
-                1,102
-              </p>
+            <p className="users-stat-value users-stat-value-red">
+              1,102
+            </p>
 
-              <p className="text-xs text-gray-400 mt-2">
-                Registered donors
-              </p>
-            </div>
-
-            <div className="w-11 h-11 rounded-xl bg-red-50 text-red-600 flex items-center justify-center">
-              <Droplets size={21} />
-            </div>
+            <p className="users-stat-description">
+              Registered donors
+            </p>
 
           </div>
 
+          <div className="users-stat-icon users-stat-icon-red">
+            <Droplets size={21} />
+          </div>
+
         </div>
+
 
         {/* Hospitals */}
-        <div className="bg-white border border-gray-200 rounded-2xl p-6 hover:shadow-sm transition">
+        <div className="users-stat-card">
 
-          <div className="flex items-center justify-between">
+          <div className="users-stat-content">
 
-            <div>
-              <p className="text-sm text-gray-500">
-                Hospitals
-              </p>
+            <p className="users-stat-label">
+              Hospitals
+            </p>
 
-              <p className="text-3xl font-bold text-blue-600 mt-2">
-                86
-              </p>
+            <p className="users-stat-value users-stat-value-blue">
+              86
+            </p>
 
-              <p className="text-xs text-gray-400 mt-2">
-                Registered hospitals
-              </p>
-            </div>
-
-            <div className="w-11 h-11 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
-              <Hospital size={21} />
-            </div>
+            <p className="users-stat-description">
+              Registered hospitals
+            </p>
 
           </div>
 
+          <div className="users-stat-icon users-stat-icon-blue">
+            <Hospital size={21} />
+          </div>
+
         </div>
+
 
         {/* Blood Banks */}
-        <div className="bg-white border border-gray-200 rounded-2xl p-6 hover:shadow-sm transition">
+        <div className="users-stat-card">
 
-          <div className="flex items-center justify-between">
+          <div className="users-stat-content">
 
-            <div>
-              <p className="text-sm text-gray-500">
-                Blood Banks
-              </p>
+            <p className="users-stat-label">
+              Blood Banks
+            </p>
 
-              <p className="text-3xl font-bold text-purple-600 mt-2">
-                24
-              </p>
+            <p className="users-stat-value users-stat-value-purple">
+              24
+            </p>
 
-              <p className="text-xs text-gray-400 mt-2">
-                Registered blood banks
-              </p>
-            </div>
+            <p className="users-stat-description">
+              Registered blood banks
+            </p>
 
-            <div className="w-11 h-11 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center">
-              <Building2 size={21} />
-            </div>
+          </div>
 
+          <div className="users-stat-icon users-stat-icon-purple">
+            <Building2 size={21} />
           </div>
 
         </div>
 
       </section>
+
 
       {/* Filters */}
-      <section className="bg-white border border-gray-200 rounded-2xl p-5 mb-6">
+      <section className="users-filters">
 
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+        <div className="users-filter-group">
 
-          {/* Select Filters */}
-          <div className="flex flex-col sm:flex-row gap-3">
+          {/* Role Filter */}
+          <div className="users-select-wrapper">
 
-            <div className="relative">
+            <select
+              defaultValue="all"
+              className="users-select"
+            >
+              <option value="all">
+                All Roles
+              </option>
 
-              <select
-                defaultValue="all"
-                className="appearance-none w-full sm:w-44 border border-gray-200 rounded-xl px-4 py-3 pr-10 bg-white text-sm text-gray-700 outline-none focus:ring-2 focus:ring-red-200 focus:border-red-500 transition"
-              >
-                <option value="all">
-                  All Roles
-                </option>
+              <option value="donor">
+                Donors
+              </option>
 
-                <option value="donor">
-                  Donors
-                </option>
+              <option value="hospital">
+                Hospitals
+              </option>
 
-                <option value="hospital">
-                  Hospitals
-                </option>
+              <option value="bloodbank">
+                Blood Banks
+              </option>
+            </select>
 
-                <option value="bloodbank">
-                  Blood Banks
-                </option>
-              </select>
-
-              <ChevronDown
-                size={16}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"
-              />
-
-            </div>
-
-            <div className="relative">
-
-              <select
-                defaultValue="all"
-                className="appearance-none w-full sm:w-44 border border-gray-200 rounded-xl px-4 py-3 pr-10 bg-white text-sm text-gray-700 outline-none focus:ring-2 focus:ring-red-200 focus:border-red-500 transition"
-              >
-                <option value="all">
-                  All Statuses
-                </option>
-
-                <option value="active">
-                  Active
-                </option>
-
-                <option value="verified">
-                  Verified
-                </option>
-
-                <option value="suspended">
-                  Suspended
-                </option>
-              </select>
-
-              <ChevronDown
-                size={16}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"
-              />
-
-            </div>
-
-          </div>
-
-          {/* Search */}
-          <div className="relative w-full lg:w-72">
-
-            <Search
-              size={18}
-              className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
-            />
-
-            <input
-              type="text"
-              placeholder="Search users..."
-              className="w-full border border-gray-200 rounded-xl pl-11 pr-4 py-3 text-sm outline-none focus:ring-2 focus:ring-red-200 focus:border-red-500 transition"
+            <ChevronDown
+              size={16}
+              className="users-select-icon"
             />
 
           </div>
+
+
+          {/* Status Filter */}
+          <div className="users-select-wrapper">
+
+            <select
+              defaultValue="all"
+              className="users-select"
+            >
+              <option value="all">
+                All Statuses
+              </option>
+
+              <option value="active">
+                Active
+              </option>
+
+              <option value="verified">
+                Verified
+              </option>
+
+              <option value="suspended">
+                Suspended
+              </option>
+            </select>
+
+            <ChevronDown
+              size={16}
+              className="users-select-icon"
+            />
+
+          </div>
+
+        </div>
+
+
+        {/* Search */}
+        <div className="users-search">
+
+          <Search
+            size={18}
+            className="users-search-icon"
+          />
+
+          <input
+            type="text"
+            placeholder="Search users..."
+          />
 
         </div>
 
       </section>
 
+
       {/* User Table */}
-      <section className="bg-white border border-gray-200 rounded-2xl overflow-hidden">
+      <section className="users-table-card">
 
         {/* Section Header */}
-        <div className="p-6 border-b border-gray-100">
+        <div className="users-table-header">
 
-          <h2 className="text-xl font-bold text-gray-900">
-            Registered Users
-          </h2>
+          <div>
 
-          <p className="text-sm text-gray-500 mt-1">
-            Users currently registered on the platform.
-          </p>
+            <h2>
+              Registered Users
+            </h2>
+
+            <p>
+              Users currently registered on the platform.
+            </p>
+
+          </div>
 
         </div>
 
+
         {/* Desktop Table */}
-        <div className="hidden md:block overflow-x-auto">
+        <div className="users-table-wrapper">
 
-          <table className="w-full">
+          <table className="users-table">
 
-            <thead className="bg-gray-50">
+            <thead>
 
               <tr>
 
-                <th className="text-left px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wide">
+                <th>
                   User
                 </th>
 
-                <th className="text-left px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wide">
+                <th>
                   Role
                 </th>
 
-                <th className="text-left px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wide">
+                <th>
                   Blood Type
                 </th>
 
-                <th className="text-left px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wide">
+                <th>
                   Status
                 </th>
 
-                <th className="text-left px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wide">
+                <th>
                   Joined
                 </th>
 
-                <th className="text-right px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wide">
+                <th className="users-action-heading">
                   Action
                 </th>
 
@@ -385,31 +390,29 @@ function Users() {
 
             </thead>
 
-            <tbody className="divide-y divide-gray-100">
+
+            <tbody>
 
               {users.map((user) => (
 
-                <tr
-                  key={user.email}
-                  className="hover:bg-gray-50 transition"
-                >
+                <tr key={user.email}>
 
                   {/* User */}
-                  <td className="px-6 py-5">
+                  <td>
 
-                    <div className="flex items-center gap-3">
+                    <div className="users-user">
 
-                      <div className="w-11 h-11 rounded-full bg-red-50 text-red-600 flex items-center justify-center font-bold">
+                      <div className="users-avatar">
                         {user.name.charAt(0)}
                       </div>
 
-                      <div>
+                      <div className="users-user-info">
 
-                        <p className="text-sm font-semibold text-gray-900">
+                        <p className="users-user-name">
                           {user.name}
                         </p>
 
-                        <p className="text-xs text-gray-500 mt-1">
+                        <p className="users-user-email">
                           {user.email}
                         </p>
 
@@ -419,20 +422,21 @@ function Users() {
 
                   </td>
 
-                  {/* Role */}
-                  <td className="px-6 py-5">
 
-                    <div className="flex items-center gap-2">
+                  {/* Role */}
+                  <td>
+
+                    <div className="users-role">
 
                       <span
-                        className={`w-8 h-8 rounded-lg flex items-center justify-center ${getRoleStyle(
+                        className={`users-role-icon ${getRoleStyle(
                           user.role
                         )}`}
                       >
                         {getRoleIcon(user.role)}
                       </span>
 
-                      <span className="text-sm text-gray-700">
+                      <span className="users-role-name">
                         {user.role}
                       </span>
 
@@ -440,18 +444,19 @@ function Users() {
 
                   </td>
 
+
                   {/* Blood Type */}
-                  <td className="px-6 py-5">
+                  <td>
 
                     {user.bloodType === "-" ? (
 
-                      <span className="text-sm text-gray-400">
+                      <span className="users-not-applicable">
                         -
                       </span>
 
                     ) : (
 
-                      <span className="inline-flex items-center gap-1 bg-red-50 text-red-700 px-3 py-1.5 rounded-full text-xs font-bold">
+                      <span className="users-blood-type">
                         <Droplets size={13} />
                         {user.bloodType}
                       </span>
@@ -460,11 +465,12 @@ function Users() {
 
                   </td>
 
+
                   {/* Status */}
-                  <td className="px-6 py-5">
+                  <td>
 
                     <span
-                      className={`px-3 py-1.5 rounded-full text-xs font-semibold ${getStatusStyle(
+                      className={`users-status ${getStatusStyle(
                         user.status
                       )}`}
                     >
@@ -473,17 +479,23 @@ function Users() {
 
                   </td>
 
+
                   {/* Joined */}
-                  <td className="px-6 py-5 text-sm text-gray-500">
-                    {user.joined}
+                  <td>
+
+                    <span className="users-joined">
+                      {user.joined}
+                    </span>
+
                   </td>
 
+
                   {/* Action */}
-                  <td className="px-6 py-5 text-right">
+                  <td className="users-action-cell">
 
                     <button
                       type="button"
-                      className="inline-flex items-center gap-1.5 text-red-600 text-sm font-medium hover:text-red-700 transition"
+                      className="users-view-button"
                     >
                       <Eye size={16} />
                       View
@@ -501,32 +513,33 @@ function Users() {
 
         </div>
 
+
         {/* Mobile */}
-        <div className="md:hidden divide-y divide-gray-100">
+        <div className="users-mobile-list">
 
           {users.map((user) => (
 
             <div
               key={user.email}
-              className="p-5"
+              className="users-mobile-card"
             >
 
               {/* User Header */}
-              <div className="flex items-start justify-between gap-4">
+              <div className="users-mobile-header">
 
-                <div className="flex items-center gap-3 min-w-0">
+                <div className="users-user">
 
-                  <div className="w-11 h-11 shrink-0 rounded-full bg-red-50 text-red-600 flex items-center justify-center font-bold">
+                  <div className="users-avatar">
                     {user.name.charAt(0)}
                   </div>
 
-                  <div className="min-w-0">
+                  <div className="users-user-info">
 
-                    <p className="font-semibold text-gray-900 truncate">
+                    <p className="users-user-name">
                       {user.name}
                     </p>
 
-                    <p className="text-xs text-gray-500 mt-1 truncate">
+                    <p className="users-user-email">
                       {user.email}
                     </p>
 
@@ -535,7 +548,7 @@ function Users() {
                 </div>
 
                 <span
-                  className={`shrink-0 px-3 py-1.5 rounded-full text-xs font-semibold ${getStatusStyle(
+                  className={`users-status ${getStatusStyle(
                     user.status
                   )}`}
                 >
@@ -544,26 +557,27 @@ function Users() {
 
               </div>
 
+
               {/* User Information */}
-              <div className="grid grid-cols-2 gap-4 mt-5">
+              <div className="users-mobile-info">
 
                 <div>
 
-                  <p className="text-xs text-gray-400">
+                  <p className="users-mobile-label">
                     Role
                   </p>
 
-                  <div className="flex items-center gap-2 mt-1">
+                  <div className="users-mobile-role">
 
                     <span
-                      className={`w-7 h-7 rounded-lg flex items-center justify-center ${getRoleStyle(
+                      className={`users-role-icon ${getRoleStyle(
                         user.role
                       )}`}
                     >
                       {getRoleIcon(user.role)}
                     </span>
 
-                    <p className="text-sm font-medium text-gray-900">
+                    <p>
                       {user.role}
                     </p>
 
@@ -571,21 +585,22 @@ function Users() {
 
                 </div>
 
+
                 <div>
 
-                  <p className="text-xs text-gray-400">
+                  <p className="users-mobile-label">
                     Blood Type
                   </p>
 
                   {user.bloodType === "-" ? (
 
-                    <p className="text-sm text-gray-400 mt-1">
+                    <p className="users-mobile-value muted">
                       Not applicable
                     </p>
 
                   ) : (
 
-                    <div className="flex items-center gap-1.5 mt-1 text-sm font-semibold text-red-600">
+                    <div className="users-mobile-blood">
                       <Droplets size={15} />
                       {user.bloodType}
                     </div>
@@ -594,13 +609,14 @@ function Users() {
 
                 </div>
 
+
                 <div>
 
-                  <p className="text-xs text-gray-400">
+                  <p className="users-mobile-label">
                     Joined
                   </p>
 
-                  <p className="text-sm font-medium text-gray-900 mt-1">
+                  <p className="users-mobile-value">
                     {user.joined}
                   </p>
 
@@ -608,10 +624,11 @@ function Users() {
 
               </div>
 
+
               {/* Mobile Action */}
               <button
                 type="button"
-                className="w-full inline-flex items-center justify-center gap-2 border border-gray-200 rounded-xl py-2.5 mt-5 text-sm font-medium text-gray-700 hover:bg-gray-50 transition"
+                className="users-mobile-view-button"
               >
                 <Eye size={16} />
                 View User

@@ -1,42 +1,34 @@
-function ProcessCard({ number, icon, title, description }) {
-
+function ProcessCard({ number, title, description }) {
   return (
+    <div className="group relative bg-white rounded-2xl border border-gray-100 p-7 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
 
-    <div className="bg-white rounded-xl shadow-md p-6 text-center border border-gray-100">
+      {/* Step Number */}
+      <div className="flex items-center justify-between mb-6">
 
+        <div className="w-12 h-12 rounded-xl bg-red-50 flex items-center justify-center">
+          <span className="text-lg font-bold text-red-600">
+            {number}
+          </span>
+        </div>
 
-      <div className="w-14 h-14 mx-auto bg-red-100 rounded-full flex items-center justify-center text-2xl">
-
-        {icon}
+        <span className="text-sm font-semibold text-gray-400 uppercase tracking-wide">
+          Step {number}
+        </span>
 
       </div>
 
-
-      <div className="mt-4 text-red-600 font-bold">
-
-        Step {number}
-
-      </div>
-
-
-      <h3 className="text-xl font-bold text-gray-900 mt-2">
-
+      {/* Title */}
+      <h3 className="text-xl font-bold text-gray-900">
         {title}
-
       </h3>
 
-
-      <p className="text-gray-600 mt-3">
-
+      {/* Description */}
+      <p className="text-gray-600 mt-3 leading-7">
         {description}
-
       </p>
 
-
     </div>
-
-  )
+  );
 }
 
-
-export default ProcessCard
+export default ProcessCard;

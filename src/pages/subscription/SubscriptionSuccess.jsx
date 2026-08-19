@@ -1,78 +1,96 @@
+
 import { Link } from "react-router-dom";
-import { CheckCircle, ArrowRight, CreditCard } from "lucide-react";
+import {
+  CheckCircle,
+  ArrowRight,
+  CreditCard,
+} from "lucide-react";
+
+import "./SubscriptionSuccess.css";
 
 function SubscriptionSuccess() {
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center px-6 py-10">
+    <div className="subscription-success-page">
 
-      <div className="w-full max-w-md bg-white rounded-2xl border border-gray-200 p-8 md:p-10 text-center">
+      <div className="subscription-success-card">
 
         {/* Success Icon */}
-        <div className="w-20 h-20 mx-auto rounded-full bg-green-50 flex items-center justify-center mb-6">
+
+        <div className="success-icon">
           <CheckCircle
             size={44}
             strokeWidth={1.8}
-            className="text-green-600"
           />
         </div>
 
+
         {/* Header */}
-        <h1 className="text-3xl font-bold text-gray-900">
+
+        <h1>
           Subscription Successful
         </h1>
 
-        <p className="mt-3 text-gray-600 leading-relaxed">
+        <p className="success-description">
           Your HemoBridge Basic Plan subscription has been successfully
           activated.
         </p>
 
-        {/* Plan Details */}
-        <div className="bg-gray-50 rounded-xl p-5 mt-7 text-left">
 
-          <div className="flex items-center justify-between mb-4">
-            <span className="text-sm text-gray-500">
+        {/* Plan Details */}
+
+        <div className="success-plan-details">
+
+          <div className="success-detail-row">
+
+            <span>
               Plan
             </span>
 
-            <span className="font-semibold text-gray-900">
+            <strong>
               Basic Plan
-            </span>
+            </strong>
+
           </div>
 
-          <div className="flex items-center justify-between mb-4">
-            <span className="text-sm text-gray-500">
+
+          <div className="success-detail-row">
+
+            <span>
               Billing
             </span>
 
-            <span className="font-semibold text-gray-900">
+            <strong>
               Monthly
-            </span>
+            </strong>
+
           </div>
 
-          <div className="flex items-center justify-between">
-            <span className="text-sm text-gray-500 flex items-center gap-2">
+
+          <div className="success-detail-row">
+
+            <span className="success-amount-label">
               <CreditCard size={15} />
               Amount
             </span>
 
-            <span className="font-bold text-gray-900">
+            <strong>
               ₦10,000
-            </span>
+            </strong>
+
           </div>
 
         </div>
 
+
         {/* Notice */}
-        <div className="bg-green-50 border border-green-100 rounded-xl p-4 mt-6">
 
-          <div className="flex items-start gap-3 text-left">
+        <div className="success-notice">
 
-            <CheckCircle
-              size={18}
-              className="text-green-600 mt-0.5 shrink-0"
-            />
+          <div className="success-notice-content">
 
-            <p className="text-sm text-green-700 leading-relaxed">
+            <CheckCircle size={18} />
+
+            <p>
               Your organization can now access the features included in the
               Basic Plan.
             </p>
@@ -81,20 +99,24 @@ function SubscriptionSuccess() {
 
         </div>
 
+
         {/* Dashboard */}
+
         <Link
           to="/hospital/dashboard"
-          className="flex items-center justify-center gap-2 w-full bg-red-600 text-white py-3.5 rounded-lg font-semibold hover:bg-red-700 transition mt-7"
+          className="success-dashboard-button"
         >
           Go to Dashboard
 
           <ArrowRight size={18} />
         </Link>
 
+
         {/* Subscription */}
+
         <Link
           to="/subscription"
-          className="block mt-4 text-sm text-gray-600 hover:text-red-600 transition"
+          className="success-subscription-link"
         >
           View Subscription
         </Link>
@@ -106,3 +128,4 @@ function SubscriptionSuccess() {
 }
 
 export default SubscriptionSuccess;
+

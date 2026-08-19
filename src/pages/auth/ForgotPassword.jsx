@@ -16,13 +16,15 @@ function ForgotPassword() {
 
   const navigate = useNavigate();
 
-  // Handle password reset request
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     setIsLoading(true);
 
-    // Temporary frontend simulation
+    // Temporary frontend simulation.
+    // Later this will call:
+    // POST /auth/forgot-password
+
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
     console.log("Password reset requested for:", email);
@@ -32,155 +34,160 @@ function ForgotPassword() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center px-6 py-10">
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4 sm:px-6 py-10 md:py-16">
 
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-sm border border-gray-100 p-8 md:p-10">
+      <div className="w-full max-w-lg">
 
-        {/* ================= HEADER ================= */}
+        {/* Main Card */}
+        <div className="bg-white border border-gray-200 rounded-2xl shadow-sm p-6 sm:p-8 md:p-10">
 
-        <div className="text-center mb-8">
+          {/* Header */}
+          <div className="text-center mb-9">
 
-          {/* Icon */}
+            <div className="w-16 h-16 mx-auto rounded-2xl bg-red-50 text-red-600 flex items-center justify-center mb-6">
+              <KeyRound size={32} strokeWidth={2} />
+            </div>
 
-          <div className="w-16 h-16 mx-auto rounded-2xl bg-red-50 text-red-600 flex items-center justify-center mb-5">
-            <KeyRound size={32} />
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">
+              Forgot Password?
+            </h1>
+
+            <p className="mt-4 text-gray-600 leading-7 max-w-md mx-auto">
+              Enter the email address associated with your HemoBridge
+              account and we'll send you instructions to reset your
+              password.
+            </p>
+
           </div>
 
-          <h1 className="text-3xl font-bold text-gray-900">
-            Forgot Password?
-          </h1>
+          {/* Reset Form */}
+          {!submitted ? (
+            <form
+              onSubmit={handleSubmit}
+              className="space-y-7"
+            >
 
-          <p className="mt-3 text-gray-600 leading-relaxed">
-            Enter the email address associated with your HemoBridge
-            account and we'll send you instructions to reset your
-            password.
-          </p>
+              {/* Email */}
+              <div>
 
-        </div>
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-semibold text-gray-700 mb-3"
+                >
+                  Email Address
+                </label>
 
-        {/* ================= RESET FORM ================= */}
+                <div className="relative">
 
-        {!submitted ? (
-          <form
-            onSubmit={handleSubmit}
-            className="space-y-5"
-          >
+                  <Mail
+                    size={19}
+                    className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"
+                  />
 
-            {/* Email */}
+                  <input
+                    id="email"
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Enter your email address"
+                    autoComplete="email"
+                    className="w-full h-12 border border-gray-300 rounded-xl pl-11 pr-4 text-gray-900 outline-none transition focus:border-red-500 focus:ring-4 focus:ring-red-50"
+                    required
+                  />
 
-            <div>
-
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-gray-700 mb-2"
-              >
-                Email Address
-              </label>
-
-              <div className="relative">
-
-                <Mail
-                  size={19}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
-                />
-
-                <input
-                  id="email"
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your email"
-                  autoComplete="email"
-                  className="w-full border border-gray-300 rounded-xl px-4 py-3 pl-11 outline-none transition focus:ring-2 focus:ring-red-500 focus:border-red-500"
-                  required
-                />
+                </div>
 
               </div>
 
+              {/* Submit Button */}
+              <button
+                type="submit"
+                disabled={isLoading}
+                className={`w-full h-12 rounded-xl font-semibold text-white transition flex items-center justify-center gap-2 ${
+                  isLoading
+                    ? "bg-red-400 cursor-not-allowed"
+                    : "bg-red-600 hover:bg-red-700 active:bg-red-800"
+                }`}
+              >
+
+                {isLoading ? (
+                  <>
+                    <Loader2
+                      size={19}
+                      className="animate-spin"
+                    />
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    Send Reset Instructions
+                    <ArrowRight size={18} />
+                  </>
+                )}
+
+              </button>
+
+            </form>
+          ) : (
+
+            /* Success */
+            <div className="text-center">
+
+              <div className="w-16 h-16 mx-auto rounded-2xl bg-green-50 text-green-600 flex items-center justify-center mb-6">
+                <CheckCircle2 size={32} />
+              </div>
+
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
+                Check Your Email
+              </h2>
+
+              <p className="mt-4 text-gray-600 leading-7">
+                If an account exists with this email address, password
+                reset instructions have been sent.
+              </p>
+
+              <div className="mt-5 rounded-xl bg-gray-50 border border-gray-100 p-4">
+                <p className="text-sm text-gray-500 leading-6">
+                  Check your inbox and spam folder for the reset
+                  instructions.
+                </p>
+              </div>
+
+              {/* Temporary Continue Button */}
+              <button
+                type="button"
+                onClick={() => navigate("/reset-password")}
+                className="w-full h-12 mt-7 bg-red-600 text-white rounded-xl font-semibold hover:bg-red-700 active:bg-red-800 transition flex items-center justify-center gap-2"
+              >
+                Continue to Reset Password
+                <ArrowRight size={18} />
+              </button>
+
             </div>
+          )}
 
-            {/* Submit */}
+          {/* Back to Login */}
+          <div className="text-center mt-9 pt-7 border-t border-gray-100">
 
-            <button
-              type="submit"
-              disabled={isLoading}
-              className={`w-full py-3.5 rounded-xl font-semibold text-white transition flex items-center justify-center gap-2 ${
-                isLoading
-                  ? "bg-red-400 cursor-not-allowed"
-                  : "bg-red-600 hover:bg-red-700"
-              }`}
+            <Link
+              to="/login"
+              className="inline-flex items-center gap-2 text-sm text-red-600 font-semibold hover:text-red-700 transition"
             >
-
-              {isLoading ? (
-                <>
-                  <Loader2
-                    size={19}
-                    className="animate-spin"
-                  />
-
-                  Sending...
-                </>
-              ) : (
-                <>
-                  Send Reset Instructions
-                  <ArrowRight size={18} />
-                </>
-              )}
-
-            </button>
-
-          </form>
-        ) : (
-
-          /* ================= SUCCESS ================= */
-
-          <div className="text-center">
-
-            {/* Success Icon */}
-
-            <div className="w-14 h-14 mx-auto rounded-2xl bg-green-50 text-green-600 flex items-center justify-center mb-4">
-              <CheckCircle2 size={30} />
-            </div>
-
-            <h2 className="text-xl font-semibold text-gray-900">
-              Check Your Email
-            </h2>
-
-            <p className="mt-3 text-gray-600 leading-relaxed">
-              If an account exists with this email address, password
-              reset instructions have been sent.
-            </p>
-
-            <p className="mt-3 text-sm text-gray-500">
-              Check your inbox and spam folder.
-            </p>
-
-            {/* Temporary Continue Button */}
-
-            <button
-              type="button"
-              onClick={() => navigate("/reset-password")}
-              className="w-full mt-6 bg-red-600 text-white py-3.5 rounded-xl font-semibold hover:bg-red-700 transition flex items-center justify-center gap-2"
-            >
-              Continue to Reset Password
-              <ArrowRight size={18} />
-            </button>
+              <ArrowLeft size={16} />
+              Back to Login
+            </Link>
 
           </div>
-        )}
 
-        {/* ================= BACK TO LOGIN ================= */}
+        </div>
 
-        <div className="text-center mt-7 pt-6 border-t border-gray-100">
+        {/* Security Note */}
+        <div className="text-center mt-5 px-4">
 
-          <Link
-            to="/login"
-            className="inline-flex items-center gap-2 text-sm text-red-600 font-semibold hover:text-red-700 transition"
-          >
-            <ArrowLeft size={16} />
-
-            Back to Login
-          </Link>
+          <p className="text-xs sm:text-sm text-gray-500 leading-6">
+            For your security, HemoBridge will not reveal whether an
+            email address is registered.
+          </p>
 
         </div>
 
@@ -191,3 +198,4 @@ function ForgotPassword() {
 }
 
 export default ForgotPassword;
+

@@ -11,6 +11,8 @@ import {
   HeartPulse,
 } from "lucide-react";
 
+import "./Reports.css";
+
 function Reports() {
   const bloodGroups = [
     { type: "O+", units: 386 },
@@ -37,65 +39,67 @@ function Reports() {
   ];
 
   return (
-    <div className="space-y-8">
+    <div className="reports-page">
 
       {/* Header */}
-      <section>
+      <section className="reports-header">
+
         <Link
           to="/admin/dashboard"
-          className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-red-600 transition"
+          className="reports-back-link"
         >
           <ArrowLeft size={16} />
           Back to Dashboard
         </Link>
 
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mt-4">
+        <div className="reports-header-row">
 
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">
+            <h1 className="reports-title">
               Reports & Analytics
             </h1>
 
-            <p className="text-gray-500 mt-2">
+            <p className="reports-subtitle">
               Monitor HemoBridge activity and network performance.
             </p>
           </div>
 
           <button
             type="button"
-            className="inline-flex items-center justify-center gap-2 bg-red-600 text-white px-5 py-3 rounded-xl font-medium hover:bg-red-700 transition"
+            className="reports-export-btn"
           >
             <Download size={18} />
             Export Report
           </button>
 
         </div>
+
       </section>
 
       {/* Main Statistics */}
-      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <section className="reports-stat-grid">
 
         {/* Donations */}
-        <div className="bg-white border border-gray-200 rounded-2xl p-6 hover:shadow-sm transition">
+        <div className="reports-stat-card">
 
-          <div className="flex items-start justify-between">
+          <div className="reports-stat-content">
 
             <div>
-              <p className="text-sm text-gray-500">
+              <p className="reports-label">
                 Total Donations
               </p>
 
-              <p className="text-3xl font-bold text-gray-900 mt-2">
+              <p className="reports-value">
                 3,842
               </p>
 
-              <div className="flex items-center gap-1 mt-2 text-sm text-green-600">
+              <div className="reports-growth reports-growth-green">
                 <TrendingUp size={15} />
                 <span>14.8% this month</span>
               </div>
             </div>
 
-            <div className="w-11 h-11 rounded-xl bg-red-50 text-red-600 flex items-center justify-center">
+            <div className="reports-stat-icon reports-icon-red">
               <HeartPulse size={22} />
             </div>
 
@@ -104,25 +108,25 @@ function Reports() {
         </div>
 
         {/* Requests */}
-        <div className="bg-white border border-gray-200 rounded-2xl p-6 hover:shadow-sm transition">
+        <div className="reports-stat-card">
 
-          <div className="flex items-start justify-between">
+          <div className="reports-stat-content">
 
             <div>
-              <p className="text-sm text-gray-500">
+              <p className="reports-label">
                 Blood Requests
               </p>
 
-              <p className="text-3xl font-bold text-gray-900 mt-2">
+              <p className="reports-value">
                 248
               </p>
 
-              <p className="text-sm text-green-600 mt-2">
+              <p className="reports-growth-text reports-growth-green">
                 80.2% fulfilled
               </p>
             </div>
 
-            <div className="w-11 h-11 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
+            <div className="reports-stat-icon reports-icon-blue">
               <Activity size={22} />
             </div>
 
@@ -131,26 +135,26 @@ function Reports() {
         </div>
 
         {/* Donors */}
-        <div className="bg-white border border-gray-200 rounded-2xl p-6 hover:shadow-sm transition">
+        <div className="reports-stat-card">
 
-          <div className="flex items-start justify-between">
+          <div className="reports-stat-content">
 
             <div>
-              <p className="text-sm text-gray-500">
+              <p className="reports-label">
                 Registered Donors
               </p>
 
-              <p className="text-3xl font-bold text-gray-900 mt-2">
+              <p className="reports-value">
                 1,102
               </p>
 
-              <div className="flex items-center gap-1 mt-2 text-sm text-green-600">
+              <div className="reports-growth reports-growth-green">
                 <TrendingUp size={15} />
                 <span>12% this month</span>
               </div>
             </div>
 
-            <div className="w-11 h-11 rounded-xl bg-green-50 text-green-600 flex items-center justify-center">
+            <div className="reports-stat-icon reports-icon-green">
               <Users size={22} />
             </div>
 
@@ -159,25 +163,25 @@ function Reports() {
         </div>
 
         {/* Lives Helped */}
-        <div className="bg-white border border-gray-200 rounded-2xl p-6 hover:shadow-sm transition">
+        <div className="reports-stat-card">
 
-          <div className="flex items-start justify-between">
+          <div className="reports-stat-content">
 
             <div>
-              <p className="text-sm text-gray-500">
+              <p className="reports-label">
                 Lives Potentially Helped
               </p>
 
-              <p className="text-3xl font-bold text-red-600 mt-2">
+              <p className="reports-value reports-value-red">
                 11,526
               </p>
 
-              <p className="text-sm text-gray-400 mt-2">
+              <p className="reports-muted-text">
                 Estimated impact
               </p>
             </div>
 
-            <div className="w-11 h-11 rounded-xl bg-red-50 text-red-600 flex items-center justify-center">
+            <div className="reports-stat-icon reports-icon-red">
               <HeartPulse size={22} />
             </div>
 
@@ -188,51 +192,55 @@ function Reports() {
       </section>
 
       {/* Charts */}
-      <section className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <section className="reports-chart-grid">
 
         {/* Donation Activity */}
-        <div className="bg-white border border-gray-200 rounded-2xl p-6">
+        <div className="reports-panel">
 
-          <div className="flex items-center justify-between mb-6">
+          <div className="reports-panel-header">
 
             <div>
-              <h2 className="text-xl font-bold text-gray-900">
+              <h2 className="reports-section-title">
                 Donation Activity
               </h2>
 
-              <p className="text-sm text-gray-500 mt-1">
+              <p className="reports-section-description">
                 Donations completed over the past 6 months.
               </p>
             </div>
 
-            <div className="flex items-center gap-1 text-sm text-green-600 font-semibold">
+            <div className="reports-growth reports-growth-green">
               <TrendingUp size={16} />
               +14.8%
             </div>
 
           </div>
 
-          <div className="h-64 flex items-end justify-between gap-3 sm:gap-5">
+          <div className="reports-chart">
 
             {donationData.map((item) => (
 
               <div
                 key={item.month}
-                className="flex-1 flex flex-col items-center justify-end h-full"
+                className="reports-bar-column"
               >
 
-                <span className="text-xs text-gray-400 mb-2">
+                <span className="reports-bar-value">
                   {item.value}
                 </span>
 
-                <div
-                  className="w-full max-w-12 bg-red-500 hover:bg-red-600 rounded-t-xl transition"
-                  style={{
-                    height: `${item.height}%`,
-                  }}
-                />
+                <div className="reports-bar-wrapper">
 
-                <span className="text-xs text-gray-500 mt-3">
+                  <div
+                    className="reports-bar"
+                    style={{
+                      height: `${item.height}%`,
+                    }}
+                  />
+
+                </div>
+
+                <span className="reports-bar-label">
                   {item.month}
                 </span>
 
@@ -245,102 +253,94 @@ function Reports() {
         </div>
 
         {/* Request Performance */}
-        <div className="bg-white border border-gray-200 rounded-2xl p-6">
+        <div className="reports-panel">
 
-          <div className="mb-6">
+          <div className="reports-panel-header-simple">
 
-            <h2 className="text-xl font-bold text-gray-900">
+            <h2 className="reports-section-title">
               Request Performance
             </h2>
 
-            <p className="text-sm text-gray-500 mt-1">
+            <p className="reports-section-description">
               Current status of blood requests.
             </p>
 
           </div>
 
-          <div className="space-y-6">
+          <div className="reports-performance">
 
             {/* Fulfilled */}
-            <div>
+            <div className="reports-performance-item">
 
-              <div className="flex justify-between text-sm mb-2">
-
-                <span className="text-gray-600">
-                  Fulfilled
-                </span>
-
-                <span className="font-semibold text-green-600">
+              <div className="reports-performance-header">
+                <span>Fulfilled</span>
+                <strong className="performance-green">
                   80.2%
-                </span>
-
+                </strong>
               </div>
 
-              <div className="h-3 bg-gray-100 rounded-full overflow-hidden">
-                <div className="h-full bg-green-500 rounded-full w-[80%]" />
+              <div className="reports-progress">
+                <div
+                  className="reports-progress-fill progress-green"
+                  style={{ width: "80.2%" }}
+                />
               </div>
 
             </div>
 
             {/* Searching */}
-            <div>
+            <div className="reports-performance-item">
 
-              <div className="flex justify-between text-sm mb-2">
-
-                <span className="text-gray-600">
-                  Searching
-                </span>
-
-                <span className="font-semibold text-yellow-600">
+              <div className="reports-performance-header">
+                <span>Searching</span>
+                <strong className="performance-yellow">
                   12.5%
-                </span>
-
+                </strong>
               </div>
 
-              <div className="h-3 bg-gray-100 rounded-full overflow-hidden">
-                <div className="h-full bg-yellow-500 rounded-full w-[13%]" />
+              <div className="reports-progress">
+                <div
+                  className="reports-progress-fill progress-yellow"
+                  style={{ width: "12.5%" }}
+                />
               </div>
 
             </div>
 
             {/* Pending */}
-            <div>
+            <div className="reports-performance-item">
 
-              <div className="flex justify-between text-sm mb-2">
-
-                <span className="text-gray-600">
-                  Pending
-                </span>
-
-                <span className="font-semibold text-blue-600">
+              <div className="reports-performance-header">
+                <span>Pending</span>
+                <strong className="performance-blue">
                   5.3%
-                </span>
-
+                </strong>
               </div>
 
-              <div className="h-3 bg-gray-100 rounded-full overflow-hidden">
-                <div className="h-full bg-blue-500 rounded-full w-[5%]" />
+              <div className="reports-progress">
+                <div
+                  className="reports-progress-fill progress-blue"
+                  style={{ width: "5.3%" }}
+                />
               </div>
 
             </div>
 
             {/* Cancelled */}
-            <div>
+            <div className="reports-performance-item">
 
-              <div className="flex justify-between text-sm mb-2">
-
-                <span className="text-gray-600">
-                  Cancelled
-                </span>
-
-                <span className="font-semibold text-gray-500">
+              <div className="reports-performance-header">
+                <span>Cancelled</span>
+                <strong className="performance-gray">
                   2%
-                </span>
-
+                </strong>
               </div>
 
-              <div className="h-3 bg-gray-100 rounded-full overflow-hidden">
-                <div className="h-full bg-gray-400 rounded-full w-[2%]" />
+              <div className="reports-progress">
+                <div
+                  className="reports-progress-fill progress-gray"
+                  style={{ width: "2%" }}
+                />
               </div>
 
             </div>
@@ -352,21 +352,21 @@ function Reports() {
       </section>
 
       {/* Blood Group Distribution */}
-      <section className="bg-white border border-gray-200 rounded-2xl p-6">
+      <section className="reports-panel">
 
-        <div className="mb-6">
+        <div className="reports-panel-header-simple">
 
-          <h2 className="text-xl font-bold text-gray-900">
+          <h2 className="reports-section-title">
             Blood Group Distribution
           </h2>
 
-          <p className="text-sm text-gray-500 mt-1">
+          <p className="reports-section-description">
             Registered donor availability by blood type.
           </p>
 
         </div>
 
-        <div className="space-y-5">
+        <div className="reports-blood-groups">
 
           {bloodGroups.map((blood) => {
 
@@ -375,37 +375,38 @@ function Reports() {
             );
 
             return (
-              <div key={blood.type}>
+              <div
+                key={blood.type}
+                className="reports-blood-item"
+              >
 
-                <div className="flex items-center justify-between mb-2">
+                <div className="reports-blood-header">
 
-                  <div className="flex items-center gap-3">
+                  <div className="reports-blood-info">
 
-                    <span className="w-10 h-10 rounded-xl bg-red-50 text-red-600 flex items-center justify-center font-bold">
+                    <span className="reports-blood-type">
                       {blood.type}
                     </span>
 
-                    <span className="text-sm font-medium text-gray-700">
+                    <span className="reports-blood-donors">
                       {blood.units} donors
                     </span>
 
                   </div>
 
-                  <span className="text-sm text-gray-500">
+                  <span className="reports-blood-units">
                     {blood.units} units
                   </span>
 
                 </div>
 
-                <div className="h-2.5 bg-gray-100 rounded-full overflow-hidden">
-
+                <div className="reports-blood-progress">
                   <div
-                    className="h-full bg-red-500 rounded-full transition-all"
+                    className="reports-blood-progress-fill"
                     style={{
                       width: `${percentage}%`,
                     }}
                   />
-
                 </div>
 
               </div>
@@ -417,54 +418,54 @@ function Reports() {
       </section>
 
       {/* Network Summary */}
-      <section className="grid grid-cols-1 md:grid-cols-3 gap-5">
+      <section className="reports-network-grid">
 
         {/* Hospitals */}
-        <div className="bg-white border border-gray-200 rounded-2xl p-6 hover:shadow-sm transition">
+        <div className="reports-network-card">
 
-          <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-4">
+          <div className="reports-network-icon reports-icon-blue">
             <Hospital size={24} />
           </div>
 
-          <p className="text-sm text-gray-500">
+          <p className="reports-label">
             Verified Hospitals
           </p>
 
-          <p className="text-3xl font-bold text-gray-900 mt-2">
+          <p className="reports-network-value">
             42
           </p>
 
         </div>
 
         {/* Blood Banks */}
-        <div className="bg-white border border-gray-200 rounded-2xl p-6 hover:shadow-sm transition">
+        <div className="reports-network-card">
 
-          <div className="w-12 h-12 rounded-xl bg-red-50 text-red-600 flex items-center justify-center mb-4">
+          <div className="reports-network-icon reports-icon-red">
             <Building2 size={24} />
           </div>
 
-          <p className="text-sm text-gray-500">
+          <p className="reports-label">
             Verified Blood Banks
           </p>
 
-          <p className="text-3xl font-bold text-gray-900 mt-2">
+          <p className="reports-network-value">
             18
           </p>
 
         </div>
 
         {/* Donation Centres */}
-        <div className="bg-white border border-gray-200 rounded-2xl p-6 hover:shadow-sm transition">
+        <div className="reports-network-card">
 
-          <div className="w-12 h-12 rounded-xl bg-green-50 text-green-600 flex items-center justify-center mb-4">
+          <div className="reports-network-icon reports-icon-green">
             <MapPin size={24} />
           </div>
 
-          <p className="text-sm text-gray-500">
+          <p className="reports-label">
             Donation Centres
           </p>
 
-          <p className="text-3xl font-bold text-gray-900 mt-2">
+          <p className="reports-network-value">
             67
           </p>
 
@@ -477,3 +478,4 @@ function Reports() {
 }
 
 export default Reports;
+

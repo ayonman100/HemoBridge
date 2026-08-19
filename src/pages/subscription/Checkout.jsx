@@ -9,6 +9,8 @@ import {
   Loader2,
 } from "lucide-react";
 
+import "./Checkout.css";
+
 function Checkout() {
   const navigate = useNavigate();
 
@@ -31,78 +33,91 @@ function Checkout() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 px-6 py-10">
+    <div className="checkout-page">
 
-      <div className="max-w-5xl mx-auto">
+      <div className="checkout-container">
 
         {/* Back */}
+
         <Link
           to="/subscription"
-          className="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-red-600 transition mb-8"
+          className="checkout-back-link"
         >
           <ArrowLeft size={17} />
           Back to Subscription
         </Link>
 
-        {/* Header */}
-        <div className="mb-8">
 
-          <div className="flex items-center gap-2 text-sm text-gray-500">
+        {/* Header */}
+
+        <div className="checkout-header">
+
+          <div className="checkout-breadcrumb">
             <span>HemoBridge Subscription</span>
             <span>/</span>
-            <span className="text-gray-700 font-medium">
+            <span className="checkout-breadcrumb-current">
               Checkout
             </span>
           </div>
 
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mt-3">
+          <h1>
             Complete Your Subscription
           </h1>
 
-          <p className="text-gray-600 mt-2 max-w-2xl">
+          <p>
             Continue with the Basic Plan to keep using HemoBridge's
             organization features.
           </p>
 
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
-          {/* Payment Form */}
-          <div className="lg:col-span-2">
+        {/* Main Content */}
 
-            <div className="bg-white rounded-2xl border border-gray-200 p-6 md:p-8">
+        <div className="checkout-grid">
 
-              <div className="flex items-center gap-3 mb-6">
 
-                <div className="w-11 h-11 rounded-xl bg-red-50 text-red-600 flex items-center justify-center">
+          {/* =========================================
+              PAYMENT FORM
+          ========================================= */}
+
+          <div className="checkout-payment-column">
+
+            <div className="checkout-card">
+
+              {/* Payment Header */}
+
+              <div className="checkout-section-header">
+
+                <div className="checkout-section-icon">
                   <CreditCard size={22} />
                 </div>
 
                 <div>
-                  <h2 className="text-xl font-bold text-gray-900">
+                  <h2>
                     Payment Information
                   </h2>
 
-                  <p className="text-sm text-gray-500 mt-1">
+                  <p>
                     Enter your organization details to continue.
                   </p>
                 </div>
 
               </div>
 
+
+              {/* Form */}
+
               <form
                 onSubmit={handlePayment}
-                className="space-y-6"
+                className="checkout-form"
               >
 
                 {/* Organization Email */}
-                <div>
 
-                  <label
-                    htmlFor="email"
-                    className="block text-sm font-medium text-gray-700 mb-2"
-                  >
+                <div className="checkout-form-group">
+
+                  <label htmlFor="email">
                     Organization Email
                   </label>
 
@@ -110,96 +125,93 @@ function Checkout() {
                     id="email"
                     type="email"
                     placeholder="Enter organization email"
-                    className="w-full border border-gray-300 rounded-xl px-4 py-3 outline-none transition focus:ring-2 focus:ring-red-200 focus:border-red-500"
                     required
                   />
 
-                  <p className="text-xs text-gray-400 mt-2">
+                  <p className="checkout-helper-text">
                     Use the email associated with your HemoBridge
                     organization account.
                   </p>
 
                 </div>
 
-                {/* Payment Method */}
-                <div>
 
-                  <label className="block text-sm font-medium text-gray-700 mb-3">
+                {/* Payment Method */}
+
+                <div className="checkout-form-group">
+
+                  <label>
                     Payment Method
                   </label>
 
-                  <div className="border border-red-200 bg-red-50 rounded-xl p-4">
+                  <div className="payment-method">
 
-                    <div className="flex items-center gap-3">
+                    <div className="payment-method-icon">
+                      <CreditCard size={22} />
+                    </div>
 
-                      <div className="w-11 h-11 bg-white rounded-xl flex items-center justify-center text-red-600">
-                        <CreditCard size={22} />
-                      </div>
+                    <div className="payment-method-content">
 
-                      <div className="flex-1">
+                      <div className="payment-method-title">
 
-                        <div className="flex items-center justify-between gap-3">
-
-                          <p className="font-semibold text-gray-900">
-                            Card / Bank Payment
-                          </p>
-
-                          <CheckCircle2
-                            size={20}
-                            className="text-red-600"
-                          />
-
-                        </div>
-
-                        <p className="text-sm text-gray-500 mt-1">
-                          Secure online payment
+                        <p>
+                          Card / Bank Payment
                         </p>
 
+                        <CheckCircle2
+                          size={20}
+                          className="payment-selected-icon"
+                        />
+
                       </div>
 
+                      <p className="payment-method-description">
+                        Secure online payment
+                      </p>
+
                     </div>
 
                   </div>
 
                 </div>
+
 
                 {/* Security Notice */}
-                <div className="bg-gray-50 border border-gray-100 rounded-xl p-4">
 
-                  <div className="flex items-start gap-3">
+                <div className="checkout-security-notice">
 
-                    <ShieldCheck
-                      size={21}
-                      className="text-green-600 shrink-0 mt-0.5"
-                    />
+                  <ShieldCheck
+                    size={21}
+                    className="security-icon"
+                  />
 
-                    <div>
+                  <div>
 
-                      <p className="text-sm font-semibold text-gray-800">
-                        Secure payment
-                      </p>
+                    <p className="security-title">
+                      Secure payment
+                    </p>
 
-                      <p className="text-sm text-gray-600 leading-relaxed mt-1">
-                        You will be redirected to our secure payment
-                        provider to complete your payment. Your payment
-                        information is handled securely by the payment
-                        provider.
-                      </p>
-
-                    </div>
+                    <p className="security-description">
+                      You will be redirected to our secure payment
+                      provider to complete your payment. Your payment
+                      information is handled securely by the payment
+                      provider.
+                    </p>
 
                   </div>
 
                 </div>
 
+
                 {/* Submit */}
+
                 <button
                   type="submit"
                   disabled={isProcessing}
-                  className={`w-full py-3.5 rounded-xl font-semibold text-white transition flex items-center justify-center gap-2 ${
+                  className={`checkout-submit-button ${
                     isProcessing
-                      ? "bg-red-400 cursor-not-allowed"
-                      : "bg-red-600 hover:bg-red-700"
+                      ? "checkout-submit-loading"
+                      : ""
                   }`}
                 >
 
@@ -207,7 +219,7 @@ function Checkout() {
                     <>
                       <Loader2
                         size={20}
-                        className="animate-spin"
+                        className="checkout-spinner"
                       />
 
                       Processing...
@@ -221,12 +233,16 @@ function Checkout() {
 
                 </button>
 
+
                 {/* Security Footer */}
-                <div className="flex items-center justify-center gap-2 text-xs text-gray-400">
+
+                <div className="checkout-security-footer">
 
                   <LockKeyhole size={14} />
 
-                  Secure checkout powered by HemoBridge payment provider
+                  <span>
+                    Secure checkout powered by HemoBridge payment provider
+                  </span>
 
                 </div>
 
@@ -236,128 +252,123 @@ function Checkout() {
 
           </div>
 
-          {/* Order Summary */}
-          <div>
 
-            <div className="bg-white rounded-2xl border border-gray-200 p-6 sticky top-6">
+          {/* =========================================
+              ORDER SUMMARY
+          ========================================= */}
 
-              <div className="flex items-center justify-between mb-6">
+          <div className="checkout-summary-column">
 
-                <h2 className="text-xl font-bold text-gray-900">
+            <div className="checkout-summary-card">
+
+              {/* Summary Header */}
+
+              <div className="summary-header">
+
+                <h2>
                   Order Summary
                 </h2>
 
-                <div className="w-9 h-9 rounded-lg bg-red-50 text-red-600 flex items-center justify-center">
+                <div className="summary-header-icon">
                   <CreditCard size={18} />
                 </div>
 
               </div>
 
+
               {/* Plan */}
-              <div className="flex items-start justify-between gap-4 pb-5 border-b border-gray-100">
+
+              <div className="summary-plan">
 
                 <div>
 
-                  <p className="font-semibold text-gray-900">
+                  <p className="summary-plan-name">
                     Basic Plan
                   </p>
 
-                  <p className="text-sm text-gray-500 mt-1">
+                  <p className="summary-plan-description">
                     HemoBridge Organization Plan
                   </p>
 
                 </div>
 
-                <p className="font-bold text-gray-900 whitespace-nowrap">
+                <p className="summary-plan-price">
                   ₦10,000
                 </p>
 
               </div>
 
+
               {/* Billing */}
-              <div className="py-5 border-b border-gray-100">
 
-                <div className="flex justify-between text-sm">
+              <div className="summary-billing">
 
-                  <span className="text-gray-500">
-                    Billing
-                  </span>
+                <span>
+                  Billing
+                </span>
 
-                  <span className="font-medium text-gray-900">
-                    Monthly
-                  </span>
-
-                </div>
+                <span>
+                  Monthly
+                </span>
 
               </div>
 
-              {/* Total */}
-              <div className="flex items-center justify-between pt-5">
 
-                <span className="font-semibold text-gray-900">
+              {/* Total */}
+
+              <div className="summary-total">
+
+                <span>
                   Total
                 </span>
 
-                <span className="text-2xl font-bold text-red-600">
+                <span>
                   ₦10,000
                 </span>
 
               </div>
 
-              {/* Features */}
-              <div className="mt-6">
 
-                <p className="text-sm font-semibold text-gray-900 mb-3">
+              {/* Features */}
+
+              <div className="summary-features">
+
+                <p className="summary-features-title">
                   Included with Basic
                 </p>
 
-                <ul className="space-y-3 text-sm text-gray-600">
+                <ul>
 
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2
-                      size={17}
-                      className="text-green-600 shrink-0 mt-0.5"
-                    />
+                  <li>
+                    <CheckCircle2 size={17} />
                     <span>
                       Blood inventory management
                     </span>
                   </li>
 
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2
-                      size={17}
-                      className="text-green-600 shrink-0 mt-0.5"
-                    />
+                  <li>
+                    <CheckCircle2 size={17} />
                     <span>
                       Blood search and availability
                     </span>
                   </li>
 
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2
-                      size={17}
-                      className="text-green-600 shrink-0 mt-0.5"
-                    />
+                  <li>
+                    <CheckCircle2 size={17} />
                     <span>
                       Emergency blood requests
                     </span>
                   </li>
 
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2
-                      size={17}
-                      className="text-green-600 shrink-0 mt-0.5"
-                    />
+                  <li>
+                    <CheckCircle2 size={17} />
                     <span>
                       Donor matching
                     </span>
                   </li>
 
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2
-                      size={17}
-                      className="text-green-600 shrink-0 mt-0.5"
-                    />
+                  <li>
+                    <CheckCircle2 size={17} />
                     <span>
                       Notifications and alerts
                     </span>
@@ -380,3 +391,4 @@ function Checkout() {
 }
 
 export default Checkout;
+

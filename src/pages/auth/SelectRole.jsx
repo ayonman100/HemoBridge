@@ -6,6 +6,7 @@ import {
   ArrowRight,
   ShieldCheck,
 } from "lucide-react";
+import "./SelectRole.css";
 
 function SelectRole() {
   const navigate = useNavigate();
@@ -21,8 +22,7 @@ function SelectRole() {
       description:
         "Register as a donor and help provide blood to people who need it.",
       icon: Droplets,
-      iconBg: "bg-red-50",
-      iconColor: "text-red-600",
+      type: "donor",
     },
     {
       id: "hospital",
@@ -30,8 +30,7 @@ function SelectRole() {
       description:
         "Register your hospital to search for blood and manage emergency requests.",
       icon: Hospital,
-      iconBg: "bg-blue-50",
-      iconColor: "text-blue-600",
+      type: "hospital",
     },
     {
       id: "bloodbank",
@@ -39,43 +38,38 @@ function SelectRole() {
       description:
         "Register your blood bank to manage inventory and respond to blood requests.",
       icon: Building2,
-      iconBg: "bg-purple-50",
-      iconColor: "text-purple-600",
+      type: "bloodbank",
     },
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <div className="select-role-page">
 
-      {/* Header */}
-      <header className="px-6 pt-10 pb-6 text-center">
+      <header className="select-role-header">
 
-        <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-red-50 text-red-600 mb-5">
-          <Droplets size={26} strokeWidth={2} />
+        <div className="select-role-logo">
+          <Droplets size={27} strokeWidth={2} />
         </div>
 
-        <p className="text-red-600 font-semibold mb-3">
+        <p className="select-role-eyebrow">
           Get Started with HemoBridge
         </p>
 
-        <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
+        <h1>
           Choose your account type
         </h1>
 
-        <p className="mt-3 text-gray-600 max-w-xl mx-auto leading-7">
+        <p className="select-role-subtitle">
           Select the type of account you want to create to get started.
         </p>
 
       </header>
 
+      <main className="select-role-main">
 
-      {/* Role Cards */}
-      <main className="flex-1 flex items-center justify-center px-6 py-8">
-
-        <div className="w-full max-w-2xl space-y-4">
+        <div className="select-role-list">
 
           {roles.map((role) => {
-
             const RoleIcon = role.icon;
 
             return (
@@ -83,41 +77,30 @@ function SelectRole() {
                 key={role.id}
                 type="button"
                 onClick={() => handleRoleSelect(role.id)}
-                className="group w-full bg-white border border-gray-200 rounded-2xl p-5 md:p-6 text-left hover:border-red-400 hover:shadow-md transition duration-200 focus:outline-none focus:ring-2 focus:ring-red-200"
+                className="role-card"
               >
 
-                <div className="flex items-center gap-4 md:gap-5">
+                <div className={`role-icon role-icon-${role.type}`}>
+                  <RoleIcon
+                    size={28}
+                    strokeWidth={2}
+                  />
+                </div>
 
-                  {/* Icon */}
-                  <div
-                    className={`w-14 h-14 shrink-0 rounded-xl ${role.iconBg} ${role.iconColor} flex items-center justify-center`}
-                  >
-                    <RoleIcon
-                      size={28}
-                      strokeWidth={2}
-                    />
-                  </div>
+                <div className="role-content">
 
+                  <h2>
+                    {role.title}
+                  </h2>
 
-                  {/* Content */}
-                  <div className="flex-1 min-w-0">
+                  <p>
+                    {role.description}
+                  </p>
 
-                    <h2 className="text-lg font-semibold text-gray-900 group-hover:text-red-600 transition">
-                      {role.title}
-                    </h2>
+                </div>
 
-                    <p className="text-sm text-gray-500 mt-1 leading-6">
-                      {role.description}
-                    </p>
-
-                  </div>
-
-
-                  {/* Arrow */}
-                  <div className="shrink-0 w-9 h-9 rounded-full bg-gray-50 text-gray-400 flex items-center justify-center group-hover:bg-red-50 group-hover:text-red-600 transition">
-                    <ArrowRight size={18} />
-                  </div>
-
+                <div className="role-arrow">
+                  <ArrowRight size={18} />
                 </div>
 
               </button>
@@ -128,37 +111,29 @@ function SelectRole() {
 
       </main>
 
+      <section className="select-role-trust">
 
-      {/* Trust Information */}
-      <section className="px-6 pb-6">
+        <ShieldCheck
+          size={18}
+          className="select-role-trust-icon"
+        />
 
-        <div className="flex items-center justify-center gap-2 text-sm text-gray-500">
-
-          <ShieldCheck
-            size={17}
-            className="text-green-600"
-          />
-
-          <span>
-            Secure registration on HemoBridge
-          </span>
-
-        </div>
+        <span>
+          Secure registration on HemoBridge
+        </span>
 
       </section>
 
+      <footer className="select-role-footer">
 
-      {/* Login */}
-      <footer className="pb-10 text-center px-6">
-
-        <p className="text-gray-600">
+        <p>
           Already have an account?
         </p>
 
         <button
           type="button"
           onClick={() => navigate("/login")}
-          className="mt-2 text-red-600 font-semibold hover:text-red-700 transition"
+          className="select-role-login"
         >
           Login
         </button>

@@ -1,0 +1,546 @@
+/* =========================================
+   VERIFICATION PAGE
+========================================= */
+
+.verification-page {
+  width: 100%;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.verification-header {
+  margin-bottom: 32px;
+}
+
+.verification-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  color: #6b7280;
+  font-size: 14px;
+  text-decoration: none;
+
+  transition: color 0.2s ease;
+}
+
+.verification-back-link:hover {
+  color: #dc2626;
+}
+
+.verification-header-content {
+  margin-top: 16px;
+}
+
+.verification-header-content h1 {
+  margin: 0;
+
+  color: #111827;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.verification-header-content p {
+  max-width: 680px;
+  margin: 8px 0 0;
+
+  color: #6b7280;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+
+/* =========================================
+   STATISTICS
+========================================= */
+
+.verification-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+
+  margin-bottom: 32px;
+}
+
+.verification-stat-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 24px;
+
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.verification-stat-card:hover {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+  transform: translateY(-1px);
+}
+
+.verification-stat-label {
+  margin: 0;
+
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.verification-stat-number {
+  margin: 8px 0 0;
+
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.verification-stat-number.pending {
+  color: #ca8a04;
+}
+
+.verification-stat-number.verified {
+  color: #16a34a;
+}
+
+.verification-stat-number.rejected {
+  color: #dc2626;
+}
+
+.verification-stat-description {
+  margin: 8px 0 0;
+
+  color: #9ca3af;
+  font-size: 12px;
+}
+
+.verification-stat-icon {
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+}
+
+.pending-icon {
+  color: #ca8a04;
+  background: #fefce8;
+}
+
+.verified-icon {
+  color: #16a34a;
+  background: #f0fdf4;
+}
+
+.rejected-icon {
+  color: #dc2626;
+  background: #fef2f2;
+}
+
+
+/* =========================================
+   VERIFICATION QUEUE
+========================================= */
+
+.verification-queue {
+  overflow: hidden;
+
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+}
+
+.verification-queue-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 16px;
+
+  padding: 24px;
+
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.verification-queue-header h2 {
+  margin: 0;
+
+  color: #111827;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.verification-queue-header p {
+  margin: 4px 0 0;
+
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.verification-pending-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  width: fit-content;
+
+  padding: 8px 16px;
+
+  color: #a16207;
+  background: #fefce8;
+
+  border-radius: 999px;
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+
+/* =========================================
+   APPLICATION LIST
+========================================= */
+
+.verification-applications {
+  width: 100%;
+}
+
+.verification-application {
+  padding: 24px;
+
+  border-bottom: 1px solid #f3f4f6;
+
+  transition: background-color 0.2s ease;
+}
+
+.verification-application:last-child {
+  border-bottom: none;
+}
+
+.verification-application:hover {
+  background: #f9fafb;
+}
+
+.verification-application-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 24px;
+}
+
+
+/* =========================================
+   ORGANISATION
+========================================= */
+
+.verification-organisation {
+  min-width: 0;
+
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.verification-organisation-icon {
+  width: 48px;
+  height: 48px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+}
+
+.hospital-icon {
+  color: #2563eb;
+  background: #eff6ff;
+}
+
+.bloodbank-icon {
+  color: #9333ea;
+  background: #faf5ff;
+}
+
+.verification-organisation-details {
+  min-width: 0;
+}
+
+.verification-organisation-title {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.verification-organisation-title h3 {
+  margin: 0;
+
+  color: #111827;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.verification-type-badge {
+  padding: 4px 10px;
+
+  color: #4b5563;
+  background: #f3f4f6;
+
+  border-radius: 999px;
+
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.verification-email {
+  margin: 8px 0 0;
+
+  color: #6b7280;
+  font-size: 14px;
+
+  overflow-wrap: anywhere;
+}
+
+.verification-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  gap: 20px;
+
+  margin-top: 12px;
+}
+
+.verification-meta p {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  margin: 0;
+
+  color: #9ca3af;
+  font-size: 12px;
+}
+
+
+/* =========================================
+   ACTIONS
+========================================= */
+
+.verification-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  flex-shrink: 0;
+}
+
+.verification-actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  padding: 10px 20px;
+
+  border-radius: 12px;
+
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+
+/* Review */
+
+.verification-review-button {
+  color: #374151;
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+}
+
+.verification-review-button:hover {
+  background: #f9fafb;
+  border-color: #d1d5db;
+}
+
+
+/* Approve */
+
+.verification-approve-button {
+  color: #ffffff;
+  background: #16a34a;
+
+  border: 1px solid #16a34a;
+}
+
+.verification-approve-button:hover {
+  background: #15803d;
+  border-color: #15803d;
+}
+
+
+/* Reject */
+
+.verification-reject-button {
+  color: #dc2626;
+  background: #fef2f2;
+
+  border: 1px solid #fef2f2;
+}
+
+.verification-reject-button:hover {
+  background: #fee2e2;
+}
+
+
+/* =========================================
+   INFORMATION
+========================================= */
+
+.verification-information {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+
+  margin-top: 32px;
+  padding: 24px;
+
+  background: #eff6ff;
+  border: 1px solid #dbeafe;
+  border-radius: 16px;
+}
+
+.verification-information-icon {
+  width: 40px;
+  height: 40px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #2563eb;
+  background: #dbeafe;
+
+  border-radius: 12px;
+}
+
+.verification-information h3 {
+  margin: 0;
+
+  color: #1e3a8a;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.verification-information p {
+  margin: 4px 0 0;
+
+  color: #1d4ed8;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1024px) {
+
+  .verification-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .verification-application-content {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .verification-actions {
+    width: 100%;
+  }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 640px) {
+
+  .verification-header-content h1 {
+    font-size: 26px;
+  }
+
+  .verification-stats {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .verification-stat-card {
+    padding: 20px;
+  }
+
+  .verification-queue-header {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .verification-application {
+    padding: 20px;
+  }
+
+  .verification-organisation {
+    gap: 12px;
+  }
+
+  .verification-organisation-icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .verification-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .verification-actions {
+    flex-direction: column;
+  }
+
+  .verification-actions button {
+    width: 100%;
+  }
+
+  .verification-information {
+    padding: 20px;
+  }
+
+}

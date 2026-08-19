@@ -8,6 +8,8 @@ import {
   Info,
 } from "lucide-react";
 
+import "./NearbyCentres.css";
+
 import MapCard from "../../components/dashboard/MapCard";
 
 function NearbyCentres() {
@@ -49,56 +51,49 @@ function NearbyCentres() {
   return (
     <div className="donor-nearby-centres">
 
-      {/* =====================================================
-          PAGE HEADER
-      ===================================================== */}
+      {/* PAGE HEADER */}
 
-      <section className="mb-8">
-        <p className="text-sm text-gray-500">
+      <section className="nearby-header">
+
+        <p className="nearby-eyebrow">
           Help save a life
         </p>
 
-        <h1 className="text-3xl font-bold text-gray-900 mt-1">
+        <h1>
           Nearby Donation Centres
         </h1>
 
-        <p className="text-gray-500 mt-2">
+        <p className="nearby-description">
           Find blood donation centres near your location.
         </p>
+
       </section>
 
 
-      {/* =====================================================
-          SEARCH / LOCATION
-      ===================================================== */}
+      {/* SEARCH / LOCATION */}
 
-      <section className="bg-white border border-gray-200 rounded-2xl p-5 mb-8">
+      <section className="nearby-search-card">
 
-        <div className="flex flex-col md:flex-row gap-4">
+        <div className="nearby-search-row">
 
-          {/* Search */}
-
-          <div className="flex-1 relative">
+          <div className="nearby-search-box">
 
             <Search
               size={20}
-              className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+              className="nearby-search-icon"
             />
 
             <input
               type="text"
               placeholder="Search by location or centre name"
-              className="w-full border border-gray-200 rounded-xl pl-11 pr-4 py-3 outline-none focus:ring-2 focus:ring-red-200 focus:border-red-500"
             />
 
           </div>
 
 
-          {/* Location Button */}
-
           <button
             type="button"
-            className="bg-red-600 text-white px-6 py-3 rounded-xl font-medium hover:bg-red-700 transition flex items-center justify-center gap-2"
+            className="nearby-location-button"
           >
             <MapPin size={19} />
 
@@ -110,27 +105,25 @@ function NearbyCentres() {
       </section>
 
 
-      {/* =====================================================
-          MAP
-      ===================================================== */}
+      {/* MAP */}
 
-      <section className="mb-8">
+      <section className="nearby-map-section">
 
-        <div className="flex items-center justify-between mb-5">
+        <div className="nearby-section-heading">
 
           <div>
-            <h2 className="text-xl font-bold text-gray-900">
+            <h2>
               Donation Centres Map
             </h2>
 
-            <p className="text-sm text-gray-500 mt-1">
+            <p>
               Explore nearby blood donation locations.
             </p>
           </div>
 
           <MapPin
             size={22}
-            className="text-red-600"
+            className="nearby-heading-icon"
           />
 
         </div>
@@ -140,15 +133,13 @@ function NearbyCentres() {
       </section>
 
 
-      {/* =====================================================
-          FILTERS
-      ===================================================== */}
+      {/* FILTERS */}
 
-      <section className="flex flex-wrap gap-3 mb-6">
+      <section className="nearby-filters">
 
         <button
           type="button"
-          className="bg-red-600 text-white px-4 py-2 rounded-full text-sm font-medium"
+          className="nearby-filter-active"
         >
           All Centres
         </button>
@@ -156,85 +147,81 @@ function NearbyCentres() {
       </section>
 
 
-      {/* =====================================================
-          RESULTS HEADER
-      ===================================================== */}
+      {/* RESULTS HEADER */}
 
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-5">
+      <div className="nearby-results-header">
 
         <div>
 
-          <h2 className="text-xl font-bold text-gray-900">
+          <h2>
             Donation Centres
           </h2>
 
-          <p className="text-sm text-gray-500 mt-1">
+          <p>
             Centres available near you
           </p>
 
         </div>
 
-        <span className="text-sm text-gray-500">
+        <span>
           {centres.length} centres
         </span>
 
       </div>
 
 
-      {/* =====================================================
-          CENTRE LIST
-      ===================================================== */}
+      {/* CENTRE LIST */}
 
-      <section className="space-y-4">
+      <section className="nearby-centres-list">
 
         {centres.map((centre) => (
 
           <div
             key={centre.id}
-            className="bg-white border border-gray-200 rounded-2xl p-6 hover:shadow-md transition"
+            className="nearby-centre-card"
           >
 
-            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+            <div className="nearby-centre-content">
 
               {/* Centre Information */}
 
-              <div className="flex items-start gap-4">
+              <div className="nearby-centre-info">
 
-                <div className="w-12 h-12 rounded-xl bg-red-50 text-red-600 flex items-center justify-center shrink-0">
+                <div className="nearby-centre-icon">
                   <Hospital size={24} />
                 </div>
 
-                <div>
+                <div className="nearby-centre-details">
 
-                  <h3 className="font-semibold text-gray-900">
+                  <h3>
                     {centre.name}
                   </h3>
 
-                  <p className="text-gray-500 text-sm mt-1 flex items-center gap-1">
+                  <p className="nearby-centre-location">
                     <MapPin size={15} />
 
                     {centre.location}
                   </p>
 
-                  <div className="flex flex-wrap items-center gap-4 mt-3">
+                  <div className="nearby-centre-meta">
 
-                    <span className="text-sm text-gray-500 flex items-center gap-1">
+                    <span>
                       <Navigation size={15} />
 
                       {centre.distance} away
                     </span>
 
                     <span
-                      className={`text-xs font-semibold px-3 py-1 rounded-full ${
+                      className={
                         centre.status === "Open"
-                          ? "bg-green-50 text-green-700"
-                          : "bg-gray-100 text-gray-500"
-                      }`}
+                          ? "nearby-status nearby-status-open"
+                          : "nearby-status nearby-status-closed"
+                      }
                     >
                       {centre.status}
                     </span>
 
-                    <span className="text-sm text-gray-400 flex items-center gap-1">
+                    <span className="nearby-hours">
                       <Clock size={15} />
 
                       {centre.hours}
@@ -249,11 +236,11 @@ function NearbyCentres() {
 
               {/* Actions */}
 
-              <div className="flex flex-col sm:flex-row gap-3">
+              <div className="nearby-centre-actions">
 
                 <button
                   type="button"
-                  className="border border-gray-200 text-gray-700 px-5 py-3 rounded-xl font-medium hover:bg-gray-50 transition flex items-center justify-center gap-2"
+                  className="nearby-details-button"
                 >
                   <Hospital size={17} />
 
@@ -262,7 +249,7 @@ function NearbyCentres() {
 
                 <button
                   type="button"
-                  className="bg-red-600 text-white px-5 py-3 rounded-xl font-medium hover:bg-red-700 transition flex items-center justify-center gap-2"
+                  className="nearby-directions-button"
                 >
                   <Navigation size={17} />
 
@@ -280,25 +267,23 @@ function NearbyCentres() {
       </section>
 
 
-      {/* =====================================================
-          INFORMATION
-      ===================================================== */}
+      {/* INFORMATION */}
 
-      <section className="bg-red-50 border border-red-100 rounded-2xl p-6 mt-8">
+      <section className="nearby-information">
 
-        <div className="flex items-start gap-4">
+        <div className="nearby-information-content">
 
-          <div className="w-11 h-11 rounded-xl bg-red-100 text-red-600 flex items-center justify-center shrink-0">
+          <div className="nearby-information-icon">
             <Info size={22} />
           </div>
 
           <div>
 
-            <h2 className="font-bold text-red-900">
+            <h2>
               Before you donate
             </h2>
 
-            <p className="text-red-800 text-sm mt-2 leading-6">
+            <p>
               Make sure you are feeling well and meet the donation
               requirements. The donation centre will carry out the
               necessary checks before your donation.
@@ -311,26 +296,25 @@ function NearbyCentres() {
       </section>
 
 
-      {/* =====================================================
-          DONATION REMINDER
-      ===================================================== */}
+      {/* DONATION REMINDER */}
 
-      <section className="bg-white border border-gray-200 rounded-2xl p-6 mt-8">
+      <section className="nearby-reminder">
 
-        <div className="flex items-start gap-4">
+        <div className="nearby-reminder-content">
 
-          <div className="w-11 h-11 rounded-xl bg-red-50 text-red-600 flex items-center justify-center shrink-0">
+          <div className="nearby-reminder-icon">
             <Droplet size={22} />
           </div>
 
           <div>
 
-            <h2 className="font-semibold text-gray-900">
+            <h2>
               Your donation can make a difference
             </h2>
 
-            <p className="text-sm text-gray-500 mt-1">
-              Find a convenient centre and keep your donation history up to date.
+            <p>
+              Find a convenient centre and keep your donation history
+              up to date.
             </p>
 
           </div>
@@ -344,3 +328,4 @@ function NearbyCentres() {
 }
 
 export default NearbyCentres;
+

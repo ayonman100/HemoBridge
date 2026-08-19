@@ -22,12 +22,12 @@ import {
   ArrowLeft,
   Loader2,
 } from "lucide-react";
+import "./Signup.css";
 
 function Signup() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
 
-  // Get role from URL
   const requestedRole = searchParams.get("role");
 
   const validRoles = ["donor", "hospital", "bloodbank"];
@@ -42,23 +42,18 @@ function Signup() {
     bloodbank: "Blood Bank",
   };
 
-  // Role icons
   const RoleIcon = {
     donor: User,
     hospital: Building2,
     bloodbank: Landmark,
   }[role];
 
-  // Form data
   const [formData, setFormData] = useState({
-    // Common
-    name: "",
+    firstName: "",
+    lastName: "",
     email: "",
     phone: "",
-    password: "",
-    confirmPassword: "",
 
-    // Donor
     dateOfBirth: "",
     gender: "",
     bloodGroup: "",
@@ -66,7 +61,7 @@ function Signup() {
     lga: "",
     healthInformation: "",
 
-    // Organization
+    organizationName: "",
     address: "",
     state: "",
     registrationNumber: "",
@@ -77,18 +72,18 @@ function Signup() {
     representativePhone: "",
     operatingStatus: "",
 
-    // Verification
+    password: "",
+    confirmPassword: "",
+
     document: null,
     termsAccepted: false,
   });
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
-  // Password strength
   const passwordStrength =
     formData.password.length === 0
       ? ""
@@ -98,12 +93,10 @@ function Signup() {
       ? "Medium"
       : "Strong";
 
-  // Password match
   const passwordsMatch =
     formData.confirmPassword.length > 0 &&
     formData.password === formData.confirmPassword;
 
-  // Handle input changes
   const handleChange = (e) => {
     const { name, value, type, checked, files } = e.target;
 
@@ -120,13 +113,11 @@ function Signup() {
     setError("");
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     setError("");
 
-    // Password validation
     if (formData.password.length < 8) {
       setError("Your password must be at least 8 characters long.");
       return;
@@ -137,7 +128,6 @@ function Signup() {
       return;
     }
 
-    // Terms validation
     if (!formData.termsAccepted) {
       setError(
         "Please accept the Terms of Service and Privacy Policy."
@@ -147,24 +137,12 @@ function Signup() {
 
     setIsLoading(true);
 
-    // Temporary frontend simulation
     await new Promise((resolve) => setTimeout(resolve, 1200));
 
     console.log("Role:", role);
     console.log("Signup Data:", formData);
 
     setIsLoading(false);
-
-    /*
-      TEMPORARY FRONTEND NAVIGATION
-
-      Later:
-      1. Send registration data to backend.
-      2. Backend creates the account.
-      3. Email/phone verification is triggered.
-      4. Organization documents are reviewed.
-      5. Account status is returned.
-    */
 
     if (role === "donor") {
       navigate("/verify-account?role=donor");
@@ -174,171 +152,131 @@ function Signup() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 sm:px-6 py-8 md:py-12">
+    <div className="signup-page">
+      <div className="signup-container">
 
-      <div className="w-full max-w-3xl mx-auto">
-
-        {/* ================= BACK ================= */}
-
+        {/* Back */}
         <button
           type="button"
           onClick={() => navigate(-1)}
-          className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-red-600 transition mb-6"
+          className="signup-back-button"
         >
           <ArrowLeft size={17} />
           Back
         </button>
 
-        {/* ================= CARD ================= */}
+        {/* Main Card */}
+        <div className="signup-card">
 
-        <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+          {/* Header */}
+          <div className="signup-header">
 
-          {/* ================= HEADER ================= */}
-
-          <div className="px-6 py-8 md:px-10 md:py-10 text-center border-b border-gray-100">
-
-            <div className="w-16 h-16 mx-auto rounded-2xl bg-red-50 text-red-600 flex items-center justify-center mb-5">
+            <div className="signup-logo">
               <Droplets size={32} />
             </div>
 
-            <div className="inline-flex items-center gap-2 bg-gray-50 border border-gray-200 rounded-full px-4 py-2 mb-4">
-              <RoleIcon size={16} className="text-red-600" />
-
-              <span className="text-sm font-medium text-gray-700">
-                {roleName[role]} Account
-              </span>
+            <div className="signup-role">
+              <RoleIcon size={16} />
+              <span>{roleName[role]} Account</span>
             </div>
 
-            <h1 className="text-2xl md:text-3xl font-bold text-gray-900">
+            <h1>
               Create Your {roleName[role]} Account
             </h1>
 
-            <p className="mt-3 text-gray-600 max-w-xl mx-auto">
+            <p>
               Join HemoBridge and help make blood access faster,
               safer, and more efficient.
             </p>
 
           </div>
 
-          {/* ================= FORM CONTENT ================= */}
-
-          <div className="p-6 md:p-10">
-
-            {/* ================= ERROR ================= */}
+          {/* Form */}
+          <div className="signup-form-container">
 
             {error && (
-              <div
-                className="mb-7 rounded-xl border border-red-200 bg-red-50 px-4 py-4"
-                role="alert"
-              >
+              <div className="signup-error" role="alert">
+                <AlertCircle size={20} />
 
-                <div className="flex items-start gap-3">
-
-                  <AlertCircle
-                    size={20}
-                    className="text-red-600 shrink-0 mt-0.5"
-                  />
-
-                  <p className="text-sm text-red-700 leading-relaxed">
-                    {error}
-                  </p>
-
-                </div>
-
+                <p>{error}</p>
               </div>
             )}
 
-            {/* ================= FORM ================= */}
-
             <form
               onSubmit={handleSubmit}
-              className="space-y-10"
+              className="signup-form"
             >
 
-              {/* ================= ACCOUNT INFORMATION ================= */}
+              {/* ACCOUNT INFORMATION */}
+              <section className="form-section">
 
-              <section>
-
-                <div className="flex items-center gap-3 mb-5">
-
-                  <div className="w-10 h-10 rounded-xl bg-red-50 text-red-600 flex items-center justify-center">
+                <div className="section-heading">
+                  <div className="section-icon red">
                     <User size={20} />
                   </div>
 
                   <div>
-                    <h2 className="text-lg font-bold text-gray-900">
-                      Account Information
-                    </h2>
-
-                    <p className="text-sm text-gray-500">
+                    <h2>Account Information</h2>
+                    <p>
                       Enter your basic account details.
                     </p>
                   </div>
-
                 </div>
 
-                <div className="space-y-5">
+                <div className="form-grid">
 
-                  {/* Name */}
-
-                  <div>
-
-                    <label
-                      htmlFor="name"
-                      className="block text-sm font-medium text-gray-700 mb-2"
-                    >
-                      {role === "donor"
-                        ? "Full Name"
-                        : `${roleName[role]} Name`}
+                  {/* First Name */}
+                  <div className="form-field">
+                    <label htmlFor="firstName">
+                      First Name
                     </label>
 
-                    <div className="relative">
-
-                      <User
-                        size={18}
-                        className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
-                      />
+                    <div className="input-wrapper">
+                      <User size={18} />
 
                       <input
-                        id="name"
+                        id="firstName"
                         type="text"
-                        name="name"
-                        value={formData.name}
+                        name="firstName"
+                        value={formData.firstName}
                         onChange={handleChange}
-                        placeholder={
-                          role === "donor"
-                            ? "Enter your full name"
-                            : `Enter ${roleName[
-                                role
-                              ].toLowerCase()} name`
-                        }
-                        className="w-full border border-gray-300 rounded-xl pl-11 pr-4 py-3 outline-none transition focus:ring-2 focus:ring-red-100 focus:border-red-500"
+                        placeholder="Enter first name"
                         required
                       />
-
                     </div>
+                  </div>
 
+                  {/* Surname */}
+                  <div className="form-field">
+                    <label htmlFor="lastName">
+                      Surname
+                    </label>
+
+                    <div className="input-wrapper">
+                      <User size={18} />
+
+                      <input
+                        id="lastName"
+                        type="text"
+                        name="lastName"
+                        value={formData.lastName}
+                        onChange={handleChange}
+                        placeholder="Enter surname"
+                        required
+                      />
+                    </div>
                   </div>
 
                   {/* Email */}
-
-                  <div>
-
-                    <label
-                      htmlFor="email"
-                      className="block text-sm font-medium text-gray-700 mb-2"
-                    >
+                  <div className="form-field">
+                    <label htmlFor="email">
                       {role === "donor"
                         ? "Email Address"
                         : "Official Email Address"}
                     </label>
 
-                    <div className="relative">
-
-                      <Mail
-                        size={18}
-                        className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
-                      />
+                    <div className="input-wrapper">
+                      <Mail size={18} />
 
                       <input
                         id="email"
@@ -347,31 +285,19 @@ function Signup() {
                         value={formData.email}
                         onChange={handleChange}
                         placeholder="Enter email address"
-                        className="w-full border border-gray-300 rounded-xl pl-11 pr-4 py-3 outline-none transition focus:ring-2 focus:ring-red-100 focus:border-red-500"
                         required
                       />
-
                     </div>
-
                   </div>
 
                   {/* Phone */}
-
-                  <div>
-
-                    <label
-                      htmlFor="phone"
-                      className="block text-sm font-medium text-gray-700 mb-2"
-                    >
+                  <div className="form-field">
+                    <label htmlFor="phone">
                       Phone Number
                     </label>
 
-                    <div className="relative">
-
-                      <Phone
-                        size={18}
-                        className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
-                      />
+                    <div className="input-wrapper">
+                      <Phone size={18} />
 
                       <input
                         id="phone"
@@ -380,60 +306,41 @@ function Signup() {
                         value={formData.phone}
                         onChange={handleChange}
                         placeholder="Enter phone number"
-                        className="w-full border border-gray-300 rounded-xl pl-11 pr-4 py-3 outline-none transition focus:ring-2 focus:ring-red-100 focus:border-red-500"
                         required
                       />
-
                     </div>
-
                   </div>
 
                 </div>
-
               </section>
 
-              {/* ================= DONOR INFORMATION ================= */}
-
+              {/* DONOR INFORMATION */}
               {role === "donor" && (
-                <section>
+                <section className="form-section">
 
-                  <div className="flex items-center gap-3 mb-5">
-
-                    <div className="w-10 h-10 rounded-xl bg-red-50 text-red-600 flex items-center justify-center">
+                  <div className="section-heading">
+                    <div className="section-icon red">
                       <HeartPulse size={20} />
                     </div>
 
                     <div>
-                      <h2 className="text-lg font-bold text-gray-900">
-                        Donor Information
-                      </h2>
-
-                      <p className="text-sm text-gray-500">
-                        Help us understand your donation profile.
+                      <h2>Donor Information</h2>
+                      <p>
+                        Tell us about your donation profile.
                       </p>
                     </div>
-
                   </div>
 
-                  <div className="space-y-5">
+                  <div className="form-grid">
 
-                    {/* Date of Birth */}
-
-                    <div>
-
-                      <label
-                        htmlFor="dateOfBirth"
-                        className="block text-sm font-medium text-gray-700 mb-2"
-                      >
+                    {/* DOB */}
+                    <div className="form-field">
+                      <label htmlFor="dateOfBirth">
                         Date of Birth
                       </label>
 
-                      <div className="relative">
-
-                        <CalendarDays
-                          size={18}
-                          className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
-                        />
+                      <div className="input-wrapper">
+                        <CalendarDays size={18} />
 
                         <input
                           id="dateOfBirth"
@@ -441,152 +348,107 @@ function Signup() {
                           name="dateOfBirth"
                           value={formData.dateOfBirth}
                           onChange={handleChange}
-                          className="w-full border border-gray-300 rounded-xl pl-11 pr-4 py-3 outline-none focus:ring-2 focus:ring-red-100 focus:border-red-500"
                           required
                         />
-
                       </div>
-
                     </div>
 
                     {/* Gender */}
-
-                    <div>
-
-                      <label
-                        htmlFor="gender"
-                        className="block text-sm font-medium text-gray-700 mb-2"
-                      >
+                    <div className="form-field">
+                      <label htmlFor="gender">
                         Gender
                       </label>
 
-                      <div className="relative">
-
-                        <Users
-                          size={18}
-                          className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
-                        />
+                      <div className="input-wrapper">
+                        <Users size={18} />
 
                         <select
                           id="gender"
                           name="gender"
                           value={formData.gender}
                           onChange={handleChange}
-                          className="w-full border border-gray-300 rounded-xl pl-11 pr-4 py-3 bg-white outline-none focus:ring-2 focus:ring-red-100 focus:border-red-500"
                           required
                         >
                           <option value="">
                             Select gender
                           </option>
-
                           <option value="male">
                             Male
                           </option>
-
                           <option value="female">
                             Female
                           </option>
-
                           <option value="prefer-not-to-say">
                             Prefer not to say
                           </option>
                         </select>
-
                       </div>
-
                     </div>
 
                     {/* Blood Group */}
-
-                    <div>
-
-                      <label
-                        htmlFor="bloodGroup"
-                        className="block text-sm font-medium text-gray-700 mb-2"
-                      >
+                    <div className="form-field">
+                      <label htmlFor="bloodGroup">
                         Blood Group
                       </label>
 
-                      <div className="relative">
-
-                        <Droplets
-                          size={18}
-                          className="absolute left-4 top-1/2 -translate-y-1/2 text-red-500"
-                        />
+                      <div className="input-wrapper">
+                        <Droplets size={18} />
 
                         <select
                           id="bloodGroup"
                           name="bloodGroup"
                           value={formData.bloodGroup}
                           onChange={handleChange}
-                          className="w-full border border-gray-300 rounded-xl pl-11 pr-4 py-3 bg-white outline-none focus:ring-2 focus:ring-red-100 focus:border-red-500"
                           required
                         >
                           <option value="">
                             Select blood group
                           </option>
-
                           <option value="A">A</option>
                           <option value="B">B</option>
                           <option value="AB">AB</option>
                           <option value="O">O</option>
                         </select>
-
                       </div>
-
                     </div>
 
                     {/* Rhesus */}
-
-                    <div>
-
-                      <label
-                        htmlFor="rhesusFactor"
-                        className="block text-sm font-medium text-gray-700 mb-2"
-                      >
+                    <div className="form-field">
+                      <label htmlFor="rhesusFactor">
                         Rhesus Factor
                       </label>
 
-                      <select
-                        id="rhesusFactor"
-                        name="rhesusFactor"
-                        value={formData.rhesusFactor}
-                        onChange={handleChange}
-                        className="w-full border border-gray-300 rounded-xl px-4 py-3 bg-white outline-none focus:ring-2 focus:ring-red-100 focus:border-red-500"
-                        required
-                      >
-                        <option value="">
-                          Select Rhesus factor
-                        </option>
+                      <div className="input-wrapper">
+                        <Droplets size={18} />
 
-                        <option value="positive">
-                          Positive (+)
-                        </option>
-
-                        <option value="negative">
-                          Negative (-)
-                        </option>
-                      </select>
-
+                        <select
+                          id="rhesusFactor"
+                          name="rhesusFactor"
+                          value={formData.rhesusFactor}
+                          onChange={handleChange}
+                          required
+                        >
+                          <option value="">
+                            Select Rhesus factor
+                          </option>
+                          <option value="positive">
+                            Positive (+)
+                          </option>
+                          <option value="negative">
+                            Negative (-)
+                          </option>
+                        </select>
+                      </div>
                     </div>
 
                     {/* LGA */}
-
-                    <div>
-
-                      <label
-                        htmlFor="lga"
-                        className="block text-sm font-medium text-gray-700 mb-2"
-                      >
+                    <div className="form-field">
+                      <label htmlFor="lga">
                         LGA / Location
                       </label>
 
-                      <div className="relative">
-
-                        <MapPin
-                          size={18}
-                          className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
-                        />
+                      <div className="input-wrapper">
+                        <MapPin size={18} />
 
                         <input
                           id="lga"
@@ -594,23 +456,15 @@ function Signup() {
                           name="lga"
                           value={formData.lga}
                           onChange={handleChange}
-                          placeholder="Enter your LGA or location"
-                          className="w-full border border-gray-300 rounded-xl pl-11 pr-4 py-3 outline-none focus:ring-2 focus:ring-red-100 focus:border-red-500"
+                          placeholder="Enter LGA or location"
                           required
                         />
-
                       </div>
-
                     </div>
 
-                    {/* Health Information */}
-
-                    <div>
-
-                      <label
-                        htmlFor="healthInformation"
-                        className="block text-sm font-medium text-gray-700 mb-2"
-                      >
+                    {/* Health */}
+                    <div className="form-field full-width">
+                      <label htmlFor="healthInformation">
                         Health / Eligibility Information
                       </label>
 
@@ -619,27 +473,22 @@ function Signup() {
                         name="healthInformation"
                         value={formData.healthInformation}
                         onChange={handleChange}
-                        rows="4"
+                        rows="5"
                         placeholder="Provide relevant health or donation eligibility information"
-                        className="w-full border border-gray-300 rounded-xl px-4 py-3 outline-none resize-none focus:ring-2 focus:ring-red-100 focus:border-red-500"
                         required
                       />
-
                     </div>
 
                   </div>
-
                 </section>
               )}
 
-              {/* ================= ORGANIZATION INFORMATION ================= */}
-
+              {/* ORGANIZATION INFORMATION */}
               {(role === "hospital" || role === "bloodbank") && (
-                <section>
+                <section className="form-section">
 
-                  <div className="flex items-center gap-3 mb-5">
-
-                    <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
+                  <div className="section-heading">
+                    <div className="section-icon blue">
                       {role === "hospital" ? (
                         <Building2 size={20} />
                       ) : (
@@ -648,42 +497,61 @@ function Signup() {
                     </div>
 
                     <div>
-
-                      <h2 className="text-lg font-bold text-gray-900">
+                      <h2>
                         {role === "hospital"
                           ? "Hospital Information"
                           : "Blood Bank Information"}
                       </h2>
 
-                      <p className="text-sm text-gray-500">
+                      <p>
                         Provide your organization's verification details.
                       </p>
-
                     </div>
-
                   </div>
 
-                  <div className="space-y-5">
+                  <div className="form-grid">
 
-                    {/* Registration Number */}
+                    {/* Organization Name */}
+                    <div className="form-field full-width">
+                      <label htmlFor="organizationName">
+                        {role === "hospital"
+                          ? "Hospital Name"
+                          : "Blood Bank Name"}
+                      </label>
 
-                    <div>
+                      <div className="input-wrapper">
+                        {role === "hospital" ? (
+                          <Building2 size={18} />
+                        ) : (
+                          <Landmark size={18} />
+                        )}
 
-                      <label
-                        htmlFor="registrationNumber"
-                        className="block text-sm font-medium text-gray-700 mb-2"
-                      >
+                        <input
+                          id="organizationName"
+                          type="text"
+                          name="organizationName"
+                          value={formData.organizationName}
+                          onChange={handleChange}
+                          placeholder={
+                            role === "hospital"
+                              ? "Enter hospital name"
+                              : "Enter blood bank name"
+                          }
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    {/* Registration */}
+                    <div className="form-field">
+                      <label htmlFor="registrationNumber">
                         {role === "hospital"
                           ? "Hospital Registration Number"
                           : "Licence / Registration Number"}
                       </label>
 
-                      <div className="relative">
-
-                        <FileText
-                          size={18}
-                          className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
-                        />
+                      <div className="input-wrapper">
+                        <FileText size={18} />
 
                         <input
                           id="registrationNumber"
@@ -691,28 +559,16 @@ function Signup() {
                           name="registrationNumber"
                           value={formData.registrationNumber}
                           onChange={handleChange}
-                          placeholder={
-                            role === "hospital"
-                              ? "Enter hospital registration number"
-                              : "Enter licence or registration number"
-                          }
-                          className="w-full border border-gray-300 rounded-xl pl-11 pr-4 py-3 outline-none focus:ring-2 focus:ring-red-100 focus:border-red-500"
+                          placeholder="Enter registration number"
                           required
                         />
-
                       </div>
-
                     </div>
 
                     {/* Hospital Type */}
-
                     {role === "hospital" && (
-                      <div>
-
-                        <label
-                          htmlFor="hospitalType"
-                          className="block text-sm font-medium text-gray-700 mb-2"
-                        >
+                      <div className="form-field">
+                        <label htmlFor="hospitalType">
                           Hospital Type
                         </label>
 
@@ -721,50 +577,37 @@ function Signup() {
                           name="hospitalType"
                           value={formData.hospitalType}
                           onChange={handleChange}
-                          className="w-full border border-gray-300 rounded-xl px-4 py-3 bg-white outline-none focus:ring-2 focus:ring-red-100 focus:border-red-500"
                           required
                         >
                           <option value="">
                             Select hospital type
                           </option>
-
                           <option value="general">
                             General Hospital
                           </option>
-
                           <option value="teaching">
                             Teaching Hospital
                           </option>
-
                           <option value="specialist">
                             Specialist Hospital
                           </option>
-
                           <option value="private">
                             Private Hospital
                           </option>
-
                           <option value="clinic">
                             Clinic
                           </option>
-
                           <option value="other">
                             Other
                           </option>
                         </select>
-
                       </div>
                     )}
 
                     {/* Ownership */}
-
                     {role === "hospital" && (
-                      <div>
-
-                        <label
-                          htmlFor="ownershipType"
-                          className="block text-sm font-medium text-gray-700 mb-2"
-                        >
+                      <div className="form-field">
+                        <label htmlFor="ownershipType">
                           Ownership Type
                         </label>
 
@@ -773,52 +616,37 @@ function Signup() {
                           name="ownershipType"
                           value={formData.ownershipType}
                           onChange={handleChange}
-                          className="w-full border border-gray-300 rounded-xl px-4 py-3 bg-white outline-none focus:ring-2 focus:ring-red-100 focus:border-red-500"
                           required
                         >
                           <option value="">
                             Select ownership
                           </option>
-
                           <option value="government">
                             Government
                           </option>
-
                           <option value="private">
                             Private
                           </option>
-
                           <option value="mission">
                             Mission / Faith-based
                           </option>
-
                           <option value="other">
                             Other
                           </option>
                         </select>
-
                       </div>
                     )}
 
                     {/* Address */}
-
-                    <div>
-
-                      <label
-                        htmlFor="address"
-                        className="block text-sm font-medium text-gray-700 mb-2"
-                      >
+                    <div className="form-field full-width">
+                      <label htmlFor="address">
                         {role === "hospital"
                           ? "Hospital Address"
                           : "Blood Bank Address"}
                       </label>
 
-                      <div className="relative">
-
-                        <MapPin
-                          size={18}
-                          className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
-                        />
+                      <div className="input-wrapper">
+                        <MapPin size={18} />
 
                         <input
                           id="address"
@@ -826,27 +654,15 @@ function Signup() {
                           name="address"
                           value={formData.address}
                           onChange={handleChange}
-                          placeholder={
-                            role === "hospital"
-                              ? "Enter hospital address"
-                              : "Enter blood bank address"
-                          }
-                          className="w-full border border-gray-300 rounded-xl pl-11 pr-4 py-3 outline-none focus:ring-2 focus:ring-red-100 focus:border-red-500"
+                          placeholder="Enter full address"
                           required
                         />
-
                       </div>
-
                     </div>
 
                     {/* State */}
-
-                    <div>
-
-                      <label
-                        htmlFor="state"
-                        className="block text-sm font-medium text-gray-700 mb-2"
-                      >
+                    <div className="form-field">
+                      <label htmlFor="state">
                         State
                       </label>
 
@@ -857,29 +673,18 @@ function Signup() {
                         value={formData.state}
                         onChange={handleChange}
                         placeholder="Enter state"
-                        className="w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-red-100 focus:border-red-500"
                         required
                       />
-
                     </div>
 
                     {/* Representative */}
-
-                    <div>
-
-                      <label
-                        htmlFor="representativeName"
-                        className="block text-sm font-medium text-gray-700 mb-2"
-                      >
+                    <div className="form-field">
+                      <label htmlFor="representativeName">
                         Authorized Representative
                       </label>
 
-                      <div className="relative">
-
-                        <User
-                          size={18}
-                          className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
-                        />
+                      <div className="input-wrapper">
+                        <User size={18} />
 
                         <input
                           id="representativeName"
@@ -887,32 +692,20 @@ function Signup() {
                           name="representativeName"
                           value={formData.representativeName}
                           onChange={handleChange}
-                          placeholder="Full name of authorized representative"
-                          className="w-full border border-gray-300 rounded-xl pl-11 pr-4 py-3 outline-none focus:ring-2 focus:ring-red-100 focus:border-red-500"
+                          placeholder="Representative full name"
                           required
                         />
-
                       </div>
-
                     </div>
 
                     {/* Representative Email */}
-
-                    <div>
-
-                      <label
-                        htmlFor="representativeEmail"
-                        className="block text-sm font-medium text-gray-700 mb-2"
-                      >
+                    <div className="form-field">
+                      <label htmlFor="representativeEmail">
                         Representative Email
                       </label>
 
-                      <div className="relative">
-
-                        <Mail
-                          size={18}
-                          className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
-                        />
+                      <div className="input-wrapper">
+                        <Mail size={18} />
 
                         <input
                           id="representativeEmail"
@@ -921,31 +714,19 @@ function Signup() {
                           value={formData.representativeEmail}
                           onChange={handleChange}
                           placeholder="Representative email"
-                          className="w-full border border-gray-300 rounded-xl pl-11 pr-4 py-3 outline-none focus:ring-2 focus:ring-red-100 focus:border-red-500"
                           required
                         />
-
                       </div>
-
                     </div>
 
                     {/* Representative Phone */}
-
-                    <div>
-
-                      <label
-                        htmlFor="representativePhone"
-                        className="block text-sm font-medium text-gray-700 mb-2"
-                      >
+                    <div className="form-field">
+                      <label htmlFor="representativePhone">
                         Representative Phone
                       </label>
 
-                      <div className="relative">
-
-                        <Phone
-                          size={18}
-                          className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
-                        />
+                      <div className="input-wrapper">
+                        <Phone size={18} />
 
                         <input
                           id="representativePhone"
@@ -953,24 +734,16 @@ function Signup() {
                           name="representativePhone"
                           value={formData.representativePhone}
                           onChange={handleChange}
-                          placeholder="Representative phone number"
-                          className="w-full border border-gray-300 rounded-xl pl-11 pr-4 py-3 outline-none focus:ring-2 focus:ring-red-100 focus:border-red-500"
+                          placeholder="Representative phone"
                           required
                         />
-
                       </div>
-
                     </div>
 
                     {/* Operating Status */}
-
                     {role === "bloodbank" && (
-                      <div>
-
-                        <label
-                          htmlFor="operatingStatus"
-                          className="block text-sm font-medium text-gray-700 mb-2"
-                        >
+                      <div className="form-field">
+                        <label htmlFor="operatingStatus">
                           Operating Status
                         </label>
 
@@ -979,58 +752,47 @@ function Signup() {
                           name="operatingStatus"
                           value={formData.operatingStatus}
                           onChange={handleChange}
-                          className="w-full border border-gray-300 rounded-xl px-4 py-3 bg-white outline-none focus:ring-2 focus:ring-red-100 focus:border-red-500"
                           required
                         >
                           <option value="">
                             Select operating status
                           </option>
-
                           <option value="active">
                             Currently Operating
                           </option>
-
                           <option value="temporarily-closed">
                             Temporarily Closed
                           </option>
                         </select>
-
                       </div>
                     )}
 
                     {/* Document */}
+                    <div className="form-field full-width">
 
-                    <div>
-
-                      <label
-                        htmlFor="document"
-                        className="block text-sm font-medium text-gray-700 mb-2"
-                      >
+                      <label htmlFor="document">
                         {role === "hospital"
                           ? "Registration / Accreditation Document"
                           : "Licence / Registration Document"}
                       </label>
 
-                      <div className="border-2 border-dashed border-gray-300 rounded-xl p-6 text-center hover:border-red-400 transition">
+                      <div className="upload-box">
 
                         <Upload
-                          size={28}
-                          className="mx-auto text-gray-400 mb-3"
+                          size={30}
+                          className="upload-icon"
                         />
 
                         <label
                           htmlFor="document"
-                          className="cursor-pointer"
+                          className="upload-label"
                         >
-
-                          <span className="text-sm font-semibold text-red-600 hover:text-red-700">
+                          <span>
                             Upload a document
                           </span>
-
-                          <span className="text-sm text-gray-500">
-                            {" "}or select a file
-                          </span>
-
+                          <small>
+                            PDF, JPG, JPEG or PNG
+                          </small>
                         </label>
 
                         <input
@@ -1039,91 +801,71 @@ function Signup() {
                           name="document"
                           onChange={handleChange}
                           accept=".pdf,.jpg,.jpeg,.png"
-                          className="hidden"
+                          hidden
                           required
                         />
 
                         {formData.document && (
-                          <div className="mt-3 flex items-center justify-center gap-2 text-sm text-green-600">
+                          <div className="uploaded-file">
                             <CheckCircle2 size={16} />
                             {formData.document.name}
                           </div>
                         )}
 
-                        <p className="text-xs text-gray-500 mt-2">
-                          PDF, JPG, JPEG or PNG
-                        </p>
-
                       </div>
-
                     </div>
 
                   </div>
-
                 </section>
               )}
 
-              {/* ================= SECURITY ================= */}
+              {/* SECURITY */}
+              <section className="form-section">
 
-              <section>
-
-                <div className="flex items-center gap-3 mb-5">
-
-                  <div className="w-10 h-10 rounded-xl bg-green-50 text-green-600 flex items-center justify-center">
+                <div className="section-heading">
+                  <div className="section-icon green">
                     <ShieldCheck size={20} />
                   </div>
 
                   <div>
-
-                    <h2 className="text-lg font-bold text-gray-900">
-                      Security
-                    </h2>
-
-                    <p className="text-sm text-gray-500">
+                    <h2>Security</h2>
+                    <p>
                       Create a secure password for your account.
                     </p>
-
                   </div>
-
                 </div>
 
-                <div className="space-y-5">
+                <div className="form-grid">
 
                   {/* Password */}
-
-                  <div>
-
-                    <label
-                      htmlFor="password"
-                      className="block text-sm font-medium text-gray-700 mb-2"
-                    >
+                  <div className="form-field">
+                    <label htmlFor="password">
                       Password
                     </label>
 
-                    <div className="relative">
-
-                      <Lock
-                        size={18}
-                        className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
-                      />
+                    <div className="input-wrapper">
+                      <Lock size={18} />
 
                       <input
                         id="password"
-                        type={showPassword ? "text" : "password"}
+                        type={
+                          showPassword
+                            ? "text"
+                            : "password"
+                        }
                         name="password"
                         value={formData.password}
                         onChange={handleChange}
                         placeholder="Create a password"
-                        className="w-full border border-gray-300 rounded-xl pl-11 pr-12 py-3 outline-none focus:ring-2 focus:ring-red-100 focus:border-red-500"
                         required
                       />
 
                       <button
                         type="button"
+                        className="password-toggle"
                         onClick={() =>
                           setShowPassword(!showPassword)
                         }
-                        className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-700 transition"
                         aria-label={
                           showPassword
                             ? "Hide password"
@@ -1136,68 +878,43 @@ function Signup() {
                           <Eye size={19} />
                         )}
                       </button>
-
                     </div>
 
                     {passwordStrength && (
-                      <div className="mt-3">
+                      <div className="password-strength">
 
-                        <div className="flex items-center justify-between mb-1">
-
-                          <span className="text-xs text-gray-500">
+                        <div className="strength-header">
+                          <span>
                             Password strength
                           </span>
 
-                          <span
-                            className={`text-xs font-semibold ${
-                              passwordStrength === "Weak"
-                                ? "text-red-600"
-                                : passwordStrength === "Medium"
-                                ? "text-yellow-600"
-                                : "text-green-600"
-                            }`}
+                          <strong
+                            className={
+                              passwordStrength.toLowerCase()
+                            }
                           >
                             {passwordStrength}
-                          </span>
-
+                          </strong>
                         </div>
 
-                        <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden">
-
+                        <div className="strength-track">
                           <div
-                            className={`h-full rounded-full transition-all ${
-                              passwordStrength === "Weak"
-                                ? "w-1/3 bg-red-500"
-                                : passwordStrength === "Medium"
-                                ? "w-2/3 bg-yellow-500"
-                                : "w-full bg-green-500"
-                            }`}
+                            className={`strength-bar ${passwordStrength.toLowerCase()}`}
                           />
-
                         </div>
 
                       </div>
                     )}
-
                   </div>
 
                   {/* Confirm Password */}
-
-                  <div>
-
-                    <label
-                      htmlFor="confirmPassword"
-                      className="block text-sm font-medium text-gray-700 mb-2"
-                    >
+                  <div className="form-field">
+                    <label htmlFor="confirmPassword">
                       Confirm Password
                     </label>
 
-                    <div className="relative">
-
-                      <Lock
-                        size={18}
-                        className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
-                      />
+                    <div className="input-wrapper">
+                      <Lock size={18} />
 
                       <input
                         id="confirmPassword"
@@ -1210,18 +927,17 @@ function Signup() {
                         value={formData.confirmPassword}
                         onChange={handleChange}
                         placeholder="Confirm your password"
-                        className="w-full border border-gray-300 rounded-xl pl-11 pr-12 py-3 outline-none focus:ring-2 focus:ring-red-100 focus:border-red-500"
                         required
                       />
 
                       <button
                         type="button"
+                        className="password-toggle"
                         onClick={() =>
                           setShowConfirmPassword(
                             !showConfirmPassword
                           )
                         }
-                        className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-700 transition"
                         aria-label={
                           showConfirmPassword
                             ? "Hide password"
@@ -1234,18 +950,16 @@ function Signup() {
                           <Eye size={19} />
                         )}
                       </button>
-
                     </div>
 
                     {formData.confirmPassword && (
                       <div
-                        className={`flex items-center gap-2 mt-2 text-sm font-medium ${
+                        className={`password-match ${
                           passwordsMatch
-                            ? "text-green-600"
-                            : "text-red-600"
+                            ? "match"
+                            : "no-match"
                         }`}
                       >
-
                         {passwordsMatch ? (
                           <CheckCircle2 size={16} />
                         ) : (
@@ -1255,132 +969,89 @@ function Signup() {
                         {passwordsMatch
                           ? "Passwords match"
                           : "Passwords do not match"}
-
                       </div>
                     )}
-
                   </div>
 
                 </div>
-
               </section>
 
-              {/* ================= TERMS ================= */}
+              {/* TERMS */}
+              <div className="terms-section">
 
-              <div className="border-t border-gray-100 pt-7">
+                <input
+                  id="termsAccepted"
+                  type="checkbox"
+                  name="termsAccepted"
+                  checked={formData.termsAccepted}
+                  onChange={handleChange}
+                  required
+                />
 
-                <div className="flex items-start gap-3">
-
-                  <input
-                    id="termsAccepted"
-                    type="checkbox"
-                    name="termsAccepted"
-                    checked={formData.termsAccepted}
-                    onChange={handleChange}
-                    className="mt-1 w-4 h-4 accent-red-600 cursor-pointer"
-                    required
-                  />
-
-                  <label
-                    htmlFor="termsAccepted"
-                    className="text-sm text-gray-600 leading-relaxed cursor-pointer"
-                  >
-                    I agree to HemoBridge's{" "}
-
-                    <Link
-                      to="/terms"
-                      className="text-red-600 font-medium hover:underline"
-                    >
-                      Terms of Service
-                    </Link>{" "}
-
-                    and{" "}
-
-                    <Link
-                      to="/privacy"
-                      className="text-red-600 font-medium hover:underline"
-                    >
-                      Privacy Policy
-                    </Link>
-                    .
-                  </label>
-
-                </div>
+                <label htmlFor="termsAccepted">
+                  I agree to HemoBridge's{" "}
+                  <Link to="/terms">
+                    Terms of Service
+                  </Link>{" "}
+                  and{" "}
+                  <Link to="/privacy">
+                    Privacy Policy
+                  </Link>
+                  .
+                </label>
 
               </div>
 
-              {/* ================= SUBMIT ================= */}
-
+              {/* SUBMIT */}
               <button
                 type="submit"
                 disabled={isLoading}
-                className={`w-full py-3.5 rounded-xl font-semibold text-white transition flex items-center justify-center gap-2 ${
-                  isLoading
-                    ? "bg-red-400 cursor-not-allowed"
-                    : "bg-red-600 hover:bg-red-700"
-                }`}
+                className="signup-submit"
               >
-
                 {isLoading ? (
                   <>
                     <Loader2
                       size={19}
                       className="animate-spin"
                     />
-
                     Creating Account...
                   </>
                 ) : (
                   <>
                     {role === "donor"
                       ? "Continue to Verification"
-                      : `Submit ${roleName[
-                          role
-                        ]} for Verification`}
+                      : `Submit ${roleName[role]} for Verification`}
 
                     <CheckCircle2 size={18} />
                   </>
                 )}
-
               </button>
 
             </form>
 
-            {/* ================= LOGIN ================= */}
-
-            <div className="text-center mt-8 pt-7 border-t border-gray-100">
-
-              <p className="text-sm text-gray-600">
-
+            {/* LOGIN */}
+            <div className="signup-login">
+              <p>
                 Already have an account?{" "}
-
-                <Link
-                  to="/login"
-                  className="text-red-600 font-semibold hover:text-red-700 transition"
-                >
+                <Link to="/login">
                   Login
                 </Link>
-
               </p>
-
             </div>
 
           </div>
-
         </div>
 
-        {/* ================= FOOTER ================= */}
-
-        <div className="flex items-center justify-center gap-2 mt-6 text-xs text-gray-500">
-
-          <ShieldCheck size={15} className="text-green-600" />
-
+        {/* Footer */}
+        <div className="signup-security-note">
+          <ShieldCheck
+            size={15}
+            className="text-green-600"
+          />
           Your information is securely handled by HemoBridge.
-
         </div>
 
       </div>
-
     </div>
   );
 }

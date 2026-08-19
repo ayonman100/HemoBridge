@@ -12,6 +12,8 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import Subscription from "../pages/subscription/Subscription";
 import Checkout from "../pages/subscription/Checkout";
 import SubscriptionSuccess from "../pages/subscription/SubscriptionSuccess";
+import Terms from "../pages/Terms";
+import Privacy from "../pages/Privacy";
 
 // Auth Pages
 import Splash from "../pages/auth/Splash";
@@ -71,6 +73,8 @@ function AppRoutes() {
         <Route path="/" element={<Splash/>} />
          <Route path="/subscription" element={<Subscription />} />
         <Route path="/subscription/checkout" element={<Checkout />} />
+        <Route path="/terms" element={<Terms />} />
+        <Route path="/privacy" element={<Privacy />} />
         <Route path="/subscription/success" element={<SubscriptionSuccess />} />
         <Route element={<MainLayout />}>
         <Route path="/home" element={<Home />} />

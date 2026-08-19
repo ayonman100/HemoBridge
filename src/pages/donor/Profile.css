@@ -1,0 +1,280 @@
+/* =========================================
+   DONOR PROFILE
+========================================= */
+
+.donor-profile {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding-bottom: 40px;
+}
+
+
+/* =========================================
+   PROFILE HEADER
+========================================= */
+
+.donor-profile > section:first-child {
+  margin-bottom: 28px;
+}
+
+.donor-profile > section:first-child p:first-child {
+  color: #6b7280;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.donor-profile > section:first-child h1 {
+  color: #111827;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.donor-profile > section:first-child p:last-child {
+  color: #6b7280;
+  font-size: 15px;
+  margin-top: 8px;
+}
+
+
+/* =========================================
+   PROFILE CARD
+========================================= */
+
+.donor-profile > section:nth-child(2) {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+
+/* =========================================
+   AVATAR
+========================================= */
+
+.donor-profile > section:nth-child(2) .w-20 {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+
+/* =========================================
+   EDIT BUTTON
+========================================= */
+
+.donor-profile > section:nth-child(2) button {
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  color: #374151;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.donor-profile > section:nth-child(2) button:hover {
+  background: #f9fafb;
+  border-color: #d1d5db;
+}
+
+
+/* =========================================
+   MAIN PROFILE GRID
+========================================= */
+
+.donor-profile > .grid {
+  align-items: start;
+}
+
+
+/* =========================================
+   PROFILE CARDS
+========================================= */
+
+.donor-profile > .grid > section {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+  padding: 24px;
+}
+
+
+/* =========================================
+   CARD HEADINGS
+========================================= */
+
+.donor-profile > .grid h2 {
+  color: #111827;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.donor-profile > .grid h2 + p {
+  color: #6b7280;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+
+/* =========================================
+   INFORMATION ITEMS
+========================================= */
+
+.donor-profile > .grid section p {
+  line-height: 1.5;
+}
+
+.donor-profile > .grid section p svg {
+  color: #6b7280;
+}
+
+
+/* =========================================
+   BLOOD INFORMATION
+========================================= */
+
+.donor-profile > .grid > section:nth-child(2) {
+  min-height: 260px;
+}
+
+.donor-profile > .grid > section:nth-child(2) .w-14 {
+  width: 56px;
+  height: 56px;
+  background: #fef2f2;
+  color: #dc2626;
+  border-radius: 12px;
+}
+
+
+/* =========================================
+   DONATION SUMMARY
+========================================= */
+
+.donor-profile > .grid > section:nth-child(3) {
+  min-height: 210px;
+}
+
+.donor-profile > .grid > section:nth-child(3) .bg-gray-50 {
+  background: #f9fafb;
+  border: 1px solid #f3f4f6;
+  border-radius: 14px;
+  transition: all 0.2s ease;
+}
+
+.donor-profile > .grid > section:nth-child(3) .bg-gray-50:hover {
+  border-color: #e5e7eb;
+  transform: translateY(-2px);
+}
+
+
+/* =========================================
+   ACCOUNT SETTINGS
+========================================= */
+
+.donor-profile > .grid > section:nth-child(4) {
+  min-height: 210px;
+}
+
+.donor-profile > .grid > section:nth-child(4) button,
+.donor-profile > .grid > section:nth-child(4) a {
+  transition: all 0.2s ease;
+}
+
+.donor-profile > .grid > section:nth-child(4) button:hover {
+  background: #f9fafb;
+}
+
+.donor-profile > .grid > section:nth-child(4) a:hover {
+  background: #fef2f2;
+}
+
+
+/* =========================================
+   DONOR IMPACT
+========================================= */
+
+.donor-profile > section:last-child {
+  background: #fef2f2;
+  border: 1px solid #fee2e2;
+  border-radius: 18px;
+  padding: 24px;
+  margin-top: 24px;
+}
+
+.donor-profile > section:last-child h2 {
+  color: #7f1d1d;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.donor-profile > section:last-child p {
+  color: #991b1b;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1024px) {
+  .donor-profile {
+    padding-bottom: 32px;
+  }
+
+  .donor-profile > .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .donor-profile > .grid > section {
+    grid-column: auto;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .donor-profile > section:first-child h1 {
+    font-size: 26px;
+  }
+
+  .donor-profile > section:nth-child(2) {
+    padding: 20px;
+  }
+
+  .donor-profile > .grid > section {
+    padding: 20px;
+  }
+}
+
+
+@media (max-width: 640px) {
+  .donor-profile > section:nth-child(2) {
+    padding: 18px;
+  }
+
+  .donor-profile > section:nth-child(2) .w-20 {
+    width: 64px;
+    height: 64px;
+  }
+
+  .donor-profile > section:nth-child(2) h2 {
+    font-size: 20px;
+  }
+
+  .donor-profile > .grid > section {
+    padding: 18px;
+  }
+
+  .donor-profile > section:last-child {
+    padding: 18px;
+  }
+}

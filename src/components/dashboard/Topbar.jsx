@@ -228,7 +228,11 @@ function Topbar({ sidebarOpen, setSidebarOpen }) {
   }, []);
 
   useEffect(() => {
-    setDropdownOpen(false);
+    const handlePathChange = () => {
+      setDropdownOpen(false);
+    };
+    
+    handlePathChange();
   }, [location.pathname]);
 
   if (!portalInfo) {

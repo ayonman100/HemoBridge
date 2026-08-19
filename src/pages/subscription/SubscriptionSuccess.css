@@ -1,0 +1,267 @@
+/* =========================================
+   SUBSCRIPTION SUCCESS PAGE
+========================================= */
+
+.subscription-success-page {
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 40px 24px;
+
+  background: #f9fafb;
+}
+
+
+/* =========================================
+   SUCCESS CARD
+========================================= */
+
+.subscription-success-card {
+  width: 100%;
+  max-width: 480px;
+
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+
+  padding: 40px;
+
+  text-align: center;
+}
+
+
+/* =========================================
+   SUCCESS ICON
+========================================= */
+
+.success-icon {
+  width: 80px;
+  height: 80px;
+
+  margin: 0 auto 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #f0fdf4;
+  color: #16a34a;
+
+  border-radius: 50%;
+}
+
+.success-icon svg {
+  stroke-width: 1.8;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.subscription-success-card h1 {
+  margin: 0;
+
+  color: #111827;
+
+  font-size: 30px;
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+.success-description {
+  margin: 12px 0 0;
+
+  color: #4b5563;
+
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+
+/* =========================================
+   PLAN DETAILS
+========================================= */
+
+.success-plan-details {
+  margin-top: 28px;
+
+  padding: 20px;
+
+  background: #f9fafb;
+
+  border-radius: 12px;
+
+  text-align: left;
+}
+
+.success-detail-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  margin-bottom: 16px;
+}
+
+.success-detail-row:last-child {
+  margin-bottom: 0;
+}
+
+.success-detail-row span {
+  color: #6b7280;
+
+  font-size: 14px;
+}
+
+.success-detail-row strong {
+  color: #111827;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  text-align: right;
+}
+
+.success-amount-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+
+/* =========================================
+   SUCCESS NOTICE
+========================================= */
+
+.success-notice {
+  margin-top: 24px;
+
+  padding: 16px;
+
+  background: #f0fdf4;
+
+  border: 1px solid #dcfce7;
+  border-radius: 12px;
+}
+
+.success-notice-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+
+  text-align: left;
+}
+
+.success-notice-content svg {
+  flex-shrink: 0;
+
+  margin-top: 2px;
+
+  color: #16a34a;
+}
+
+.success-notice-content p {
+  margin: 0;
+
+  color: #15803d;
+
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+
+/* =========================================
+   DASHBOARD BUTTON
+========================================= */
+
+.success-dashboard-button {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  margin-top: 28px;
+
+  padding: 14px 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  background: #dc2626;
+  color: #ffffff;
+
+  border-radius: 8px;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  text-decoration: none;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.success-dashboard-button:hover {
+  background: #b91c1c;
+}
+
+.success-dashboard-button:active {
+  transform: translateY(1px);
+}
+
+
+/* =========================================
+   SUBSCRIPTION LINK
+========================================= */
+
+.success-subscription-link {
+  display: block;
+
+  margin-top: 16px;
+
+  color: #4b5563;
+
+  font-size: 14px;
+
+  text-decoration: none;
+
+  transition: color 0.2s ease;
+}
+
+.success-subscription-link:hover {
+  color: #dc2626;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 640px) {
+
+  .subscription-success-page {
+    padding: 24px 16px;
+  }
+
+  .subscription-success-card {
+    padding: 28px 22px;
+  }
+
+  .subscription-success-card h1 {
+    font-size: 26px;
+  }
+
+  .success-detail-row {
+    gap: 12px;
+  }
+
+}
+
