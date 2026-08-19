@@ -11,7 +11,7 @@ import {
   Eye,
 } from "lucide-react";
 
-import "./users.css";
+import "./Users.css";
 
 function Users() {
   const users = [
