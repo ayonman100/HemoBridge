@@ -10,7 +10,7 @@ import {
   Eye,
 } from "lucide-react";
 
-import "./donors.css";
+import "./Donors.css";
 
 function Donors() {
   const donors = [
