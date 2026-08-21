@@ -34,7 +34,7 @@ function Dashboard() {
   };
 
   return (
-    <div className="donor-dashboard">
+    <div className="donor-dashboard px-4 sm:px-6 lg:px-8 xl:px-10">
 
       {/* PAGE HEADER */}
       <section className="donor-page-header">

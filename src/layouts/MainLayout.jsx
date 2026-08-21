@@ -15,17 +15,15 @@ function MainLayout() {
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div>
               <h2 className="text-lg font-bold text-gray-900">
-                HemoBridge
+                
               </h2>
 
               <p className="text-sm text-gray-500 mt-1">
-                Connecting Blood. Saving Lives.
-              </p>
+                 </p>
             </div>
 
             <p className="text-sm text-gray-500">
-              © 2026 HemoBridge. All rights reserved.
-            </p>
+                 </p>
           </div>
         </div>
       </footer>
